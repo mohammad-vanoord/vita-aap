@@ -1,0 +1,692 @@
+CreateMyRoleSkill As screen:
+
+    "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+        Height: =269
+        Items: =SortByColumns(SummaryRoleCollection3,"Sum Of Months",Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =38
+        Width: =463
+        X: =692
+        Y: =399
+        ZIndex: =1
+
+        Title4 As label:
+            Height: =37
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =346
+            ZIndex: =1
+
+        Subtitle3 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: =ThisItem.'Sum Of Months'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =51
+            X: =346
+            ZIndex: =2
+
+        Separator8 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =4
+
+    icnHome_4 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: ='ICON BL home'
+        OnSelect: =Navigate(MainScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        Width: =90
+        X: =1268
+        Y: =668
+        ZIndex: =15
+
+    icnInstruction_2 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1173
+        Y: =668
+        ZIndex: =17
+
+    lblCurrentRecord_3 As label:
+        Height: =28
+        Text: |-
+            ="You are working on record: " & FormNewMaster.LastSubmit.Title
+        Width: =1004
+        X: =40
+        Y: =143
+        ZIndex: =19
+
+    btnSaveProjColl_1 As button:
+        DisplayMode: =If(NeedssavedSkill,DisplayMode.Disabled,If(NeedssavedAddRole,DisplayMode.Disabled,If(ShowSaveAddRoleAndSkillSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)))
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =35
+        OnSelect: |-
+            =ForAll(
+                AddRolesCollection,
+                If(
+                    !IsBlank(AddRoleName),
+                    Patch(
+                        'PA_Roles (test)',
+                        Defaults('PA_Roles (test)'),
+                        {
+                            Title: AddRoleName,
+                            'What did you do in this role?': AddRoleDescr,
+                            'Months of experience in this role':AddRoleExperience,
+                            ProjectOrAddedRole:Text(1),
+                            IncludeInCV:Text(1),
+                            PA_MasterIDRoles: FormNewMaster.LastSubmit.ID
+                        }
+                    )
+                )
+            );
+            ForAll(
+                SkillsCollection,
+                If(
+                    !IsBlank(SkillName),
+                    Patch(
+                        'PA_Skills (test)',
+                        Defaults('PA_Skills (test)'),
+                        {
+                            Title:SkillName,
+                            'Description of skill':SkillDescr,
+                            SkillOrEquipment:SkillSwitch,
+                            'Years of experience in skill':SkillExperience,
+                            HighlightedSkill:HighlightedSkill,
+                            IncludeInCV:Text(1),
+                            PA_MasterIDSkill:FormNewMaster.LastSubmit.ID
+                        }
+                    )
+                )            
+            );
+            Set(
+                ShowSaveAddRoleAndSkillSuccess,
+                true
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save to CV"
+        Width: =123
+        X: =1050
+        Y: =711
+        ZIndex: =20
+
+    lblSaveWarningAddRole As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =28
+        Text: ="Save Add Role first"
+        Visible: =NeedssavedAddRole
+        Width: =173
+        X: =967
+        Y: =237
+        ZIndex: =21
+
+    lblTitleMyProjects_1 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =56
+        Size: =15
+        Text: ="My additional Roles"
+        Width: =409
+        X: =106
+        Y: =167
+        ZIndex: =22
+
+    btnAddRow_1 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =36
+        OnSelect: |-
+            =Collect(
+                AddRolesCollection,
+                {
+                    AddRoleName: "",
+                    AddRoleDescr: "",
+                    AddRoleExperience:0,
+                    ProjectOrAddedRole:"",
+                    ShowSaveButtonsAddRole: true
+                }
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =39
+        X: =45
+        Y: =177
+        ZIndex: =23
+
+    lblAddRow_1 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =40
+        Y: =221
+        ZIndex: =24
+
+    lblSavedSuccesAddRoleAndSkill As label:
+        Height: =95
+        Text: ="Saved succesfully! Please, continue to My Education"
+        Visible: =ShowSaveAddRoleAndSkillSuccess
+        Width: =177
+        X: =955
+        Y: =148
+        ZIndex: =25
+
+    btnAddRow_2 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =36
+        OnSelect: |-
+            =Collect(
+                SkillsCollection,
+                {
+                    SkillName: "",
+                    SkillDescr: "",
+                    SkillExperience:0,
+                    HighlightedSkill:"",
+                    SkillSwitch: "",  ShowSaveButtonsSkill: true
+                }
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =39
+        X: =45
+        Y: =448
+        ZIndex: =27
+
+    lblAddRow_2 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =40
+        Y: =479
+        ZIndex: =28
+
+    lblTitleMyProjects_2 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =15
+        Text: ="My Skills"
+        Width: =409
+        X: =106
+        Y: =430
+        ZIndex: =29
+
+    "GallerySkillColl As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =282
+        Items: =SkillsCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =224
+        Width: =663
+        Y: =486
+        ZIndex: =30
+
+        Separator2_7 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputSkillName As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.SkillName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsSkill,DisplayMode.Edit,View)
+            Height: =30
+            HintText: ="e.g. MS PowerApps/ Vox Apolonia/ Deep Digit"
+            OnChange: =Set(NeedssavedSkill,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =352
+            X: =118
+            Y: =63
+            ZIndex: =2
+
+        Label1_6 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Skill/Equipment/Tool:"
+            Width: =233
+            X: =118
+            Y: =31
+            ZIndex: =5
+
+        inputSkillDescr As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.SkillDescr
+            DisplayMode: =inputSkillName.DisplayMode
+            Height: =87
+            HintText: ="e.g.  Create apps, workflows, and custom, rich forms to streamline processes."
+            MaxLength: =150
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedSkill,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =350
+            X: =118
+            Y: =127
+            ZIndex: =8
+
+        Label4_9 As label:
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Description of Skill/Equipment/Tool:"
+            Width: =292
+            X: =118
+            Y: =90
+            ZIndex: =9
+
+        iconSaveSkill As icon.Save:
+            Height: =34
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    SkillsCollection,
+                    ThisItem,
+                    {
+                        SkillName: inputSkillName.Text,
+                        SkillDescr: inputSkillDescr.Text,
+                        SkillExperience:Value(inputSkillExperience.Text),
+                        HighlightedSkill:lblHighlightedSkillNew.Text,
+                        SkillSwitch: radioSkill.SelectedText.Value, ShowSaveButtonsSkill: false
+                    }
+                );If(EditPressedSkill, false, 
+                Collect(
+                    SkillsCollection,
+                    {
+                        SkillName: "",
+                        SkillDescr: "",
+                        SkillExperience:0,
+                        HighlightedSkill:"",
+                        SkillSwitch: "",  ShowSaveButtonsSkill: true
+                    }
+                ));UpdateContext({EditPressedSkill: false});Set(NeedssavedSkill, false)
+            Visible: =ThisItem.ShowSaveButtonsSkill
+            Width: =32
+            X: =554
+            Y: =174
+            ZIndex: =12
+
+        iconDeleteSkill As icon.Trash:
+            Height: =44
+            Icon: =Icon.Trash
+            OnSelect: =Remove(SkillsCollection,ThisItem);Set(NeedssavedSkill,false)
+            Visible: =iconSaveSkill.Visible
+            Width: =37
+            X: =586
+            Y: =170
+            ZIndex: =13
+
+        icnEditSkill As icon.Edit:
+            Height: =31
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(SkillsCollection,ThisItem, {ShowSaveButtonsSkill: true});UpdateContext({EditPressedSkill:true})
+            Visible: =!ThisItem.ShowSaveButtonsSkill
+            Width: =27
+            X: =540
+            Y: =103
+            ZIndex: =18
+
+        radioSkill As radio:
+            Default: =ThisItem.SkillSwitch
+            DisplayMode: =inputSkillName.DisplayMode
+            Height: =23
+            Items: =["Skill","Equipment/Tool"]
+            Layout: =Layout.Horizontal
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingTop: =0
+            RadioSize: =20
+            Tooltip: ="After following a course, if you also receive a certificate that can expire, select 'certificate', otherwise just 'course'."
+            Width: =284
+            X: =104
+            Y: =8
+            ZIndex: =19
+
+        inputSkillExperience As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.SkillExperience
+            DisplayMode: =If(ThisItem.ShowSaveButtonsSkill,DisplayMode.Edit,View)
+            Height: =29
+            HintText: ="[years]"
+            OnChange: =Set(NeedssavedSkill,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =74
+            X: =549
+            Y: =64
+            ZIndex: =21
+
+        Label1_7 As label:
+            Align: =Align.Center
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Years of experience:"
+            Width: =84
+            X: =470
+            Y: =62
+            ZIndex: =22
+
+        lblHighlightedSkillNew As label:
+            Height: =27
+            OnSelect: =Select(Parent)
+            Text: ="0"
+            Visible: =false
+            Width: =42
+            X: =459
+            Y: =178
+            ZIndex: =23
+
+    "GalleryAddRoleColl As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =231
+        Items: =AddRolesCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =149
+        Width: =551
+        X: =95
+        Y: =206
+        ZIndex: =31
+
+        Separator2_8 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputAddRoleName As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.AddRoleName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsAddRole,DisplayMode.Edit,View)
+            Height: =30
+            HintText: ="e.g. Chair Strategy 2030 committee "
+            OnChange: =Set(NeedssavedAddRole,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =340
+            X: =16
+            Y: =28
+            ZIndex: =2
+
+        Label1_8 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Role/ function/ position :"
+            Width: =233
+            X: =16
+            ZIndex: =5
+
+        inputAddRoleDescr As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.AddRoleDescr
+            DisplayMode: =inputAddRoleName.DisplayMode
+            Height: =57
+            HintText: ="e.g. Strategy 2030 group, responsible for the Strategy Plan 2030 for the department."
+            MaxLength: =150
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedAddRole,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =340
+            X: =16
+            Y: =84
+            ZIndex: =8
+
+        Label4_10 As label:
+            Height: =29
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Description role:"
+            Width: =294
+            X: =16
+            Y: =55
+            ZIndex: =9
+
+        iconSaveAddRole As icon.Save:
+            Height: =44
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    AddRolesCollection,
+                    ThisItem,
+                    {
+                        AddRoleName: inputAddRoleName.Text,
+                        AddRoleDescr: inputAddRoleDescr.Text,
+                        AddRoleExperience:Value(inputAddRoleExperience.Text),
+                        ProjectOrAddedRole:lblProjectOrAddedRoleDefaultAddedRoleNew.Text,
+                        ShowSaveButtonsAddRole: false
+                    }
+                );If(EditPressedAddRole, false, 
+                Collect(
+                    AddRolesCollection,
+                    {
+                        AddRoleName: "",
+                        AddRoleDescr: "",
+                        AddRoleExperience:0,
+                        ProjectOrAddedRole:"",
+                        ShowSaveButtonsAddRole: true
+                    }
+                ));UpdateContext({EditPressedAddRole: false});Set(NeedssavedAddRole, false)
+            Visible: =ThisItem.ShowSaveButtonsAddRole
+            Width: =32
+            X: =459
+            Y: =104
+            ZIndex: =12
+
+        iconDeleteAddRole As icon.Trash:
+            Height: =44
+            Icon: =Icon.Trash
+            OnSelect: =Remove(AddRolesCollection,ThisItem);Set(NeedssavedAddRole,false)
+            Visible: =iconSaveAddRole.Visible
+            Width: =37
+            X: =498
+            Y: =104
+            ZIndex: =13
+
+        icnEditRole As icon.Edit:
+            Height: =38
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(AddRolesCollection,ThisItem, {ShowSaveButtonsAddRole: true});UpdateContext({EditPressedAddRole:true})
+            Visible: =!ThisItem.ShowSaveButtonsAddRole
+            Width: =30
+            X: =377
+            Y: =66
+            ZIndex: =18
+
+        inputAddRoleExperience As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.AddRoleExperience
+            DisplayMode: =If(ThisItem.ShowSaveButtonsAddRole,DisplayMode.Edit,View)
+            Height: =29
+            HintText: ="[years]"
+            OnChange: =Set(NeedssavedAddRole,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =74
+            X: =449
+            Y: =29
+            ZIndex: =21
+
+        Label1_9 As label:
+            Align: =Align.Center
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Months of experience:"
+            Width: =84
+            X: =369
+            Y: =29
+            ZIndex: =22
+
+        lblProjectOrAddedRoleDefaultAddedRoleNew As label:
+            Height: =26
+            OnSelect: =Select(Parent)
+            Text: ="1"
+            Visible: =false
+            Width: =27
+            X: =426
+            Y: =115
+            ZIndex: =23
+
+    lblSaveWarningSkill As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =28
+        Text: ="Save Skill first"
+        Visible: =NeedssavedSkill
+        Width: =173
+        X: =963
+        Y: =221
+        ZIndex: =32
+
+    btnMyCertCourse_9 As button:
+        DisplayMode: =If(!ShowSaveAddRoleAndSkillSuccess,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =32
+        OnSelect: |-
+            =ClearCollect(EducationCollection, {EduSchool: "", EduStart: "", EduEnd: "", EduDeg: "", EduTitle: "",ShowSaveButtonsEdu: true}); Navigate(CreateMyEdu,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Next"
+        Width: =84
+        X: =955
+        Y: =714
+        ZIndex: =33
+
+    lblTitleMyProjects_3 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =26
+        Size: =14
+        Text: ="Summary roles - refresh"
+        Width: =249
+        X: =906
+        Y: =331
+        ZIndex: =34
+
+    Button2 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =35
+        OnSelect: |-
+            =Collect(SummaryRoleCollection,'PA_Roles (test)');ForAll('PA_Project experience (test)',Collect(SummaryRoleCollection,{PA_MasterIDRoles:PA_ProjMasterID,Title:RoleProject,'Months of experience in this role':TotalMonthsOnProject}));ClearCollect(SummaryRoleCollection2,GroupBy(Filter(SummaryRoleCollection,PA_MasterIDRoles=FormNewMaster.LastSubmit.ID),"Title","Data"));ClearCollect(SummaryRoleCollection3,AddColumns(SummaryRoleCollection2,"Sum Of Months",Sum(Data,'Months of experience in this role')))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Refresh"
+        Width: =87
+        X: =1019
+        Y: =278
+        ZIndex: =35
+
+    lblTitleMyProjects_4 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =10
+        Text: ="Position"
+        Width: =249
+        X: =795
+        Y: =379
+        ZIndex: =36
+
+    lblTitleMyProjects_5 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =10
+        Text: ="Total months"
+        Width: =129
+        X: =1019
+        Y: =379
+        ZIndex: =37
+
+    SideNavigation_4 As SideNavigation:
+        X: =1193
+        Y: =173
+        ZIndex: =38
+
+    MasterComponent_5 As MasterComponent:
+        HeaderTitle: ="Create new CV - My Roles & Skills"
+        HomeScreenNav: =MainScreen
+        InstructionNav: =InstructionsScreen
+        ViewCVNav: =ViewMyCVs
+        ZIndex: =39
+

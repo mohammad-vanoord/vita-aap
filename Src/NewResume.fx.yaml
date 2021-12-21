@@ -1,628 +1,45 @@
 NewResume As screen:
-    OnVisible: |-
-        =Collect(EducationCollection, {Image: icnEye_10.Image})
-
-    FormNewMaster As form:
-        DataSource: =Vita_MasterCVS
-        Height: =224
-        NumberOfColumns: =12
-        OnSuccess: |-
-            =ForAll(
-                QualificationCollection,
-                If(
-                    !IsBlank(QualName),
-                    Patch(
-                        Vita_Summary_Qualifications,
-                        Defaults(Vita_Summary_Qualifications),
-                        {
-                            QualName: QualName,
-                            QualAbout: QualAbout,
-                            IncludeInCV:Text(1)
-                           // Vita_MasterID: LookUp(Vita_MasterCVS, ID=FormNewMaster.LastSubmit.ID)
-                           
-                        }
-                    )
-                )
-            );
-            
-            Set(
-                ShowSaveMasterSuccess,
-                true
-            ); btnSaveFormNewMaster.DisplayMode.Disabled;
-        Width: =1139
-        X: =19
-        Y: =106
-        ZIndex: =11
-
-        Title_DataCard16 As typedDataCard.textualEditCard:
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_title"
-            Default: =ThisItem.Title
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Title"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            MaxLength: =DataSourceInfo([@Vita_MasterCVS], DataSourceInfo.MaxLength, "cr63b_title")
-            Required: =true
-            Update: =DataCardValue102.Text
-            Width: =282
-            X: =0
-            Y: =0
-            ZIndex: =1
-
-            DataCardKey106 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue102 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Office365Users.MyProfile().Surname & ", " & Office365Users.MyProfile().GivenName & " (" & DataCardValue97.Text & ")"
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                MaxLength: =Parent.MaxLength
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey106.Y + DataCardKey106.Height + 5
-                ZIndex: =2
-
-            ErrorMessage102 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue102.Y + DataCardValue102.Height
-                ZIndex: =3
-
-            StarVisible102 As label:
-                Align: =Align.Center
-                Height: =DataCardKey106.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey106.Y
-                ZIndex: =4
-
-        "'First Name_DataCard5' As typedDataCard.textualEditCard":
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_firstname"
-            Default: =ThisItem.'First Name'
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="First Name"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            MaxLength: =DataSourceInfo([@Vita_MasterCVS], DataSourceInfo.MaxLength, "cr63b_firstname")
-            Required: =true
-            Update: =DataCardValue95.Text
-            Width: =282
-            X: =3
-            Y: =0
-            ZIndex: =1
-
-            DataCardKey99 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue95 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Office365Users.MyProfile().GivenName
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                MaxLength: =Parent.MaxLength
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey99.Y + DataCardKey99.Height + 5
-                ZIndex: =2
-
-            ErrorMessage95 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue95.Y + DataCardValue95.Height
-                ZIndex: =3
-
-            StarVisible95 As label:
-                Align: =Align.Center
-                Height: =DataCardKey99.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey99.Y
-                ZIndex: =4
-
-        "'Last Name_DataCard5' As typedDataCard.textualEditCard":
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_lastname"
-            Default: =ThisItem.'Last Name'
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Last Name"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            MaxLength: =DataSourceInfo([@Vita_MasterCVS], DataSourceInfo.MaxLength, "cr63b_lastname")
-            Required: =true
-            Update: =DataCardValue96.Text
-            Width: =282
-            X: =6
-            Y: =0
-            ZIndex: =1
-
-            DataCardKey100 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue96 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Office365Users.MyProfile().Surname
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                MaxLength: =Parent.MaxLength
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey100.Y + DataCardKey100.Height + 5
-                ZIndex: =2
-
-            ErrorMessage96 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue96.Y + DataCardValue96.Height
-                ZIndex: =3
-
-            StarVisible96 As label:
-                Align: =Align.Center
-                Height: =DataCardKey100.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey100.Y
-                ZIndex: =4
-
-        Position_DataCard6 As typedDataCard.textualEditCard:
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_position"
-            Default: =ThisItem.Position
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Position"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            MaxLength: =DataSourceInfo([@Vita_MasterCVS], DataSourceInfo.MaxLength, "cr63b_position")
-            Required: =true
-            Update: =DataCardValue99.Text
-            Width: =282
-            X: =9
-            Y: =0
-            ZIndex: =1
-
-            DataCardKey103 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue99 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Office365Users.MyProfile().JobTitle
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                MaxLength: =Parent.MaxLength
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey103.Y + DataCardKey103.Height + 5
-                ZIndex: =2
-
-            ErrorMessage99 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue99.Y + DataCardValue99.Height
-                ZIndex: =3
-
-            StarVisible99 As label:
-                Align: =Align.Center
-                Height: =DataCardKey103.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey103.Y
-                ZIndex: =4
-
-        Nationality_DataCard5 As typedDataCard.textualEditCard:
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_nationality"
-            Default: =ThisItem.Nationality
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Nationality"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            MaxLength: =DataSourceInfo([@Vita_MasterCVS], DataSourceInfo.MaxLength, "cr63b_nationality")
-            Required: =true
-            Update: =DataCardValue98.Text
-            Width: =282
-            X: =0
-            Y: =1
-            ZIndex: =1
-
-            DataCardKey102 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue98 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Parent.Default
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                MaxLength: =Parent.MaxLength
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey102.Y + DataCardKey102.Height + 5
-                ZIndex: =2
-
-            ErrorMessage98 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue98.Y + DataCardValue98.Height
-                ZIndex: =3
-
-            StarVisible98 As label:
-                Align: =Align.Center
-                Height: =DataCardKey102.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey102.Y
-                ZIndex: =4
-
-        "'Start professional career_DataCard5' As typedDataCard.numberEditCard":
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_startprofessionalcareer"
-            Default: =ThisItem.'Start professional career'
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Start professional career"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            Required: =true
-            Update: =Value(DataCardValue101.Text)
-            Width: =282
-            X: =3
-            Y: =1
-            ZIndex: =1
-
-            DataCardKey105 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue101 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Parent.Default
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                Format: =TextFormat.Number
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey105.Y + DataCardKey105.Height + 5
-                ZIndex: =2
-
-            ErrorMessage101 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue101.Y + DataCardValue101.Height
-                ZIndex: =3
-
-            StarVisible101 As label:
-                Align: =Align.Center
-                Height: =DataCardKey105.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey105.Y
-                ZIndex: =4
-
-        "'Start at Van Oord_DataCard5' As typedDataCard.numberEditCard":
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_startatvanoord"
-            Default: =ThisItem.'Start at Van Oord'
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Start at Van Oord"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            Required: =true
-            Update: =Value(DataCardValue100.Text)
-            Width: =282
-            X: =6
-            Y: =1
-            ZIndex: =1
-
-            DataCardKey104 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue100 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Parent.Default
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                Format: =TextFormat.Number
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey104.Y + DataCardKey104.Height + 5
-                ZIndex: =2
-
-            ErrorMessage100 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue100.Y + DataCardValue100.Height
-                ZIndex: =3
-
-            StarVisible100 As label:
-                Align: =Align.Center
-                Height: =DataCardKey104.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey104.Y
-                ZIndex: =4
-
-        "'Mail Address_DataCard3' As typedDataCard.textualEditCard":
-            BorderStyle: =BorderStyle.Solid
-            DataField: ="cr63b_mailaddress"
-            Default: =""
-            DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Mail Address"
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =50
-            MaxLength: =DataSourceInfo([@Vita_MasterCVS], DataSourceInfo.MaxLength, "cr63b_mailaddress")
-            Required: =true
-            Update: =DataCardValue97.Text
-            Width: =282
-            X: =9
-            Y: =1
-            ZIndex: =1
-
-            DataCardKey101 As label:
-                AutoHeight: =true
-                Height: =34
-                Text: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                Wrap: =false
-                X: =30
-                Y: =10
-                ZIndex: =1
-
-            DataCardValue97 As text:
-                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                Default: =Office365Users.MyProfile().Mail
-                DelayOutput: =true
-                DisplayMode: =Parent.DisplayMode
-                MaxLength: =Parent.MaxLength
-                PaddingLeft: =5
-                RadiusBottomLeft: =0
-                RadiusBottomRight: =0
-                RadiusTopLeft: =0
-                RadiusTopRight: =0
-                Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardKey101.Y + DataCardKey101.Height + 5
-                ZIndex: =2
-
-            ErrorMessage97 As label:
-                AutoHeight: =true
-                Height: =10
-                Live: =Live.Assertive
-                PaddingBottom: =0
-                PaddingLeft: =0
-                PaddingRight: =0
-                PaddingTop: =0
-                Text: =Parent.Error
-                Visible: =Parent.DisplayMode=DisplayMode.Edit
-                Width: =Parent.Width - 60
-                X: =30
-                Y: =DataCardValue97.Y + DataCardValue97.Height
-                ZIndex: =3
-
-            StarVisible97 As label:
-                Align: =Align.Center
-                Height: =DataCardKey101.Height
-                Text: ="*"
-                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                Width: =30
-                Wrap: =false
-                Y: =DataCardKey101.Y
-                ZIndex: =4
 
     "GallerySummary As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
-        Height: =316
+        Height: =318
         Items: =QualificationCollection
         Layout: =Layout.Vertical
         TemplatePadding: =0
-        TemplateSize: =266
-        Width: =715
-        X: =19
-        Y: =439
-        ZIndex: =12
+        TemplateSize: =263
+        Width: =688
+        X: =56
+        Y: =436
+        ZIndex: =1
 
         Separator2_1 As rectangle:
             Height: =1
             OnSelect: =Select(Parent)
             Width: =Parent.TemplateWidth
             Y: =Parent.TemplateHeight - 1
-            ZIndex: =1
+            ZIndex: =3
 
         inputSumName As text:
-            Default: =ThisItem.QualName   
+            BorderThickness: =0
+            Default: =ThisItem.QualName
             DisplayMode: =If(ThisItem.ShowSaveButtonsQual,DisplayMode.Edit,View)
             EnableSpellCheck: =true
+            Height: =45
             HintText: ="[max 100 characters, title that relates to your summary below]"
             MaxLength: =100
-            OnChange: =Set(NeedssavedQual,true)
             OnSelect: =Select(Parent)
-            RadiusBottomLeft: =0
-            RadiusBottomRight: =0
             RadiusTopLeft: =0
             RadiusTopRight: =0
-            Width: =565
-            X: =16
+            Width: =570
             Y: =40
-            ZIndex: =2
-
-        Label1_1 As label:
-            OnSelect: =Select(Parent)
-            Text: ="Summary title"
-            Width: =259
-            X: =16
-            ZIndex: =5
+            ZIndex: =4
 
         inputAbout As text:
+            BorderThickness: =0
             Default: =ThisItem.QualAbout
-            DisplayMode: =inputSumName.DisplayMode
+            DisplayMode: |
+                =inputSumName.DisplayMode
             EnableSpellCheck: =true
-            Height: =132
+            Height: =137
             HintText: ="[[max 350 characters, provide a short summary of you as an employee. You can create more summaries applicable to different roles/disciplines you want to highlight. The title of the summary differentiates them in case you have more then 1 summary]"
             MaxLength: =350
             Mode: =TextMode.MultiLine
@@ -632,21 +49,54 @@ NewResume As screen:
             RadiusBottomRight: =0
             RadiusTopLeft: =0
             RadiusTopRight: =0
-            Width: =565
-            X: =16
-            Y: =120
-            ZIndex: =8
+            Width: =632
+            Y: =125
+            ZIndex: =5
+
+        Label1_1 As label:
+            OnSelect: =Select(Parent)
+            Text: ="Summary title"
+            ZIndex: =6
 
         Label4_1 As label:
             OnSelect: =Select(Parent)
             Text: ="About the employee"
-            Width: =215
-            X: =16
-            Y: =80
+            Width: =182
+            Y: =85
+            ZIndex: =7
+
+        IconChange_1 As icon.Edit:
+            Height: =36
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(QualificationCollection,ThisItem, {ShowSaveButtonsQual: true});UpdateContext({EditPressedQual:true})
+            Visible: =!ThisItem.ShowSaveButtonsQual
+            Width: =32
+            X: =632
+            Y: =4
+            ZIndex: =8
+
+        lblDefaultHighlightSumQualNew As label:
+            Height: =26
+            OnSelect: =Select(Parent)
+            Text: ="0"
+            Visible: =false
+            Width: =47
+            X: =628
+            Y: =237
             ZIndex: =9
 
+        iconDelete_1 As icon.Trash:
+            Height: =54
+            Icon: =Icon.Trash
+            OnSelect: =Remove(QualificationCollection,ThisItem);Set(NeedssavedQual,false)
+            Visible: =iconSave_1.Visible
+            Width: =36
+            X: =639
+            ZIndex: =10
+
         iconSave_1 As icon.Save:
-            Height: =56
+            Height: =50
             Icon: =Icon.Save
             OnSelect: |-
                 =Patch(
@@ -669,72 +119,672 @@ NewResume As screen:
                     }
                 ));UpdateContext({EditPressedQual: false});Set(NeedssavedQual, false)
             Visible: =ThisItem.ShowSaveButtonsQual
-            Width: =48
-            X: =596
-            Y: =32
-            ZIndex: =12
+            Width: =35
+            X: =593
+            Y: =4
+            ZIndex: =11
 
-        iconDelete_1 As icon.Trash:
-            Height: =44
-            Icon: =Icon.Trash
-            OnSelect: =Remove(QualificationCollection,ThisItem);Set(NeedssavedQual,false)
-            Visible: =iconSave_1.Visible
-            Width: =48
-            X: =644
-            Y: =40
-            ZIndex: =13
+    FormNewMaster As form:
+        DataSource: =PA_MasterList
+        Height: =223
+        NumberOfColumns: =12
+        OnSuccess: |-
+            =ForAll(
+                QualificationCollection,
+                If(
+                    !IsBlank(QualName),
+                    Patch(
+                        'PA_summary of qualifications (test)',
+                        Defaults('PA_summary of qualifications (test)'),
+                        {
+                            Title: QualName,
+                            QualAbout: QualAbout,
+                            HighlightedQualSum:HighlightedQualSum,
+                            IncludeInCV:Text(1),
+                            SP_QualMasterID: FormNewMaster.LastSubmit.ID
+                        }
+                    )
+                )
+            );
+            ForAll(
+                LanguageCollection,
+                If(
+                    !IsMatch(
+                        LangName,
+                        "Select language"
+                    ),
+                    Patch(
+                        'PA_Languages (test)',
+                        Defaults('PA_Languages (test)'),
+                        {
+                            Title: LangName,
+                            LangName: LangName,
+                            LangProf: LangProf,
+                            IncludeInCV:Text(1),
+                            SP_LangMasterID: FormNewMaster.LastSubmit.ID
+                        }
+                    )
+                )
+            );
+            Set(
+                ShowSaveMasterSuccess,
+                true
+            );
+        Width: =1179
+        X: =13
+        Y: =147
+        ZIndex: =11
 
-        IconChange_1 As icon.Edit:
-            Height: =36
-            Icon: =Icon.Edit
-            OnSelect: |-
-                =Patch(QualificationCollection,ThisItem, {ShowSaveButtonsQual: true});UpdateContext({EditPressedQual:true})
-            Visible: =!ThisItem.ShowSaveButtonsQual
-            Width: =32
-            X: =675
-            ZIndex: =18
+        MailAddress_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="MailAddress"
+            Default: =""
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="MailAddress"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =97
+            MaxLength: =DataSourceInfo([@PA_MasterList], DataSourceInfo.MaxLength, "MailAddress")
+            Required: =true
+            Update: =DataCardValue38.Text
+            Width: =380
+            X: =8
+            Y: =1
+            ZIndex: =1
 
-        lblDefaultHighlightSumQualNew As label:
-            Height: =26
-            OnSelect: =Select(Parent)
-            Text: ="0"
-            Visible: =false
-            Width: =47
-            X: =660
-            Y: =240
-            ZIndex: =19
+            DataCardKey40 As label:
+                AutoHeight: =true
+                Height: =28
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue38 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Office365Users.MyProfile().Mail
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =true
+                Size: =11
+                Tooltip: =Parent.DisplayName
+                X: =30
+                Y: =40
+                ZIndex: =2
+
+            ErrorMessage40 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue38.Y + DataCardValue38.Height
+                ZIndex: =3
+
+            StarVisible40 As label:
+                Align: =Align.Center
+                Height: =DataCardKey40.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey40.Y
+                ZIndex: =4
+
+        Title_DataCard1_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Title"
+            Default: =ThisItem.Title
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Title"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =64
+            MaxLength: =DataSourceInfo([@PA_MasterList], DataSourceInfo.MaxLength, "Title")
+            Required: =true
+            Update: =DataCardValue1_1.Text
+            Width: =294
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey1_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue1_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Office365Users.MyProfile().Surname & ", " & Office365Users.MyProfile().GivenName & " (" & DataCardValue4_1.Text & ")"
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =11
+                Tooltip: =Parent.DisplayName
+                Width: =251
+                X: =30
+                Y: =DataCardKey1_1.Y + DataCardKey1_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage1_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue1_1.Y + DataCardValue1_1.Height
+                ZIndex: =3
+
+            StarVisible1_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey1_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey1_1.Y
+                ZIndex: =4
+
+        "'First Name_DataCard1_1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="FirstName"
+            Default: =ThisItem.'First Name'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="First Name"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =79
+            MaxLength: =DataSourceInfo([@PA_MasterList], DataSourceInfo.MaxLength, "FirstName")
+            Required: =true
+            Update: =DataCardValue2_1.Text
+            Width: =294
+            X: =3
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey2_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue2_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Office365Users.MyProfile().GivenName
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                HintText: ="[Frank]"
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =11
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey2_1.Y + DataCardKey2_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage2_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue2_1.Y + DataCardValue2_1.Height
+                ZIndex: =3
+
+            StarVisible2_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey2_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey2_1.Y
+                ZIndex: =4
+
+        "'Last Name_DataCard1_1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="LastName"
+            Default: =ThisItem.'Last Name'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Last Name"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@PA_MasterList], DataSourceInfo.MaxLength, "LastName")
+            Required: =true
+            Update: =DataCardValue3_1.Text
+            Width: =294
+            X: =6
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey3_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue3_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Office365Users.MyProfile().Surname
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                HintText: ="[de Boer]"
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =11
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =24
+                Y: =44
+                ZIndex: =2
+
+            ErrorMessage3_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =24
+                Y: =10
+                ZIndex: =3
+
+            StarVisible3_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey3_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey3_1.Y
+                ZIndex: =4
+
+        Position_DataCard1_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Position"
+            Default: =ThisItem.Position
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Position"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@PA_MasterList], DataSourceInfo.MaxLength, "Position")
+            Required: =true
+            Update: =DataCardValue4_1.Text
+            Width: =294
+            X: =9
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey4_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue4_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Office365Users.MyProfile().JobTitle
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =11
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey4_1.Y + DataCardKey4_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage4_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue4_1.Y + DataCardValue4_1.Height
+                ZIndex: =3
+
+            StarVisible4_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey4_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey4_1.Y
+                ZIndex: =4
+
+        Nationality_DataCard1_1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Nationality"
+            Default: =ThisItem.Nationality
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Nationality"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =99
+            MaxLength: =DataSourceInfo([@PA_MasterList], DataSourceInfo.MaxLength, "Nationality")
+            Required: =true
+            Update: =DataCardValue5_1.Text
+            Width: =294
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            DataCardKey5_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue5_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                HintText: ="[e.g. Dutch]"
+                MaxLength: =Parent.MaxLength
+                OnSelect: =
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =true
+                Size: =11
+                Tooltip: =Parent.DisplayName
+                Width: =217
+                X: =30
+                Y: =DataCardKey5_1.Y + DataCardKey5_1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage5_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue5_1.Y + DataCardValue5_1.Height
+                ZIndex: =3
+
+            StarVisible5_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey5_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey5_1.Y
+                ZIndex: =4
+
+            Label15 As label:
+                Color: =RGBA(168, 0, 0, 1)
+                DisplayMode: =DisplayMode.View
+                FontWeight: =FontWeight.Semibold
+                Height: =37
+                Size: =12
+                Text: =If(IsMatch(DataCardValue5_1.Text,"[a-zA-Z]+")," ","Please enter a valid input")
+                Width: =217
+                X: =25
+                Y: =93
+                ZIndex: =5
+
+        "'Start professional career_DataCard1_1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Startprofessionalcareer"
+            Default: =ThisItem.'Start professional career'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Start professional career"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =95
+            Required: =true
+            Update: =Value(DataCardValue6_1.Text)
+            Width: =294
+            X: =3
+            Y: =1
+            ZIndex: =2
+
+            DataCardKey6_1 As label:
+                Height: =42
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =42
+                ZIndex: =1
+
+            DataCardValue6_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HintText: ="[year]"
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =true
+                Size: =11
+                Tooltip: ="Start professional career [year]" 
+                Width: =228
+                X: =30
+                Y: =42
+                ZIndex: =2
+
+            ErrorMessage6_1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue6_1.Y + DataCardValue6_1.Height
+                ZIndex: =3
+
+            StarVisible6_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey6_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey6_1.Y
+                ZIndex: =4
+
+        "'Start at Van Oord_DataCard1_1' As typedDataCard.numberEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="StartatVanOord"
+            Default: =ThisItem.'Start at Van Oord'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: ="Start at Van Oord"
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =116
+            Required: =true
+            Update: =Value(DataCardValue7_1.Text)
+            Width: =196
+            X: =6
+            Y: =1
+            ZIndex: =2
+
+            DataCardKey7_1 As label:
+                AutoHeight: =true
+                Height: =34
+                Size: =10
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue7_1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Format: =TextFormat.Number
+                HintText: ="[year]"
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =true
+                Size: =11
+                Tooltip: ="Start at Van Oord [year]"
+                Width: =136
+                X: =30
+                Y: =38
+                ZIndex: =2
+
+            ErrorMessage7_1 As label:
+                Height: =52
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =166
+                X: =30
+                Y: =78
+                ZIndex: =3
+
+            StarVisible7_1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey7_1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =10
+                ZIndex: =4
 
     lblTitle_9 As label:
         Color: =RGBA(37, 58, 121, 1)
         Font: =Font.'Lato Black'
-        Height: =58
-        Size: =20
+        Height: =66
+        Size: =17
         Text: ="Summary of Qualifications"
-        Width: =352
-        X: =94
-        Y: =355
+        Width: =409
+        X: =119
+        Y: =367
         ZIndex: =13
 
     lblTitle_10 As label:
         Color: =RGBA(37, 58, 121, 1)
         Font: =Font.'Lato Black'
-        Height: =41
-        Size: =20
+        Height: =66
+        Size: =17
         Text: ="Languages"
-        Width: =151
-        X: =820
-        Y: =357
+        Width: =310
+        X: =839
+        Y: =367
         ZIndex: =14
 
     "GalleryLanguage As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
-        Height: =301
+        Height: =286
         Items: =LanguageCollection
         Layout: =Layout.Vertical
         TemplatePadding: =0
-        TemplateSize: =87
-        Width: =373
-        X: =761
-        Y: =400
+        TemplateSize: =75
+        Width: =402
+        X: =765
+        Y: =442
         ZIndex: =15
 
         Separator2_2 As rectangle:
@@ -745,7 +795,7 @@ NewResume As screen:
             ZIndex: =1
 
         iconSave_2 As icon.Save:
-            Height: =40
+            Height: =33
             Icon: =Icon.Save
             OnSelect: |-
                 =Patch(
@@ -757,17 +807,17 @@ NewResume As screen:
                         ShowSaveButtonsLang: false
                     });If(EditPressedLang, false);UpdateContext({EditPressedLang: false});Set(NeedssavedLang, false)
             Visible: =ThisItem.ShowSaveButtonsLang
-            Width: =51
-            X: =268
+            Width: =31
+            X: =288
             ZIndex: =12
 
         iconDelete_2 As icon.Trash:
-            Height: =40
+            Height: =33
             Icon: =Icon.Trash
             OnSelect: =Remove(LanguageCollection,ThisItem);Set(NeedssavedLang,false)
             Visible: =iconSave_2.Visible
-            Width: =39
-            X: =319
+            Width: =35
+            X: =323
             ZIndex: =13
 
         Icon5_2 As icon.Edit:
@@ -776,8 +826,9 @@ NewResume As screen:
             OnSelect: |-
                 =Patch(LanguageCollection,ThisItem, {ShowSaveButtonsLang: true});UpdateContext({EditPressedLang:true})
             Visible: =!ThisItem.ShowSaveButtonsLang
-            Width: =39
+            Width: =25
             X: =319
+            Y: =3
             ZIndex: =18
 
         drpdwnLangName As dropdown:
@@ -813,6 +864,7 @@ NewResume As screen:
 
     Button3 As button:
         Fill: =RGBA(37, 58, 121, 1)
+        Height: =36
         OnSelect: |-
             =Collect(
                 QualificationCollection,
@@ -827,13 +879,14 @@ NewResume As screen:
         RadiusTopRight: =0
         Size: =40
         Text: ="+"
-        Width: =42
-        X: =40
-        Y: =364
+        Width: =38
+        X: =56
+        Y: =374
         ZIndex: =16
 
     Button3_1 As button:
         Fill: =RGBA(37, 58, 121, 1)
+        Height: =43
         OnSelect: |-
             =Collect(
                 LanguageCollection,
@@ -848,49 +901,34 @@ NewResume As screen:
         RadiusTopRight: =0
         Size: =40
         Text: ="+"
-        Width: =42
-        X: =772
-        Y: =358
+        Width: =40
+        X: =773
+        Y: =370
         ZIndex: =17
 
     lblTitle_12 As label:
         Color: =RGBA(37, 58, 121, 1)
         Fill: =RGBA(0, 13, 75, 0)
         Font: =Font.'Lato Black'
-        Height: =10
+        Height: =20
         Size: =8
         Text: ="Add row"
-        Width: =61
-        X: =33
-        Y: =410
+        Width: =66
+        X: =53
+        Y: =407
         ZIndex: =18
 
     lblTitle_13 As label:
         Color: =RGBA(37, 58, 121, 1)
         Fill: =RGBA(0, 13, 75, 0)
         Font: =Font.'Lato Black'
-        Height: =15
+        Height: =20
         Size: =8
         Text: ="Add row"
-        Width: =66
+        Width: =56
         X: =765
-        Y: =405
+        Y: =413
         ZIndex: =19
-
-    btnSaveFormNewMaster As button:
-        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,If(NeedssavedLang,DisplayMode.Disabled,If(ShowSaveMasterSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)))
-        Fill: =RGBA(37, 58, 121, 1)
-        Height: =45
-        OnSelect: =SubmitForm(FormNewMaster)
-        RadiusBottomLeft: =0
-        RadiusBottomRight: =0
-        RadiusTopLeft: =0
-        RadiusTopRight: =0
-        Text: ="Save"
-        Width: =125
-        X: =889
-        Y: =713
-        ZIndex: =20
 
     lblShowMasterSaveSuccessBanner_1 As label:
         Fill: =RGBA(255, 134, 2, 0.24)
@@ -899,7 +937,7 @@ NewResume As screen:
         PaddingRight: =10
         Size: =20
         Text: =""
-        Visible: =ShowSaveMasterSuccess
+        Visible: =popupVisible
         Width: =1167
         Y: =101
         ZIndex: =21
@@ -907,7 +945,7 @@ NewResume As screen:
     lblShowMasterSaveSuccessBanner As label:
         Color: =RGBA(255, 255, 255, 1)
         Fill: =RGBA(255, 134, 2, 1)
-        Height: =280
+        Height: =324
         PaddingLeft: =10
         PaddingRight: =10
         Size: =20
@@ -917,26 +955,26 @@ NewResume As screen:
             From now on you can add additional information to your CV. 
             
             If you want to finish your CV at a later point in time, just return to this PowerApp and start with -Edit My CV-."
-        Visible: =ShowSaveMasterSuccess
-        Width: =789
-        X: =243
+        Visible: =popupVisible
+        Width: =785
+        X: =246
         Y: =280
         ZIndex: =22
 
     btnMyCertCourse_7 As button:
         DisplayMode: =If(!ShowSaveMasterSuccess,DisplayMode.Disabled,DisplayMode.Edit)
         Fill: =RGBA(37, 58, 121, 1)
-        Height: =45
+        Height: =26
         OnSelect: |-
-            =ClearCollect(ProjectsCollection, {ProjName: "", ProjNumber: 0,ProjToMonth: 0, ProjToYear: 0, ProjFromMonth:0,ProjFromYear:0,ProjDescr:"",ProjCountry:"",ProjRoleName: "",ProjClient:"", ProjTotalMonth: 0, ShowSaveButtonsProj:true});
+            =ClearCollect(ProjectsCollection, {ProjName: "", ProjNumber: 0,ProjToMonth: 0, ProjToYear: 0, ProjFromMonth:0,ProjFromYear:0,ProjDescr:"",ProjCountry:"",ProjRoleName: "",ProjClient:"", ProjTotalMonth: 0, ShowSaveButtonsProj:true});Navigate(CreateMyProjects,ScreenTransition.Cover)
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =0
         RadiusTopRight: =0
         Text: ="Next"
-        Width: =125
-        X: =1032
-        Y: =713
+        Width: =63
+        X: =1271
+        Y: =728
         ZIndex: =23
 
     lblSaveWarningQual As label:
@@ -949,54 +987,6 @@ NewResume As screen:
         X: =896
         Y: =690
         ZIndex: =24
-
-    Group1 As group:
-        Height: =5
-        Width: =5
-        X: =60
-        Y: =60
-        ZIndex: =24
-
-        imgLogoVanOord_2 As image:
-            Height: =78
-            Image: =imgVanOordCrownLogo
-            Width: =202
-            X: =1135
-            ZIndex: =1
-
-        lblTitle_2 As label:
-            Color: =RGBA(37, 58, 121, 1)
-            Font: =Font.'Lato Black'
-            Height: =70
-            Size: =20
-            Text: ="Create new CV - My Personalia"
-            Width: =425
-            Y: =8
-            ZIndex: =2
-
-        icnHome As image:
-            BorderThickness: =1
-            Height: =95
-            Image: ='ICON BL home'
-            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
-            Width: =93
-            X: =1273
-            Y: =673
-            ZIndex: =9
-
-        icnInstruction As image:
-            BorderThickness: =1
-            Height: =95
-            Image: =VanOord_icons_lightbulb
-            OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
-            PaddingBottom: =20
-            PaddingLeft: =20
-            PaddingRight: =20
-            PaddingTop: =20
-            Width: =94
-            X: =1177
-            Y: =673
-            ZIndex: =10
 
     lblSaveWarningLang As label:
         Color: =RGBA(255, 0, 0, 1)
@@ -1011,13 +1001,113 @@ NewResume As screen:
 
     imgProfilePhoto As image:
         BorderThickness: =1
-        Height: =90
-        Image: =Office365Users.UserPhotoV2(DataCardValue38.Text)
+        Height: =120
+        Image: =Office365Users.UserPhotoV2(Office365Users.MyProfile().Mail)
         PaddingTop: |-
             =0
                     
-        Width: =90
-        X: =1014
-        Y: =32
+        Width: =119
+        X: =1215
+        Y: =147
         ZIndex: =26
+
+    btnSaveFormNewMaster As button:
+        DisplayMode: |
+            =If(NeedssavedQual,DisplayMode.Disabled,If(NeedssavedLang,DisplayMode.Disabled,If(ShowSaveMasterSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)))
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =26
+        OnSelect: |
+            =If(
+                DataCardValue38.Text in PA_MasterList.MailAddress,
+                UpdateContext(
+                    {
+                        existCV: true,
+                        viewbuttton: false
+                    }
+                ),
+                SubmitForm(FormNewMaster),
+                UpdateContext({popupVisible: true})
+            );
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =69
+        X: =1184
+        Y: =728
+        ZIndex: =30
+
+    btnPopup As button:
+        OnSelect: |-
+            =UpdateContext({popupVisible:false,viewbuttton:true})
+        Text: ="Close"
+        Visible: =popupVisible
+        X: =558
+        Y: =550
+        ZIndex: =32
+
+    btnviewmyCV As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =35
+        OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+        Text: ="View My Cv"
+        Visible: =viewbuttton
+        Width: =124
+        X: =1192
+        Y: =641
+        ZIndex: =33
+
+    HeaderComponent_2 As HeaderComponent:
+        BackscreenNav: =MainScreen
+        HeaderTitle: ="Create new CV - My Personalia"
+        HomescreenNav: =MainScreen
+        InstructionScreen: =InstructionsScreen
+        SearchcvScreen: =SearchCVsStart
+        ViewmycvScreen: =ViewMyCVs
+        ZIndex: =34
+
+    lblAccountExistsWarning As label:
+        Fill: =RGBA(255, 134, 2, 0.24)
+        Height: =667
+        PaddingLeft: =10
+        PaddingRight: =10
+        Size: =20
+        Text: =""
+        Visible: =existCV
+        Width: =1167
+        Y: =101
+        ZIndex: =36
+
+    lblAccountExistsWarning1 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(255, 134, 2, 1)
+        Height: =324
+        PaddingLeft: =10
+        PaddingRight: =10
+        Size: =20
+        Text: =" You already have an account !! "
+        Visible: =existCV
+        Width: =785
+        X: =259
+        Y: =277
+        ZIndex: =37
+
+    popUpclosebtn As button:
+        OnSelect: |-
+            =UpdateContext({existCV:false})
+        Text: ="Close"
+        Visible: =existCV
+        X: =744
+        Y: =516
+        ZIndex: =38
+
+    viewCVbutton As button:
+        OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+        Text: ="View my CV"
+        Visible: =existCV
+        X: =460
+        Y: =516
+        ZIndex: =39
 

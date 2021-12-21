@@ -1,0 +1,455 @@
+CreateMyCertCourse As screen:
+
+    imgLogoVanOord_8 As image:
+        Height: =74
+        Image: =imgVanOordCrownLogo
+        Width: =194
+        X: =1132
+        Y: =32
+        ZIndex: =1
+
+    lblTitle_8 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Create new CV - My Certificates & Courses"
+        Width: =538
+        X: =40
+        Y: =40
+        ZIndex: =2
+
+    btnPers_5 As button:
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Personalia"
+        Width: =185
+        X: =1173
+        Y: =132
+        ZIndex: =4
+
+    btnProj_5 As button:
+        DisplayMode: =If(ShowSaveProjSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(ProjectsCollection, {ProjName: "", ProjNumber: 0,ProjToMonth: 0, ProjToYear: 0, ProjFromMonth:0,ProjFromYear:0,ProjDescr:"",ProjCountry:"",ProjRoleName: "",ProjClient:"", ProjTotalMonth: 0, ProjectOrAddedRole:"", HighlightedProject: "",ShowSaveButtonsProj:true});Navigate(CreateMyProjects,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Projects"
+        Width: =185
+        X: =1173
+        Y: =206
+        ZIndex: =5
+
+    btnRoleSkill_5 As button:
+        DisplayMode: =If(ShowSaveAddRoleAndSkillSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(AddRolesCollection, {AddRoleName: "", AddRoleDescr: "", AddRoleExperience:0, ProjectOrAddedRole:"", ShowSaveButtonsAddRole:true});ClearCollect(SkillsCollection, {SkillName: "", SkillDescr:"",SkillExperience:0,SkillSwitch:"", HighlightedSkill:"", ShowSaveButtonsSkill:true}); Navigate(CreateMyRoleSkill,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Roles & Skills"
+        Width: =185
+        X: =1173
+        Y: =280
+        ZIndex: =6
+
+    btnEmploy_5 As button:
+        DisplayMode: =If(ShowSaveEmplSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(EmployersCollection, {EmplName: "", EmplPosition: "",EmplToMonth: 0, EmplToYear: 0, EmplFromMonth:0,EmplFromYear:0,EmplDescr:"",EmplRoleName: "",EmplTotalMonth: 0, HighlightedEmpl:"", ShowSaveButtonsEmpl:true});Navigate(CreateMyEmploy,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Employers"
+        Width: =185
+        X: =1173
+        Y: =428
+        ZIndex: =8
+
+    btnMyCertCourse_5 As button:
+        Fill: =RGBA(255, 134, 2, 1)
+        Height: =58
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Certificates & Courses"
+        Width: =185
+        X: =1173
+        Y: =502
+        ZIndex: =9
+
+    icnHome_7 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: ='ICON BL home'
+        OnSelect: =Navigate(MainScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        Width: =90
+        X: =1268
+        Y: =668
+        ZIndex: =15
+
+    icnInstruction_5 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1173
+        Y: =668
+        ZIndex: =17
+
+    "GalleryCertColl As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =566
+        Items: =CertCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =246
+        Width: =596
+        Y: =202
+        ZIndex: =19
+
+        Separator2_6 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputCertName As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.CertName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsCert,DisplayMode.Edit,View)
+            Height: =30
+            HintText: ="e.g. BOSIET HUET"
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =362
+            X: =16
+            Y: =60
+            ZIndex: =2
+
+        Label1_4 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Certificate/ Course Name:"
+            Width: =233
+            X: =16
+            Y: =32
+            ZIndex: =5
+
+        Label2_4 As label:
+            Height: =16
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Course date:"
+            Visible: =!inputCertEnd.Visible
+            X: =387
+            Y: =9
+            ZIndex: =6
+
+        Label3_6 As label:
+            Height: =18
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Expires:"
+            Visible: =If(radioCertCourse.SelectedText.Value="Course",false,true)
+            Width: =137
+            X: =389
+            Y: =47
+            ZIndex: =7
+
+        inputCertDescr As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.CertDescr
+            DisplayMode: =inputCertName.DisplayMode
+            Height: =71
+            HintText: ="Basic Offshore Safety Induction and Emergency Training (with Compressed Air Emergency Breathing System), Helicopter Underwater Escape Training (with Compressed Air Emergency Breathing System)"
+            MaxLength: =150
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =508
+            X: =16
+            Y: =122
+            ZIndex: =8
+
+        Label4_7 As label:
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Description of certificate/Course:"
+            Width: =294
+            X: =16
+            Y: =90
+            ZIndex: =9
+
+        iconSaveCert As icon.Save:
+            Height: =44
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    CertCollection,
+                    ThisItem,
+                    {
+                        CertName: inputCertName.Text,
+                        CertStart: inputCertStart.SelectedDate,
+                        CertEnd: inputCertEnd.SelectedDate,
+                        CertDescr: inputCertDescr.Text,
+                        CertOrganiser:inputCertOrganiser.Text,
+                        CertSwitch: radioCertCourse.SelectedText.Value, ShowSaveButtonsCert: false
+                    }
+                );If(EditPressedCert, false, 
+                Collect(
+                    CertCollection,
+                    {
+                        CertName: "",
+                        CertStart: "",
+                        CertEnd: "",
+                        CertDescr: "",
+                        CertOrganiser:"",
+                        CertSwitch: "",  ShowSaveButtonsCert: true
+                    }
+                ));UpdateContext({EditPressedCert: false});Set(NeedssavedCert, false)
+            Visible: =ThisItem.ShowSaveButtonsCert
+            Width: =44
+            X: =537
+            Y: =122
+            ZIndex: =12
+
+        iconDeleteCert As icon.Trash:
+            Height: =44
+            Icon: =Icon.Trash
+            OnSelect: =Remove(CertCollection,ThisItem);Set(NeedssavedCert,false)
+            Visible: =iconSaveCert.Visible
+            Width: =44
+            X: =537
+            Y: =176
+            ZIndex: =13
+
+        inputCertStart As datepicker:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            DefaultDate: =ThisItem.CertStart
+            DisplayMode: =inputCertName.DisplayMode
+            Height: =22
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =139
+            X: =387
+            Y: =25
+            ZIndex: =16
+
+        inputCertEnd As datepicker:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            DefaultDate: =ThisItem.CertEnd
+            DisplayMode: =inputCertName.DisplayMode
+            Height: =22
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Visible: =If(radioCertCourse.SelectedText.Value="Course",false,true)
+            Width: =136
+            X: =388
+            Y: =68
+            ZIndex: =17
+
+        icnEditCert As icon.Edit:
+            Height: =44
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(CertCollection,ThisItem, {ShowSaveButtonsCert: true});UpdateContext({EditPressedCert:true})
+            Visible: =!ThisItem.ShowSaveButtonsCert
+            Width: =40
+            X: =536
+            Y: =132
+            ZIndex: =18
+
+        radioCertCourse As radio:
+            Default: =ThisItem.CertSwitch
+            DisplayMode: =inputCertName.DisplayMode
+            Height: =23
+            Items: =["Certificate","Course"]
+            Layout: =Layout.Horizontal
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingTop: =0
+            RadioSize: =20
+            Tooltip: ="After following a course, if you also receive a certificate that can expire, select 'certificate', otherwise just 'course'."
+            Width: =284
+            X: =8
+            Y: =8
+            ZIndex: =19
+
+        Label2_5 As label:
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Date on certificate:"
+            Visible: =inputCertEnd.Visible
+            Width: =142
+            X: =387
+            ZIndex: =20
+
+        inputCertOrganiser As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.CertOrganiser
+            DisplayMode: =If(ThisItem.ShowSaveButtonsCert,DisplayMode.Edit,View)
+            Height: =30
+            HintText: ="STC-KNRM"
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =424
+            X: =100
+            Y: =204
+            ZIndex: =21
+
+        Label1_5 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Organiser:"
+            Width: =84
+            X: =16
+            Y: =206
+            ZIndex: =22
+
+    btnSaveCertColl As button:
+        DisplayMode: =If(NeedssavedCert,DisplayMode.Disabled,If(ShowSaveCertSuccess = true, DisplayMode.Disabled, DisplayMode.Edit))
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(CertCollection,If(!IsBlank(CertName), Patch('PA_Certifications (test)', Defaults('PA_Certifications (test)'), {Title: CertName, 'Date on Certificate': DateValue(CertStart), Expires: If(CertSwitch="Course",0,DateValue(CertEnd)), 'Description of the certification': CertDescr,  Organiser:CertOrganiser, CertificateOrCourse:CertSwitch, IncludeInCV:Text(1),  PA_MasterIDCert: FormNewMaster.LastSubmit.ID})));Set(ShowSaveCertSuccess,true)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save to CV"
+        Width: =177
+        X: =955
+        Y: =50
+        ZIndex: =20
+
+    lblSaveWarningCert As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =44
+        Text: ="Save certificate/ course first"
+        Visible: =NeedssavedCert
+        Width: =173
+        X: =955
+        Y: =106
+        ZIndex: =21
+
+    lblTitleCert As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: |-
+            ="Certificates & Courses
+            "
+        Width: =409
+        X: =106
+        Y: =118
+        ZIndex: =22
+
+    btnAddRowCert As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                CertCollection,
+                {
+                    CertName: "",
+                    CertStart: "",
+                    CertEnd: "",
+                    CertDescr: "",
+                    CertOrganiser: "",
+                    CertSwitch: "",  ShowSaveButtonsCert: true
+                })
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =40
+        Y: =126
+        ZIndex: =23
+
+    lblAddRowCert As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =40
+        Y: =172
+        ZIndex: =24
+
+    lblCurrentRecordCert As label:
+        Height: =37
+        Text: |-
+            ="You are working on record: " & FormNewMaster.LastSubmit.Title
+        Width: =915
+        X: =40
+        Y: =81
+        ZIndex: =25
+
+    lblSavedSuccessCert As label:
+        Height: =135
+        Text: ="Saved succesfully! If you finished all items, you can click the Eye button, to view your CV"
+        Visible: =ShowSaveCertSuccess
+        Width: =177
+        X: =955
+        Y: =106
+        ZIndex: =26
+
+    MasterComponent_2 As MasterComponent:
+        Height: =184
+        ZIndex: =27
+

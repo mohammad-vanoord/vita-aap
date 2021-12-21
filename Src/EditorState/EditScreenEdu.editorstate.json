@@ -1705,7 +1705,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "GalleryEduColl_1",
-    "ParentIndex": 8,
+    "ParentIndex": 7,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -1892,7 +1892,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "GalleryProjects_16",
-    "ParentIndex": 7,
+    "ParentIndex": 8,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -3603,7 +3603,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "iconDelete_8",
-    "ParentIndex": 12,
+    "ParentIndex": 11,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -3752,14 +3752,7 @@
       "DisabledFill",
       "PressedFill",
       "HoverFill",
-      {
-        "AFDDataSourceName": "",
-        "AutoRuleBindingEnabled": false,
-        "AutoRuleBindingString": "DisplayMode.Edit",
-        "InvariantPropertyName": "DisplayMode",
-        "IsLockable": false,
-        "NameMapSourceSchema": "?"
-      },
+      "DisplayMode",
       "X",
       "Y",
       "Width",
@@ -3801,7 +3794,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "iconSave_8",
-    "ParentIndex": 13,
+    "ParentIndex": 5,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -4265,7 +4258,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "inputEduDeg_2",
-    "ParentIndex": 10,
+    "ParentIndex": 12,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -4564,7 +4557,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "inputEduEnd_2",
-    "ParentIndex": 7,
+    "ParentIndex": 8,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -4925,7 +4918,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "inputEduSchool_2",
-    "ParentIndex": 5,
+    "ParentIndex": 6,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -5224,7 +5217,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "inputEduStart_2",
-    "ParentIndex": 6,
+    "ParentIndex": 7,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -5585,7 +5578,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "inputEduTitle_2",
-    "ParentIndex": 11,
+    "ParentIndex": 13,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -7016,7 +7009,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "Label4_35",
-    "ParentIndex": 8,
+    "ParentIndex": 9,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -7578,7 +7571,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "Label5_7",
-    "ParentIndex": 9,
+    "ParentIndex": 10,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {

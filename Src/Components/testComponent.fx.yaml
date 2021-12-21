@@ -1,0 +1,32 @@
+testComponent As CanvasComponent:
+    Fill: =
+    Height: =640
+    menuTable: |-
+        =Table({menuID: 1, menuLabele: "My Personalia", menuScreen:App.ActiveScreen},
+        {menuID: 2, menuLabele: "My Projects", menuScreen:App.ActiveScreen})
+    selectedcolor: =RGBA(255, 134, 2, 1)
+    unselectedcolor: =RGBA(37, 58, 121, 1)
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    "Gallery9 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Items: =testComponent.menuTable
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =Min(160, Self.Height - 60)
+        Y: =40
+        ZIndex: =1
+
+        Label31 As label:
+            BorderThickness: =1
+            Fill: =If(ThisItem.menuScreen=App.ActiveScreen,testComponent.selectedcolor,testComponent.unselectedcolor)
+            Height: =72
+            OnSelect: =Select(Parent);Navigate(ThisItem.menuScreen,ScreenTransition.Cover)
+            Text: =ThisItem.menuLabele
+            Width: =248
+            X: =40
+            Y: =40
+            ZIndex: =6
+

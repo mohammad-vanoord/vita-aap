@@ -1,0 +1,406 @@
+CreateMyEdu As screen:
+
+    btnPers_3 As button:
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: =Navigate(NewResume,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Personalia"
+        Width: =185
+        X: =1173
+        Y: =132
+        ZIndex: =4
+
+    btnProj_3 As button:
+        DisplayMode: =If(ShowSaveProjSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(ProjectsCollection, {ProjName: "", ProjNumber: 0,ProjToMonth: 0, ProjToYear: 0, ProjFromMonth:0,ProjFromYear:0,ProjDescr:"",ProjCountry:"",ProjRoleName: "",ProjClient:"", ProjTotalMonth: 0, ProjectOrAddedRole:"", HighlightedProject: "",ShowSaveButtonsProj:true});Navigate(CreateMyProjects,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Projects"
+        Width: =185
+        X: =1173
+        Y: =206
+        ZIndex: =5
+
+    btnRoleSkill_3 As button:
+        DisplayMode: =If(ShowSaveAddRoleAndSkillSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(AddRolesCollection, {AddRoleName: "", AddRoleDescr: "", AddRoleExperience:0, ProjectOrAddedRole:"", ShowSaveButtonsAddRole:true});ClearCollect(SkillsCollection, {SkillName: "", SkillDescr:"",SkillExperience:0,SkillSwitch:"", HighlightedSkill:"", ShowSaveButtonsSkill:true}); Navigate(CreateMyRoleSkill,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Roles & Skills"
+        Width: =185
+        X: =1173
+        Y: =280
+        ZIndex: =6
+
+    btnEdu_3 As button:
+        Fill: =RGBA(255, 134, 2, 1)
+        Height: =58
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Education"
+        Width: =185
+        X: =1173
+        Y: =354
+        ZIndex: =7
+
+    btnEmploy_3 As button:
+        DisplayMode: =If(ShowSaveEmplSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(EmployersCollection, {EmplName: "", EmplPosition: "",EmplToMonth: 0, EmplToYear: 0, EmplFromMonth:0,EmplFromYear:0,EmplDescr:"",EmplRoleName: "",EmplTotalMonth: 0, HighlightedEmpl:"", ShowSaveButtonsEmpl:true});Navigate(CreateMyEmploy,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Employers"
+        Width: =185
+        X: =1173
+        Y: =428
+        ZIndex: =8
+
+    btnMyCertCourse_3 As button:
+        DisplayMode: =If(ShowSaveCertSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(CertCollection, {CertName: "", CertDescr: "", CertStart:"",CertEnd:"",CertSwitch:"",CertOrganiser: "", ShowSaveButtonsCert:true});Navigate(CreateMyCertCourse,ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Certificates & Courses"
+        Width: =185
+        X: =1173
+        Y: =502
+        ZIndex: =9
+
+    icnHome_5 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: ='ICON BL home'
+        OnSelect: =Navigate(MainScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        Width: =90
+        X: =1268
+        Y: =668
+        ZIndex: =15
+
+    icnInstruction_3 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1173
+        Y: =668
+        ZIndex: =17
+
+    "GalleryEduColl As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =493
+        Items: =EducationCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =180
+        Width: =896
+        Y: =230
+        ZIndex: =19
+
+        Separator2_3 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputEduSchool_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EduSchool
+            DisplayMode: =If(ThisItem.ShowSaveButtonsEdu,DisplayMode.Edit,View)
+            HintText: ="e.g. University of Twente"
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =362
+            X: =16
+            Y: =40
+            ZIndex: =2
+
+        Label1_2 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="School / University:"
+            Width: =177
+            X: =16
+            ZIndex: =5
+
+        Label2_1 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Start date:"
+            X: =400
+            ZIndex: =6
+
+        Label3_1 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="End date:"
+            X: =572
+            ZIndex: =7
+
+        inputEduDeg_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EduDeg
+            DisplayMode: =inputEduSchool_1.DisplayMode
+            Height: =42
+            HintText: ="e.g. Master of Science Civil Engineering"
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =508
+            X: =16
+            Y: =132
+            ZIndex: =8
+
+        Label4_2 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Achieved degree:"
+            X: =16
+            Y: =92
+            ZIndex: =9
+
+        inputEduTitle_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EduTitle
+            DisplayMode: =inputEduSchool_1.DisplayMode
+            HintText: ="e.g. MSc."
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =170
+            X: =550
+            Y: =134
+            ZIndex: =10
+
+        Label5_1 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Title (abbreviation):"
+            Width: =170
+            X: =550
+            Y: =94
+            ZIndex: =11
+
+        iconSave_3 As icon.Save:
+            Height: =52
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    EducationCollection,
+                    ThisItem,
+                    {
+                        EduSchool: inputEduSchool_1.Text,
+                        EduStart: inputEduStart_1.SelectedDate,
+                        EduEnd: inputEduEnd_1.SelectedDate,
+                        EduDeg: inputEduDeg_1.Text,
+                        EduTitle: inputEduTitle_1.Text, ShowSaveButtonsEdu: false
+                    }
+                );If(EditPressedEdu, false, 
+                Collect(
+                    EducationCollection,
+                    {
+                        EduSchool: "",
+                        EduStart: "",
+                        EduEnd: "",
+                        EduDeg: "",
+                        EduTitle: "",  ShowSaveButtonsEdu: true
+                    }
+                ));UpdateContext({EditPressedEdu: false});Set(NeedssavedEdu, false)
+            Visible: =ThisItem.ShowSaveButtonsEdu
+            Width: =48
+            X: =779
+            Y: =30
+            ZIndex: =12
+
+        iconDelete_3 As icon.Trash:
+            Height: =52
+            Icon: =Icon.Trash
+            OnSelect: =Remove(EducationCollection,ThisItem);Set(NeedssavedEdu,false)
+            Visible: =iconSave_3.Visible
+            Width: =55
+            X: =827
+            Y: =28
+            ZIndex: =13
+
+        inputEduStart_1 As datepicker:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            DisplayMode: =inputEduSchool_1.DisplayMode
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            Width: =139
+            X: =404
+            Y: =40
+            ZIndex: =16
+
+        inputEduEnd_1 As datepicker:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            DisplayMode: =inputEduSchool_1.DisplayMode
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            Width: =139
+            X: =572
+            Y: =40
+            ZIndex: =17
+
+        Icon5_1 As icon.Edit:
+            Height: =72
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(EducationCollection,ThisItem, {ShowSaveButtonsEdu: true});UpdateContext({EditPressedEdu:true})
+            Visible: =!ThisItem.ShowSaveButtonsEdu
+            Width: =67
+            X: =738
+            Y: =20
+            ZIndex: =18
+
+    btnSaveEduColl As button:
+        DisplayMode: =If(NeedssavedEdu,DisplayMode.Disabled,If(ShowSaveEduSuccess = true, DisplayMode.Disabled, DisplayMode.Edit))
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(EducationCollection,If(!IsBlank(EduSchool), Patch(PA_Edu, Defaults(PA_Edu), {Title: EduSchool, SP_EduStart: DateValue(EduStart), SP_EduEnd: DateValue(EduEnd), SP_EduDeg: EduDeg, SP_EduTitle: EduTitle,IncludeInCV:Text(1), SP_EduMasterID:FormNewMaster.LastSubmit.ID})));Set(ShowSaveEduSuccess,true)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save to CV"
+        Width: =177
+        X: =996
+        Y: =656
+        ZIndex: =20
+
+    lblSaveWarningEdu As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =28
+        Text: ="Save education first"
+        Visible: =NeedssavedEdu
+        Width: =173
+        X: =946
+        Y: =106
+        ZIndex: =21
+
+    lblTitle_11 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Schools and Universities"
+        Width: =409
+        X: =106
+        Y: =149
+        ZIndex: =22
+
+    Button3_2 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                EducationCollection,
+                {
+                    EduSchool: "",
+                    EduStart: "",
+                    EduEnd: "",
+                    EduDeg: "",
+                    EduTitle: "",  ShowSaveButtonsEdu: true
+                })
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =40
+        Y: =157
+        ZIndex: =23
+
+    lblTitle_14 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =40
+        Y: =205
+        ZIndex: =24
+
+    lblCurrentRecord_1 As label:
+        Height: =37
+        Text: |-
+            ="You are working on record: " & FormNewMaster.LastSubmit.Title
+        Width: =1004
+        X: =40
+        Y: =120
+        ZIndex: =25
+
+    SavedSuccessEdu As label:
+        Height: =95
+        Text: ="Saved succesfully! Please, continue to My Employers"
+        Visible: =ShowSaveEduSuccess
+        Width: =177
+        X: =946
+        Y: =106
+        ZIndex: =26
+
+    btnMyCertCourse_10 As button:
+        DisplayMode: =If(!ShowSaveEduSuccess,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ClearCollect(EmployersCollection, {EmplName: "", EmplPosition: "",EmplToMonth: 0, EmplToYear: 0, EmplFromMonth:0,EmplFromYear:0,EmplDescr:"",EmplRoleName: "",EmplTotalMonth: 0, ShowSaveButtonsEmpl:true});Navigate(CreateMyEmploy,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Next"
+        Width: =125
+        X: =848
+        Y: =656
+        ZIndex: =27
+
+    MasterComponent_6 As MasterComponent:
+        HeaderTitle: ="Create new CV - My Education"
+        ZIndex: =28
+

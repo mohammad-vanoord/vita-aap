@@ -1025,7 +1025,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "icnInstruction_6",
-    "ParentIndex": 7,
+    "ParentIndex": 6,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -1740,7 +1740,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "Label7",
-    "ParentIndex": 6,
+    "ParentIndex": 7,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -2246,14 +2246,7 @@
   "MainScreen": {
     "AllowAccessToGlobals": true,
     "ControlPropertyState": [
-      {
-        "AFDDataSourceName": "",
-        "AutoRuleBindingEnabled": false,
-        "AutoRuleBindingString": "White",
-        "InvariantPropertyName": "Fill",
-        "IsLockable": false,
-        "NameMapSourceSchema": "?"
-      },
+      "Fill",
       "ImagePosition",
       "Height",
       "Width",

@@ -28,8 +28,8 @@
       "enablecomponentscopeoldbehavior": true,
       "enableexcelonlinebusinessv2connector": false,
       "enableideaspanel": true,
-      "enableonstart": false,
-      "enableonstartnavigate": false,
+      "enableonstart": true,
+      "enableonstartnavigate": true,
       "enablepcfmoderndatasets": false,
       "enablepowerautomatepane": false,
       "enablerowscopeonetonexpand": false,
@@ -65,7 +65,7 @@
     },
     "Author": "",
     "ContainsThirdPartyPcfControls": false,
-    "DefaultConnectedDataSourceMaxGetRowsCount": 500,
+    "DefaultConnectedDataSourceMaxGetRowsCount": 2000,
     "DocumentAppType": "DesktopOrTablet",
     "DocumentLayoutHeight": 768,
     "DocumentLayoutLockOrientation": true,
@@ -76,7 +76,7 @@
     "DocumentType": "App",
     "EnableInstrumentation": false,
     "FileID": "bd18d75e-33e0-41a0-bcb5-bf85c8301a04",
-    "Id": "32413a38-d2ed-4125-a44b-257cd0d176a2",
+    "Id": "1810d348-b872-439c-9742-6026e1174125",
     "InstrumentationKey": "",
     "Name": "Vita+v2.msapp",
     "OriginatingVersion": "1.300"
@@ -103,11 +103,18 @@
     "EditScreenEdu",
     "EditScreenEmpl",
     "EditScreenCertCourse",
+    "CreateMyProjects",
+    "CreateMyRoleSkill",
+    "CreateMyEdu",
+    "CreateMyEmploy",
+    "CreateMyCertCourse",
+    "NewItem(old)",
     "ViewScreen",
     "InstructionsScreen",
     "ViewMyCVs",
     "EditMyCV",
     "SearchCVsStart",
-    "ViewMyCVsPrint"
+    "ViewMyCVsPrint",
+    "Screen1"
   ]
 }

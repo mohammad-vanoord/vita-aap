@@ -1,0 +1,781 @@
+CreateMyEmploy As screen:
+
+    imgLogoVanOord_7 As image:
+        Height: =74
+        Image: =imgVanOordCrownLogo
+        Width: =194
+        X: =1132
+        Y: =32
+        ZIndex: =1
+
+    lblTitle_7 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Create new CV - My Employers"
+        Width: =426
+        X: =40
+        Y: =40
+        ZIndex: =2
+
+    btnPers_4 As button:
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Personalia"
+        Width: =185
+        X: =1173
+        Y: =132
+        ZIndex: =4
+
+    btnProj_4 As button:
+        DisplayMode: =If(ShowSaveProjSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(ProjectsCollection, {ProjName: "", ProjNumber: 0,ProjToMonth: 0, ProjToYear: 0, ProjFromMonth:0,ProjFromYear:0,ProjDescr:"",ProjCountry:"",ProjRoleName: "",ProjClient:"", ProjTotalMonth: 0, ProjectOrAddedRole:"", HighlightedProject: "",ShowSaveButtonsProj:true});Navigate(CreateMyProjects,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Projects"
+        Width: =185
+        X: =1173
+        Y: =206
+        ZIndex: =5
+
+    btnRoleSkill_4 As button:
+        DisplayMode: =If(ShowSaveAddRoleAndSkillSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(AddRolesCollection, {AddRoleName: "", AddRoleDescr: "", AddRoleExperience:0, ProjectOrAddedRole:"", ShowSaveButtonsAddRole:true});ClearCollect(SkillsCollection, {SkillName: "", SkillDescr:"",SkillExperience:0,SkillSwitch:"", HighlightedSkill:"", ShowSaveButtonsSkill:true}); Navigate(CreateMyRoleSkill,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Roles & Skills"
+        Width: =185
+        X: =1173
+        Y: =280
+        ZIndex: =6
+
+    btnEdu_4 As button:
+        DisplayMode: =If(ShowSaveEduSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(EducationCollection, {EduSchool: "", EduStart: "", EduEnd: "", EduDeg: "", EduTitle: "",ShowSaveButtonsEdu: true}); Navigate(CreateMyEdu,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Education"
+        Width: =185
+        X: =1173
+        Y: =354
+        ZIndex: =7
+
+    btnEmploy_4 As button:
+        Fill: =RGBA(255, 134, 2, 1)
+        Height: =58
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Employers"
+        Width: =185
+        X: =1173
+        Y: =428
+        ZIndex: =8
+
+    btnMyCertCourse_4 As button:
+        DisplayMode: =If(ShowSaveCertSuccess = true, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =58
+        OnSelect: |-
+            =ClearCollect(CertCollection, {CertName: "", CertDescr: "", CertStart:"",CertEnd:"",CertSwitch:"",CertOrganiser: "", ShowSaveButtonsCert:true});Navigate(CreateMyCertCourse,ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="My Certificates & Courses"
+        Width: =185
+        X: =1173
+        Y: =502
+        ZIndex: =9
+
+    icnHome_6 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: ='ICON BL home'
+        OnSelect: =Navigate(MainScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        Width: =90
+        X: =1268
+        Y: =668
+        ZIndex: =15
+
+    icnInstruction_4 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1173
+        Y: =668
+        ZIndex: =17
+
+    lblCurrentRecord_2 As label:
+        Height: =28
+        Text: |-
+            ="You are working on record: " & FormNewMaster.LastSubmit.Title
+        Width: =1004
+        X: =40
+        Y: =88
+        ZIndex: =20
+
+    "GalleryEmplColl As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =493
+        Items: =EmployersCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =274
+        Width: =855
+        X: =20
+        Y: =218
+        ZIndex: =21
+
+        Separator2_5 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        Label2_3 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="From:"
+            X: =671
+            ZIndex: =4
+
+        Label3_4 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="to:"
+            X: =671
+            Y: =54
+            ZIndex: =5
+
+        inputEmplName_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EmplName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsEmpl,DisplayMode.Edit,View)
+            Height: =34
+            HintText: ="Your current or previous employer."
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =366
+            X: =19
+            Y: =20
+            ZIndex: =6
+
+        Label4_5 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Employer name:"
+            Width: =137
+            X: =19
+            ZIndex: =7
+
+        iconSaveEmplColl As icon.Save:
+            DisplayMode: =If(Value(lblAmountofMonthsEmpl.Text)<1,DisplayMode.Disabled,DisplayMode.Edit)
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    EmployersCollection,
+                    ThisItem,
+                    {
+                        EmplFromMonth: Value(drpdwnFromMonthEmpl.Selected.Title),
+                        EmplFromYear: Value(drpdwnFromYearEmpl.Selected.Title),
+                        EmplToMonth: Value(drpdwnToMonthEmpl.Selected.Title),
+                        EmplToYear: Value(drpdwnToYearEmpl.Selected.Title),
+                        EmplName: inputEmplName_1.Text,
+                        EmplDescr: inputEmplDescription.Text, 
+                        EmplRoleName: lblComboFuncConcEmpl.Text,
+                        EmplTotalMonth: Value(lblAmountofMonthsEmpl.Text),
+                        HighlightedEmpl: lblHighlightedEmplDefaultNew.Text,  
+                        ShowSaveButtonsEmpl: false
+                    }
+                );If(EditPressedEmpl, false, 
+                Collect(
+                    EmployersCollection,
+                    {
+                        EmplFromMonth: 0,
+                        EmplFromYear: 0,
+                        EmplToMonth: 0,
+                        EmplToYear: 0,
+                        EmplName: "",
+                        EmplDescr: "", 
+                        EmplRoleName: "",
+                        EmplTotalMonth: 0,
+                        HighlightedEmpl:"",  
+                        ShowSaveButtonsEmpl: true
+                    }
+                ));UpdateContext({EditPressedEmpl: false});Set(NeedssavedEmpl, false)
+            Visible: =ThisItem.ShowSaveButtonsEmpl
+            X: =666
+            Y: =200
+            ZIndex: =9
+
+        iconDeleteEmplColl As icon.Trash:
+            Icon: =Icon.Trash
+            OnSelect: =Remove(EmployersCollection,ThisItem);Set(NeedssavedEmpl,false)
+            Visible: =iconSaveEmplColl.Visible
+            X: =730
+            Y: =200
+            ZIndex: =10
+
+        IconEditEmplColl As icon.Edit:
+            Height: =72
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(EmployersCollection,ThisItem, {ShowSaveButtonsEmpl: true});UpdateContext({EditPressedEmpl:true})
+            Visible: =!ThisItem.ShowSaveButtonsEmpl
+            Width: =67
+            X: =687
+            Y: =196
+            ZIndex: =11
+
+        comboboxFunctionEmpl As combobox:
+            DefaultSelectedItems: =RenameColumns(Split(ThisItem.EmplRoleName, ","),"Result","Value")
+            DisplayFields: =["Title"]
+            DisplayMode: =inputEmplName_1.DisplayMode
+            Height: =34
+            InputTextPlaceholder: ="Select position(s)"
+            Items: =PA_RolesFunctionsList.Title
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            SearchFields: =["Title"]
+            SearchItems: =Search(PA_RolesFunctionsList.Title,comboboxFunctionEmpl.SearchText,"Title")
+            Size: =11
+            Width: =199
+            X: =399
+            Y: =20
+            ZIndex: =12
+
+        inputEmplDescription As text:
+            Default: =ThisItem.EmplDescr
+            DisplayMode: =inputEmplName_1.DisplayMode
+            Height: =99
+            HintText: ="Max 350 characters, provide a summary input of your task(s) for this Employer, Projects and Roles should be filled in in the previous sections."
+            MaxLength: =350
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =642
+            X: =16
+            Y: =74
+            ZIndex: =13
+
+        Label5_4 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: ="Function/ position"
+            Width: =170
+            X: =397
+            ZIndex: =14
+
+        drpdwnToYearEmpl As dropdown:
+            Default: =ThisItem.EmplToYear
+            DisplayMode: =inputEmplName_1.DisplayMode
+            Height: =34
+            Items: =PA_YearsSelection
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =89
+            X: =741
+            Y: =74
+            ZIndex: =15
+
+        drpdwnToMonthEmpl As dropdown:
+            Default: =ThisItem.EmplToMonth
+            DisplayMode: =inputEmplName_1.DisplayMode
+            Height: =34
+            Items: =PA_Months
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =70
+            X: =671
+            Y: =74
+            ZIndex: =16
+
+        drpdwnFromYearEmpl As dropdown:
+            Default: =ThisItem.EmplFromYear
+            DisplayMode: =inputEmplName_1.DisplayMode
+            Height: =34
+            Items: =PA_YearsSelection
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =89
+            X: =738
+            Y: =20
+            ZIndex: =17
+
+        drpdwnFromMonthEmpl As dropdown:
+            Default: =ThisItem.EmplFromMonth
+            DisplayMode: =inputEmplName_1.DisplayMode
+            Height: =34
+            Items: =PA_Months
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =67
+            X: =671
+            Y: =20
+            ZIndex: =18
+
+        Label4_6 As label:
+            Height: =22
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Description of the work experience:"
+            Width: =244
+            X: =16
+            Y: =52
+            ZIndex: =19
+
+        lblComboFuncConcEmpl As label:
+            Height: =34
+            OnSelect: =Select(Parent)
+            Text: =Concat(comboboxFunctionEmpl.SelectedItems,Title, ", ")
+            Visible: =false
+            Width: =325
+            X: =19
+            Y: =234
+            ZIndex: =21
+
+        lblAmountofMonthsEmpl As label:
+            Align: =Align.Right
+            FontWeight: =FontWeight.Bold
+            Height: =19
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =((Value(drpdwnToYearEmpl.Selected.Title)-Value(drpdwnFromYearEmpl.Selected.Title))*12+(Value(drpdwnToMonthEmpl.Selected.Title)-Value(drpdwnFromMonthEmpl.Selected.Title))+1)
+            Width: =36
+            X: =793
+            Y: =153
+            ZIndex: =23
+
+        lblSaveWarningEmpl As label:
+            Color: =RGBA(255, 0, 0, 1)
+            Height: =15
+            Size: =9
+            Text: ="Travelled back in time?"
+            Visible: =If(Value(lblAmountofMonthsEmpl.Text)<1,true,false)
+            Width: =173
+            X: =671
+            Y: =113
+            ZIndex: =24
+
+        Label3_5 As label:
+            Align: =Align.Right
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Months total:"
+            Width: =134
+            X: =671
+            Y: =153
+            ZIndex: =25
+
+        lblHighlightedEmplDefaultNew As label:
+            OnSelect: =Select(Parent)
+            Text: ="0"
+            Visible: =false
+            Width: =50
+            X: =805
+            Y: =234
+            ZIndex: =26
+
+        btnAddNewRoleInEdit_2 As button:
+            DisplayMode: =If(ThisItem.ShowSaveButtonsEmpl,DisplayMode.Edit,DisplayMode.Disabled)
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =34
+            OnSelect: =Set(AddNewRoleFormScreen2,true)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10
+            Text: ="add new"
+            Width: =60
+            X: =598
+            Y: =20
+            ZIndex: =27
+
+    btnSaveEmpl As button:
+        DisplayMode: =If(NeedssavedProj,DisplayMode.Disabled,If(ShowSaveEmplSuccess = true, DisplayMode.Disabled, DisplayMode.Edit))
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(EmployersCollection,If(!IsBlank(EmplName), Patch('PA_Work experience (test)', Defaults('PA_Work experience (test)'), {Title: EmplName, 'Description of the work experience': EmplDescr, Position: EmplRoleName, FromMonthEmpl:EmplFromMonth,FromYearEmpl:EmplFromYear,ToMonthEmpl:EmplToMonth,ToYearEmpl:EmplToYear,TotalMonthsForEmployer:EmplTotalMonth, HighlightedEmpl:HighlightedEmpl, IncludeInCV:Text(1),PA_MasterIDEmpl:FormNewMaster.LastSubmit.ID})));Set(ShowSaveEmplSuccess,true);Set(NeedssavedEmpl,false)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save to CV"
+        Width: =177
+        X: =935
+        Y: =50
+        ZIndex: =22
+
+    lblSaveWarningEmplSave As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =22
+        Text: ="Save My Employers first"
+        Visible: =NeedssavedEmpl
+        Width: =217
+        X: =935
+        Y: =110
+        ZIndex: =23
+
+    lblTitle_18 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="My Employers"
+        Width: =409
+        X: =106
+        Y: =116
+        ZIndex: =24
+
+    Button3_4 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                EmployersCollection,
+                {
+                    EmplFromMonth: 0,
+                    EmplFromYear: 0,
+                    EmplToMonth: 0,
+                    EmplToYear: 0,
+                    EmplName: "",
+                    EmplDescr: "", 
+                    EmplRoleName: "",
+                    EmplTotalMonth: 0,
+                    HighlightedEmpl:"",  
+                    ShowSaveButtonsEmpl: true
+                })
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =40
+        Y: =123
+        ZIndex: =25
+
+    lblTitle_19 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =20
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =40
+        Y: =169
+        ZIndex: =26
+
+    lblSavedSuccesEmpl As label:
+        Height: =95
+        Text: ="Saved succesfully! Please, continue to My Certificates & Courses"
+        Visible: =ShowSaveEmplSuccess
+        Width: =177
+        X: =935
+        Y: =113
+        ZIndex: =27
+
+    btnMyCertCourse_11 As button:
+        DisplayMode: =If(!ShowSaveEmplSuccess,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ClearCollect(CertCollection, {CertName: "", CertDescr: "", CertStart:"",CertEnd:"",CertSwitch:"",CertOrganiser: "", ShowSaveButtonsCert:true});Navigate(CreateMyCertCourse,ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Next"
+        Width: =125
+        X: =781
+        Y: =50
+        ZIndex: =28
+
+    GroupAddNewRoleInCreateEmpl As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =34
+
+        FormAddNewRoleInEdit_2 As form:
+            BorderThickness: =2
+            DataSource: =PA_RolesFunctionsList
+            Fill: =RGBA(255, 255, 255, 1)
+            Item: =Defaults(PA_RolesFunctionsList)
+            NumberOfColumns: =2
+            OnSuccess: =Set(AddNewRoleFormScreen1,false)
+            Visible: =AddNewRoleFormScreen2
+            X: =161
+            Y: =126
+            ZIndex: =29
+
+            Title_DataCard7_2 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Title"
+                Default: =ThisItem.Title
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="Title"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                MaxLength: =DataSourceInfo([@PA_RolesFunctionsList], DataSourceInfo.MaxLength, "Title")
+                Required: =true
+                Update: =datacardAddNewRoleToList_2.Text
+                Width: =799
+                X: =0
+                Y: =0
+                ZIndex: =21
+
+                DataCardKey41_2 As label:
+                    AutoHeight: =true
+                    Height: =34
+                    Text: ="Title of new function/ role"
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                datacardAddNewRoleToList_2 As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =11
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey41_2.Y + DataCardKey41_2.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage41_2 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =datacardAddNewRoleToList_2.Y + datacardAddNewRoleToList_2.Height
+                    ZIndex: =3
+
+                StarVisible41_2 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey41_2.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey41_2.Y
+                    ZIndex: =4
+
+            RoleDescription_DataCard1_2 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="RoleDescription"
+                Default: =ThisItem.RoleDescription
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="RoleDescription"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =175
+                MaxLength: =DataSourceInfo([@PA_RolesFunctionsList], DataSourceInfo.MaxLength, "RoleDescription")
+                Required: =false
+                Update: =datacardAddNewRoleDescrToList_2.Text
+                Width: =799
+                X: =0
+                Y: =1
+                ZIndex: =21
+
+                DataCardKey42_2 As label:
+                    AutoHeight: =true
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                datacardAddNewRoleDescrToList_2 As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =107
+                    MaxLength: =Parent.MaxLength
+                    Mode: =TextMode.MultiLine
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =11
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey42_2.Y + DataCardKey42_2.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage42_2 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =datacardAddNewRoleDescrToList_2.Y + datacardAddNewRoleDescrToList_2.Height
+                    ZIndex: =3
+
+                StarVisible42_2 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey42_2.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey42_2.Y
+                    ZIndex: =4
+
+        btnSaveAddNewRole_2 As button:
+            DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =45
+            OnSelect: =SubmitForm(FormAddNewRoleInEdit_2)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Submit new role"
+            Visible: =FormAddNewRoleInEdit_2.Visible
+            Width: =175
+            X: =634
+            Y: =572
+            ZIndex: =30
+
+        btnCancelAddNewRole_2 As button:
+            DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =44
+            OnSelect: =Set(AddNewRoleFormScreen2,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =FormAddNewRoleInEdit_2.Visible
+            Width: =113
+            X: =826
+            Y: =573
+            ZIndex: =31
+
+        "GalleryRolesAndFunctions_2 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =100
+            Items: =Filter(PA_RolesFunctionsList, datacardAddNewRoleToList_2.Text in Title)
+            Layout: =Layout.Vertical
+            TemplateSize: =19
+            Visible: =FormAddNewRoleInEdit_2.Visible
+            Width: =744
+            X: =194
+            Y: =457
+            ZIndex: =32
+
+            Title6_3 As label:
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =10
+                Text: =ThisItem.Title
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - 104
+                ZIndex: =1
+
+            Separator10_2 As rectangle:
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =3
+
+        lblTitle_79 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =14
+            Text: |-
+                ="Check if role is not already in existing list: "
+            Visible: =FormAddNewRoleInEdit_2.Visible
+            Width: =744
+            X: =194
+            Y: =401
+            ZIndex: =33
+

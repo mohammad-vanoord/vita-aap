@@ -2,7 +2,7 @@
 
     "ResumeGalleryViewCV As gallery.'BrowseLayout_Vertical_TwoTextOneImageTwoColumnOverlayVariant_ver4.0'":
         Height: =623
-        Items: =Filter(Vita_MasterCVS, 'Vita_MasterCVS (Views)'.'My CV', StartsWith(Title,TextInput1_1.Text))
+        Items: =SortByColumns((Filter(PA_MasterList,StartsWith(Title,TextInput1_1.Text))),"Modified",Descending)
         Layout: =Layout.Vertical
         OnSelect: |-
             =UpdateContext({showGallery3:true})
@@ -15,7 +15,7 @@
 
         Image6 As image:
             Height: =320
-            Image: =If(Office365Users.UserPhotoMetadata(ThisItem.'Mail Address').HasPhoto, Office365Users.UserPhotoV2(ThisItem.'Mail Address'), 'dummy User')
+            Image: =Office365Users.UserPhoto(ThisItem.MailAddress)
             ImagePosition: =ImagePosition.Fill
             OnSelect: =Select(Parent)
             Width: =306
@@ -37,11 +37,11 @@
             PaddingRight: =0
             PaddingTop: =0
             Size: =10
-            Text: =ThisItem.Position
+            Text: =ThisItem.Title
             VerticalAlign: =VerticalAlign.Top
             Width: =Parent.TemplateWidth - 64
-            X: =20
-            Y: =223
+            X: =19
+            Y: =212
             ZIndex: =3
 
         Subtitle5 As label:
@@ -55,8 +55,8 @@
             Text: =ThisItem.'First Name' &" "& ThisItem.'Last Name'
             VerticalAlign: =VerticalAlign.Top
             Width: =267
-            X: =19
-            Y: =193
+            X: =Title2.X
+            Y: =243
             ZIndex: =4
 
         Subtitle5_1 As label:
@@ -69,7 +69,7 @@
             PaddingTop: =0
             Size: =8
             Text: |-
-                =ThisItem.'Master Copy' & " | "& "Last modified: " & ThisItem.'Modified On'
+                =ThisItem.MasterOrCopy & " | "& "Last modified: " & ThisItem.Modified
             VerticalAlign: =VerticalAlign.Top
             Width: =Title2.Width
             X: =56
@@ -80,7 +80,7 @@
             BorderThickness: =0
             Fill: =RGBA(37, 58, 121, 0.61)
             Height: =33
-            OnSelect: =Navigate(ViewMyCVsPrint,ScreenTransition.Cover);
+            OnSelect: =Navigate(ViewMyCVsPrint,ScreenTransition.Cover); Set(varMasterIDSelected,ThisItem.ID)
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -110,7 +110,7 @@
             BorderThickness: =0
             Fill: =RGBA(37, 58, 121, 0.61)
             Height: =32
-            OnSelect: =CopyVitaCVFlow.Run(ResumeGalleryViewCV.Selected.cr63b_id)
+            OnSelect: =CopyVitaCVFlow.Run(ResumeGalleryViewCV.Selected.ID)
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -156,7 +156,7 @@
         Font: =Font.'Lato Black'
         Height: =66
         Size: =20
-        Text: =
+        Text: ="View my CVs"
         Width: =538
         X: =60
         Y: =40
@@ -200,18 +200,31 @@
 
     lblTitlePageViewMyCV As label:
         FontWeight: =FontWeight.Semibold
+        Height: =72
         Size: =20
         Text: =ResumeGalleryViewCV.Selected.Title
         VerticalAlign: =VerticalAlign.Bottom
         Width: =820
-        X: =273
-        Y: =32
+        X: =332
+        Y: =20
         ZIndex: =8
 
     Label19 As label:
         Text: =
         X: =345
         ZIndex: =9
+
+    lblTitlePageViewMyCV_11 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =27
+        Size: =12
+        Text: |-
+            ="# " & ResumeGalleryViewCV.Selected.ID
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =43
+        X: =332
+        Y: =79
+        ZIndex: =10
 
     DeleteVerificationScreen_1 As label:
         Fill: =RGBA(250, 155, 112, 0.34)

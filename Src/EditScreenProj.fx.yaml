@@ -32,7 +32,7 @@ EditScreenProj As screen:
         Fill: =RGBA(37, 58, 121, 1)
         Height: =45
         OnSelect: |-
-            =ForAll(ProjectsCollection,If(!IsBlank(ProjName), Patch('PA_Project experience (test)', Defaults('PA_Project experience (test)'), {Title: ProjName, VOProjectNumber: ProjNumber, ProjectDescriptionShort: ProjDescr, RoleProject: ProjRoleName, CountryProject: ProjCountry, FromMonth:ProjFromMonth,FromYear:ProjFromYear,ToMonth:ProjToMonth,ToYear:ProjToYear,TotalMonthsOnProject:ProjTotalMonth,ProjRoleDescr:ProjRoleDescr,ProjectOrAddedRole:ProjectOrAddedRole,HighlightedProject:HighlightedProject,IncludeInCV:Text(1), PA_ProjMasterID:ResumeGalleryViewCV.Selected.cr63b_id})));
+            =ForAll(ProjectsCollection,If(!IsBlank(ProjName), Patch('PA_Project experience (test)', Defaults('PA_Project experience (test)'), {Title: ProjName, VOProjectNumber: ProjNumber, ProjectDescriptionShort: ProjDescr, RoleProject: ProjRoleName, CountryProject: ProjCountry, FromMonth:ProjFromMonth,FromYear:ProjFromYear,ToMonth:ProjToMonth,ToYear:ProjToYear,TotalMonthsOnProject:ProjTotalMonth,ProjRoleDescr:ProjRoleDescr,ProjectOrAddedRole:ProjectOrAddedRole,HighlightedProject:HighlightedProject,IncludeInCV:Text(1), PA_ProjMasterID:ResumeGalleryViewCV.Selected.ID})));
             
             /* In the past I copied the role in 2 lists, but it is now collected in a later stage of the CV creation.
             ForAll(ProjectsCollection,If(!IsBlank(ProjRoleName), Patch('PA_Roles (test)', Defaults('PA_Roles (test)'), {Title: ProjRoleName, 'What did you do in this role?':ProjRoleDescr, 'Months of experience in this role':ProjTotalMonth, ProjectOrAddedRole:ProjectOrAddedRole,PA_MasterIDRoles:ResumeGalleryViewCV.Selected.ID})));
@@ -214,7 +214,7 @@ EditScreenProj As screen:
                     {
                         ProjNumber: Value(inputProjNumber_1.Text),
                         ProjFromMonth: Value(drpdwnFromMonth_1.Selected.Title),
-                        ProjFromYear: Value(drpdwnFromYear_1.Selected.cr63b_years),
+                        ProjFromYear: Value(drpdwnFromYear_1.Selected.Title),
                         ProjToMonth: Value(drpdwnToMonth_1.Selected.Title),
                         ProjToYear: Value(drpdwnToYear_1.Selected.Title),
                         ProjName: inputProjectName_1.Text,
@@ -345,7 +345,7 @@ EditScreenProj As screen:
             Default: =ThisItem.ProjFromYear
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =25
-            Items: =PA_YearsSelections
+            Items: =PA_YearsSelection
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
             Size: =11
@@ -420,7 +420,7 @@ EditScreenProj As screen:
             Height: =19
             OnSelect: =Select(Parent)
             Size: =9
-            Text: =((Value(drpdwnToYear_1.Selected.Title)-Value(drpdwnFromYear_1.Selected.cr63b_years))*12+(Value(drpdwnToMonth_1.Selected.Title)-Value(drpdwnFromMonth_1.Selected.Title))+1)
+            Text: =((Value(drpdwnToYear_1.Selected.Title)-Value(drpdwnFromYear_1.Selected.Title))*12+(Value(drpdwnToMonth_1.Selected.Title)-Value(drpdwnFromMonth_1.Selected.Title))+1)
             Width: =36
             X: =793
             Y: =153
@@ -542,7 +542,7 @@ EditScreenProj As screen:
 
     "GalleryProjects_13 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
         Height: =359
-        Items: =SortByColumns(Filter('PA_Project experience (test)',PA_ProjMasterID = ResumeGalleryViewCV.Selected.cr63b_id),"ToYear",Descending,"ToMonth",Descending)
+        Items: =SortByColumns(Filter('PA_Project experience (test)',PA_ProjMasterID = ResumeGalleryViewCV.Selected.ID),"ToYear",Descending,"ToMonth",Descending)
         Layout: =Layout.Vertical
         OnSelect: =
         TemplatePadding: =0

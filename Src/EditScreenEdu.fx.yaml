@@ -32,7 +32,7 @@ EditScreenEdu As screen:
         Fill: =RGBA(37, 58, 121, 1)
         Height: =45
         OnSelect: |-
-            =ForAll(EducationCollection,If(!IsBlank(EduSchool), Patch(PA_Edu, Defaults(PA_Edu), {Title: EduSchool, SP_EduStart: DateValue(EduStart), SP_EduEnd: DateValue(EduEnd), SP_EduDeg: EduDeg, SP_EduTitle: EduTitle,IncludeInCV:Text(1), SP_EduMasterID:ResumeGalleryViewCV.Selected.cr63b_id})));
+            =ForAll(EducationCollection,If(!IsBlank(EduSchool), Patch(PA_Edu, Defaults(PA_Edu), {Title: EduSchool, SP_EduStart: DateValue(EduStart), SP_EduEnd: DateValue(EduEnd), SP_EduDeg: EduDeg, SP_EduTitle: EduTitle,IncludeInCV:Text(1), SP_EduMasterID:ResumeGalleryViewCV.Selected.ID})));
             Set(
                 ShowSaveAddEduSuccess,
                 true
@@ -88,9 +88,9 @@ EditScreenEdu As screen:
         Height: =66
         Size: =20
         Text: ="Your Education"
-        Width: =205
-        X: =827
-        Y: =120
+        Width: =409
+        X: =890
+        Y: =114
         ZIndex: =13
 
     "GalleryEduColl_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
@@ -98,8 +98,8 @@ EditScreenEdu As screen:
         Items: =EducationCollection
         Layout: =Layout.Vertical
         TemplatePadding: =0
-        TemplateSize: =264
-        Width: =743
+        TemplateSize: =180
+        Width: =896
         Y: =188
         ZIndex: =14
 
@@ -199,8 +199,6 @@ EditScreenEdu As screen:
             ZIndex: =11
 
         iconSave_8 As icon.Save:
-            DisplayMode: =If(IsBlank(inputEduSchool_2.Text)|| IsBlank(inputEduDeg_2.Text),DisplayMode.Disabled,DisplayMode.Edit)
-            Height: =38
             Icon: =Icon.Save
             OnSelect: |-
                 =Patch(
@@ -225,19 +223,16 @@ EditScreenEdu As screen:
                     }
                 ));UpdateContext({EditPressedEdu: false});Set(NeedssavedEdu, false)
             Visible: =ThisItem.ShowSaveButtonsEdu
-            Width: =55
-            X: =617
-            Y: =207
+            X: =738
+            Y: =28
             ZIndex: =12
 
         iconDelete_8 As icon.Trash:
-            Height: =50
             Icon: =Icon.Trash
             OnSelect: =Remove(EducationCollection,ThisItem);Set(NeedssavedEdu,false)
             Visible: =iconSave_8.Visible
-            Width: =39
-            X: =672
-            Y: =199
+            X: =738
+            Y: =107
             ZIndex: =13
 
         inputEduStart_2 As datepicker:
@@ -297,13 +292,13 @@ EditScreenEdu As screen:
 
     "GalleryProjects_16 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
         Height: =364
-        Items: =SortByColumns(Filter(PA_Edu,SP_EduMasterID = ResumeGalleryViewCV.Selected.cr63b_id),"SP_EduEnd",Descending)
+        Items: =SortByColumns(Filter(PA_Edu,SP_EduMasterID = ResumeGalleryViewCV.Selected.ID),"SP_EduEnd",Descending)
         Layout: =Layout.Vertical
         TemplatePadding: =0
         TemplateSize: =106
         Width: =470
-        X: =840
-        Y: =186
+        X: =896
+        Y: =188
         ZIndex: =16
 
         Separator2_30 As rectangle:

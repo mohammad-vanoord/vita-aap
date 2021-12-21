@@ -1,0 +1,1007 @@
+CreateMyProjects As screen:
+
+    lblCurrentRecord As label:
+        Height: =28
+        Text: |-
+            ="You are working on record: " & FormNewMaster.LastSubmit.Title
+        Width: =1004
+        X: =29
+        Y: =132
+        ZIndex: =13
+
+    "GalleryProjects As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =493
+        Items: =ProjectsCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =311
+        Width: =855
+        X: =10
+        Y: =226
+        ZIndex: =14
+
+        Separator2_4 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputProjNumber As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.ProjNumber
+            DisplayMode: =If(ThisItem.ShowSaveButtonsProj,DisplayMode.Edit,View)
+            Height: =32
+            HintText: =""
+            OnChange: =
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Tooltip: ="Provide a 6-digit projectnumber (without a dot after 2nd digit)"
+            Visible: =If(Toggle1.Value=true,true,false)
+            Width: =72
+            X: =108
+            Y: =20
+            ZIndex: =2
+
+        Label1_3 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Proj number:"
+            Visible: =If(Toggle1.Value=true,true,false)
+            Width: =85
+            X: =108
+            ZIndex: =3
+
+        Label2_2 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="On project from:"
+            X: =671
+            ZIndex: =4
+
+        Label3_2 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="to:"
+            X: =671
+            Y: =46
+            ZIndex: =5
+
+        inputProjectName As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.ProjName
+            DelayOutput: =true
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =32
+            HintText: ="e.g. Second Suez Canal"
+            OnChange: =
+            OnSelect: =Select(Parent);Notify("Save Project first",NotificationType.Error)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =465
+            X: =130
+            Y: =20
+            ZIndex: =6
+
+        Label4_3 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Project name:"
+            Width: =137
+            X: =121
+            Y: =4
+            ZIndex: =7
+
+        Label5_2 As label:
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Country:"
+            Width: =170
+            X: =370
+            Y: =150
+            ZIndex: =8
+
+        iconSave_4 As icon.Save:
+            DisplayMode: =If(Value(lblAmountofMonths.Text)<1,DisplayMode.Disabled,DisplayMode.Edit)
+            Height: =39
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    ProjectsCollection,
+                    ThisItem,
+                    {
+                        ProjNumber: Value(inputProjNumber.Text),
+                        ProjFromMonth: Value(drpdwnFromMonth.Selected.Title),
+                        ProjFromYear: Value(drpdwnFromYear.Selected.Title),
+                        ProjToMonth: Value(drpdwnToMonth.Selected.Title),
+                        ProjToYear: Value(drpdwnToYear.Selected.Title),
+                        ProjName: inputProjectName.Text,
+                        ProjCountry: lblComboCountryConc.Text,
+                        ProjDescr: inputProjectDescription.Text, 
+                        ProjRoleName: lblComboFuncConc.Text,
+                        ProjRoleDescr: inputRoleDescription.Text,
+                        ProjTotalMonth: Value(lblAmountofMonths.Text),
+                        ShowSaveButtonsProj: false
+                    }
+                );UpdateContext({EditPressedProj: false});Set(NeedssavedProj1, false);
+            Visible: =ThisItem.ShowSaveButtonsProj
+            Width: =35
+            X: =754
+            Y: =232
+            ZIndex: =9
+
+        iconDelete_4 As icon.Trash:
+            Height: =38
+            Icon: =Icon.Trash
+            OnSelect: =Remove(ProjectsCollection,ThisItem);Set(NeedssavedProj1,false)
+            Visible: =iconSave_4.Visible
+            Width: =36
+            X: =794
+            Y: =230
+            ZIndex: =10
+
+        Icon5_3 As icon.Edit:
+            Height: =72
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(ProjectsCollection,ThisItem, {ShowSaveButtonsProj: true});UpdateContext({EditPressedProj:true})
+            Visible: =!ThisItem.ShowSaveButtonsProj
+            Width: =67
+            X: =687
+            Y: =196
+            ZIndex: =11
+
+        comboboxFunction As combobox:
+            ChevronBackground: =RGBA(37, 58, 121, 1)
+            DefaultSelectedItems: =RenameColumns(Split(ThisItem.ProjRoleName, ","),"Result","Value")
+            DisplayFields: =["Title"]
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =34
+            InputTextPlaceholder: ="Select Function/Role"
+            IsSearchable: =false
+            Items: =PA_RolesFunctionsList.Title
+            OnChange: =
+            OnSelect: =Select(Parent)
+            SearchFields: =["Title"]
+            SearchItems: =[]
+            Size: =11
+            Tooltip: ="Select one or more roles you had on the project."
+            Width: =260
+            X: =16
+            Y: =181
+            ZIndex: =12
+
+        inputProjectDescription As text:
+            Default: =ThisItem.ProjDescr
+            DelayOutput: =true
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =79
+            HintText: ="[Max 350 characters, provide a short project description. You can Search for projects and descriptions by the button below. Note that the text can also be send to a Client of Van Oord.]"
+            MaxLength: =350
+            Mode: =TextMode.MultiLine
+            OnChange: =
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =642
+            X: =16
+            Y: =81
+            ZIndex: =13
+
+        Label5_3 As label:
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: ="Function/ role"
+            Width: =170
+            X: =19
+            Y: =149
+            ZIndex: =14
+
+        drpdwnToYear As dropdown:
+            Default: =ThisItem.ProjToYear
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =25
+            Items: =PA_YearsSelection
+            OnChange: =
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =89
+            X: =741
+            Y: =66
+            ZIndex: =15
+
+        drpdwnToMonth As dropdown:
+            Default: =ThisItem.ProjToMonth
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =25
+            Items: =PA_Months
+            OnChange: =
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =70
+            X: =671
+            Y: =66
+            ZIndex: =16
+
+        drpdwnFromYear As dropdown:
+            Default: =ThisItem.ProjFromYear
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =25
+            Items: =PA_YearsSelection
+            OnChange: =
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =89
+            X: =738
+            Y: =20
+            ZIndex: =17
+
+        drpdwnFromMonth As dropdown:
+            Default: =ThisItem.ProjFromMonth
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =25
+            Items: =PA_Months
+            OnChange: =
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =67
+            X: =671
+            Y: =20
+            ZIndex: =18
+
+        Label4_4 As label:
+            Height: =24
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Project description:"
+            Width: =173
+            X: =16
+            Y: =52
+            ZIndex: =19
+
+        comboboxCountry As combobox:
+            ChevronBackground: =RGBA(37, 58, 121, 1)
+            DefaultSelectedItems: =RenameColumns(Split(ThisItem.ProjCountry, ","),"Result","Value")
+            DisplayFields: =["Title"]
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =34
+            InputTextPlaceholder: ="Select Country"
+            Items: =PA_Countries_List.Title
+            OnChange: =
+            OnSelect: =Select(Parent)
+            SearchFields: =["Title"]
+            SearchItems: =Search(PA_Countries_List.Title,comboboxCountry.SearchText,"Title")
+            Size: =11
+            Tooltip: ="Select one or more countries"
+            Width: =292
+            X: =366
+            Y: =181
+            ZIndex: =20
+
+        lblComboFuncConc As label:
+            Height: =42
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: =Concat(comboboxFunction.SelectedItems,Title, ", ")
+            Width: =184
+            X: =671
+            Y: =269
+            ZIndex: =21
+
+        lblComboCountryConc As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Text: =Concat(comboboxCountry.SelectedItems,Title, ", ")
+            Visible: =false
+            Width: =292
+            X: =366
+            Y: =234
+            ZIndex: =22
+
+        lblAmountofMonths As label:
+            Align: =Align.Right
+            FontWeight: =FontWeight.Bold
+            Height: =19
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =((Value(drpdwnToYear.Selected.Title)-Value(drpdwnFromYear.Selected.Title))*12+(Value(drpdwnToMonth.Selected.Title)-Value(drpdwnFromMonth.Selected.Title))+1)
+            Width: =36
+            X: =793
+            Y: =153
+            ZIndex: =23
+
+        lblSaveWarningProj_1 As label:
+            Color: =RGBA(255, 0, 0, 1)
+            Height: =15
+            Size: =9
+            Text: ="Travelled back in time?"
+            Visible: =If(Value(lblAmountofMonths.Text)<1,true,false)
+            Width: =173
+            X: =671
+            Y: =113
+            ZIndex: =24
+
+        Label3_3 As label:
+            Align: =Align.Right
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Months total:"
+            Width: =134
+            X: =671
+            Y: =153
+            ZIndex: =25
+
+        inputRoleDescription As text:
+            Default: =ThisItem.ProjRoleDescr
+            DelayOutput: =true
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =60
+            HintText: ="[Max 350 characters, provide a description of your role on the project]"
+            MaxLength: =350
+            Mode: =TextMode.MultiLine
+            OnChange: =
+            OnSelect: =Select(Parent);Notify("Save Projects first",NotificationType.Warning)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =642
+            X: =16
+            Y: =237
+            ZIndex: =26
+
+        Label4_8 As label:
+            Height: =24
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Role description:"
+            Width: =173
+            X: =16
+            Y: =215
+            ZIndex: =27
+
+        Toggle1 As toggleSwitch:
+            Default: =If(Value(ThisItem.ProjNumber)>0,true,false)
+            DisplayMode: =inputProjNumber.DisplayMode
+            FalseText: ="No"
+            Height: =22
+            OnChange: =
+            OnCheck: =Set(ShowProjectNumber,true)
+            OnUncheck: =Set(ShowProjectNumber,false)
+            TrueText: ="Yes"
+            Width: =76
+            X: =19
+            Y: =24
+            ZIndex: =30
+
+        Label1_22 As label:
+            DisplayMode: =inputProjNumber.DisplayMode
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: ="VO Project?"
+            Width: =85
+            X: =16
+            ZIndex: =31
+
+        btnAddNewRoleInEdit_1 As button:
+            DisplayMode: =If(ThisItem.ShowSaveButtonsProj,DisplayMode.Edit,DisplayMode.Disabled)
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =34
+            OnSelect: =Set(AddNewRoleFormScreen1,true)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10
+            Text: ="add new"
+            Width: =68
+            X: =284
+            Y: =181
+            ZIndex: =32
+
+    btnSaveProjColl As button:
+        DisplayMode: =If(iconSave_4.Visible=true,DisplayMode.Disabled,If(ShowSaveProjSuccess = true, DisplayMode.Disabled, DisplayMode.Edit))
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =37
+        OnSelect: |-
+            =ForAll(ProjectsCollection,If(!IsBlank(ProjName), Patch('PA_Project experience (test)', Defaults('PA_Project experience (test)'), {Title: ProjName, VOProjectNumber: ProjNumber, ProjectDescriptionShort: ProjDescr, RoleProject: ProjRoleName, CountryProject: ProjCountry, FromMonth:ProjFromMonth,FromYear:ProjFromYear,ToMonth:ProjToMonth,ToYear:ProjToYear,TotalMonthsOnProject:ProjTotalMonth,ProjRoleDescr:ProjRoleDescr,         ProjectOrAddedRole:Text(0), HighlightedProject: Text(0), IncludeInCV:Text(1), PA_ProjMasterID:FormNewMaster.LastSubmit.ID})));
+            
+            /*
+            ForAll(ProjectsCollection,If(!IsBlank(ProjRoleName), Patch('PA_Roles (test)', Defaults('PA_Roles (test)'), {Title: ProjRoleName, 'What did you do in this role?':ProjRoleDescr, 'Months of experience in this role':ProjTotalMonth, ProjectOrAddedRole:Text(0), PA_MasterIDRoles:FormNewMaster.LastSubmit.ID})));*/ Set(ShowSaveProjSuccess,true);Set(FindProjectsInCaptureList,false);
+            
+            ClearCollect(SummaryRoleCollection, 'PA_Roles (test)');
+            ClearCollect(SummaryRoleCollection2, GroupBy(Filter(SummaryRoleCollection,PA_MasterIDRoles = FormNewMaster.LastSubmit.ID),"Title","Data"));
+            ClearCollect(SummaryRoleCollection3, AddColumns(SummaryRoleCollection2,"Sum of Months", Sum(Data,'Months of experience in this role')))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save to CV"
+        Width: =124
+        X: =931
+        Y: =608
+        ZIndex: =15
+
+    lblSaveWarningProj As label:
+        Color: =RGBA(255, 0, 0, 1)
+        DisplayMode: =
+        Height: =28
+        Text: ="Save Project first"
+        Visible: |
+            =If(btnSaveProjColl.DisplayMode=Disabled,true,false)
+        Width: =173
+        X: =955
+        Y: =272
+        ZIndex: =16
+
+    lblTitleMyProjects As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =47
+        Size: =20
+        Text: ="My Projects & Assignments"
+        Width: =353
+        X: =108
+        Y: =156
+        ZIndex: =17
+
+    btnAddRow As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =32
+        OnSelect: |-
+            =Collect(
+                ProjectsCollection,
+                {
+                    ProjNumber: 0,
+                    ProjFromMonth: 0,
+                    ProjFromYear: 0,
+                    ProjToMonth: 0,
+                    ProjToYear: 0,
+                    ProjName: "",
+                    ProjCountry: "",
+                    ProjDescr: "", 
+                    ProjRoleName: "", 
+                    ProjRoleDescr:"",
+                    ProjTotalMonth: 0,
+                    ProjectOrAddedRole:"",
+                    HighlightedProject: "",
+                    ShowSaveButtonsProj: true  
+                    }
+            );
+            Set(NeedssavedProj, false);
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =37
+        X: =39
+        Y: =164
+        ZIndex: =18
+
+    lblAddRow As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =25
+        Size: =8
+        Text: ="Add row"
+        Width: =58
+        X: =29
+        Y: =196
+        ZIndex: =19
+
+    lblSavedSucces As label:
+        Align: =Align.Center
+        Color: =RGBA(54, 176, 75, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =71
+        Text: ="Saved succesfully! Please, continue to My Roles & Skills"
+        Visible: =ShowSaveProjSuccess
+        Width: =247
+        X: =931
+        Y: =201
+        ZIndex: =20
+
+    btnMyCertCourse_8 As button:
+        DisplayMode: =If(!ShowSaveProjSuccess,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =37
+        OnSelect: |-
+            =ClearCollect(AddRolesCollection, {AddRoleName: "", AddRoleDescr: "", AddRoleExperience:0, ShowSaveButtonsAddRole:true});ClearCollect(SkillsCollection, {SkillName: "", SkillDescr:"",SkillExperience:0,SkillSwitch:"", ShowSaveButtonsSkill:true}); Navigate(CreateMyRoleSkill,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Next"
+        Width: =124
+        X: =1073
+        Y: =608
+        ZIndex: =21
+
+    Label12_1 As label:
+        Fill: =RGBA(237, 237, 237, 0.55)
+        Height: =768
+        Text: =""
+        Visible: =FormAddNewRoleInEdit_1.Visible
+        Width: =1366
+        ZIndex: =22
+
+    btnSearchForVOProjects As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =55
+        OnSelect: =Set(FindProjectsInCaptureList,true)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Search for Van Oord Projects"
+        Visible: =If(Toggle1.Value=true,true,false)
+        Width: =220
+        X: =625
+        Y: =703
+        ZIndex: =34
+
+    GroupSearchProjectsInCreateProjects As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =37
+
+        lblFindProjectsInCaptureList As label:
+            BorderThickness: =2
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =650
+            Text: =
+            Visible: =FindProjectsInCaptureList
+            Width: =511
+            X: =855
+            Y: =108
+            ZIndex: =28
+
+        "GalleryFindProjectsInCaptureList As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =557
+            Items: |
+                =If(IsBlank(txtInputProjNumberFindProjectsInCaptureList.Text), Filter(PA_ProjectsCaptureToVita,DropdownCountriesFindProjectsInCaptureList.Selected.Title=Country),Filter(PA_ProjectsCaptureToVita,StartsWith(Title,txtInputProjNumberFindProjectsInCaptureList.Text)))
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =220
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =497
+            X: =860
+            Y: =189
+            ZIndex: =29
+
+            Title8 As label:
+                Height: =39
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =10
+                Text: |-
+                    =ThisItem.Title &" | "& ThisItem.Country &" | Awarded: "& ThisItem.'Award date'  &" | Completed: "& ThisItem.'Final completion' 
+                VerticalAlign: =VerticalAlign.Top
+                Width: =497
+                Y: =1
+                ZIndex: =1
+
+            Body1 As label:
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =58
+                Italic: =true
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                Size: =10
+                Text: |-
+                    ="Project description (short): 
+                    "&ThisItem.'Project in 1 sentence'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =497
+                Y: =82
+                ZIndex: =3
+
+            Separator12 As rectangle:
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =5
+
+            Body1_2 As label:
+                Height: =79
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                Size: =10
+                Text: |-
+                    ="Project description (long): 
+                    "& ThisItem.'Project in 3 sentences'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =497
+                Y: =140
+                ZIndex: =8
+
+            Subtitle7_1 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =10
+                Text: |-
+                    ="Project name: " & ThisItem.'Project name'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =497
+                Y: =40
+                ZIndex: =9
+
+        txtInputProjNumberFindProjectsInCaptureList As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =""
+            Height: =25
+            HintText: ="VO Proj. Number"
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =153
+            X: =869
+            Y: =158
+            ZIndex: =30
+
+        DropdownCountriesFindProjectsInCaptureList As dropdown:
+            ChevronBackground: =RGBA(37, 58, 121, 1)
+            Default: ="Select country"
+            Height: =25
+            Items: =PA_Countries_List
+            Size: =11
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =283
+            X: =1062
+            Y: =158
+            ZIndex: =31
+
+        lblOr As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =25
+            Size: =14
+            Text: ="OR"
+            Underline: =true
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =40
+            X: =1022
+            Y: =158
+            ZIndex: =32
+
+        btnCloseFindProjectsInCaptureList As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =30
+            OnSelect: =Set(FindProjectsInCaptureList,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Close search"
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =148
+            X: =1197
+            Y: =118
+            ZIndex: =33
+
+        lblCreateMyProjects_1 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =16
+            Text: ="Search VO project database"
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =328
+            X: =869
+            Y: =116
+            ZIndex: =35
+
+        lblCreateMyProjects_2 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =10
+            Size: =9
+            Text: ="Search on number or on country"
+            Visible: =lblFindProjectsInCaptureList.Visible
+            Width: =243
+            X: =872
+            Y: =143
+            ZIndex: =36
+
+    GroupAddNewRoleInCreateProjects As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =37
+
+        FormAddNewRoleInEdit_1 As form:
+            BorderThickness: =2
+            DataSource: =PA_RolesFunctionsList
+            Fill: =RGBA(255, 255, 255, 1)
+            Item: =Defaults(PA_RolesFunctionsList)
+            NumberOfColumns: =2
+            OnSuccess: =Set(AddNewRoleFormScreen1,false)
+            Visible: =AddNewRoleFormScreen1
+            X: =161
+            Y: =126
+            ZIndex: =23
+
+            Title_DataCard7_1 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Title"
+                Default: =ThisItem.Title
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="Title"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =99
+                MaxLength: =DataSourceInfo([@PA_RolesFunctionsList], DataSourceInfo.MaxLength, "Title")
+                Required: =true
+                Update: =datacardAddNewRoleToList_1.Text
+                Width: =799
+                X: =0
+                Y: =0
+                ZIndex: =21
+
+                DataCardKey41_1 As label:
+                    AutoHeight: =true
+                    Height: =34
+                    Text: ="Title of new function/ role"
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                datacardAddNewRoleToList_1 As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    MaxLength: =Parent.MaxLength
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =11
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey41_1.Y + DataCardKey41_1.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage41_1 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =datacardAddNewRoleToList_1.Y + datacardAddNewRoleToList_1.Height
+                    ZIndex: =3
+
+                StarVisible41_1 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey41_1.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey41_1.Y
+                    ZIndex: =4
+
+            RoleDescription_DataCard1_1 As typedDataCard.textualEditCard:
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="RoleDescription"
+                Default: =ThisItem.RoleDescription
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: ="RoleDescription"
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =175
+                MaxLength: =DataSourceInfo([@PA_RolesFunctionsList], DataSourceInfo.MaxLength, "RoleDescription")
+                Required: =false
+                Update: =datacardAddNewRoleDescrToList_1.Text
+                Width: =799
+                X: =0
+                Y: =1
+                ZIndex: =21
+
+                DataCardKey42_1 As label:
+                    AutoHeight: =true
+                    Height: =34
+                    Text: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                datacardAddNewRoleDescrToList_1 As text:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    Default: =Parent.Default
+                    DelayOutput: =true
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =107
+                    MaxLength: =Parent.MaxLength
+                    Mode: =TextMode.MultiLine
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =11
+                    Tooltip: =Parent.DisplayName
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey42_1.Y + DataCardKey42_1.Height + 5
+                    ZIndex: =2
+
+                ErrorMessage42_1 As label:
+                    AutoHeight: =true
+                    Height: =10
+                    Live: =Live.Assertive
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =datacardAddNewRoleDescrToList_1.Y + datacardAddNewRoleDescrToList_1.Height
+                    ZIndex: =3
+
+                StarVisible42_1 As label:
+                    Align: =Align.Center
+                    Height: =DataCardKey42_1.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    Y: =DataCardKey42_1.Y
+                    ZIndex: =4
+
+        btnSaveAddNewRole_1 As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =54
+            OnSelect: =SubmitForm(FormAddNewRoleInEdit_1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Submit new role"
+            Visible: =FormAddNewRoleInEdit_1.Visible
+            Width: =183
+            X: =622
+            Y: =564
+            ZIndex: =24
+
+        btnCancelAddNewRole_1 As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =54
+            OnSelect: =Set(AddNewRoleFormScreen1,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =FormAddNewRoleInEdit_1.Visible
+            Width: =121
+            X: =817
+            Y: =564
+            ZIndex: =25
+
+        "GalleryRolesAndFunctions_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =100
+            Items: =Filter(PA_RolesFunctionsList, datacardAddNewRoleToList_1.Text in Title)
+            Layout: =Layout.Vertical
+            TemplateSize: =19
+            Visible: =FormAddNewRoleInEdit_1.Visible
+            Width: =744
+            X: =194
+            Y: =467
+            ZIndex: =26
+
+            Title6_2 As label:
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =10
+                Text: =ThisItem.Title
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.TemplateWidth - 104
+                ZIndex: =1
+
+            Separator10_1 As rectangle:
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =3
+
+        lblTitle_78 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =14
+            Text: |-
+                ="Check if role is not already in existing list: "
+            Visible: =FormAddNewRoleInEdit_1.Visible
+            Width: =744
+            X: =194
+            Y: =401
+            ZIndex: =27
+
+    MasterComponent_4 As MasterComponent:
+        HeaderTitle: ="Create new CV - My Projects"
+        HomeScreenNav: =MainScreen
+        InstructionNav: =InstructionsScreen
+        ViewCVNav: =ViewMyCVs
+        ZIndex: =40
+
+    SideNavigation_3 As SideNavigation:
+        disabledButton: =
+        FormID: =FormNewMaster.LastSubmit.ID
+        Height: =377
+        menuItems: =colMenu
+        Width: =148
+        X: =1197
+        Y: =173
+        ZIndex: =41
+

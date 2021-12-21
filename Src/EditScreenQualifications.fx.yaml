@@ -44,7 +44,7 @@ EditScreenQualifications As screen:
                             QualAbout: QualAbout,
                             HighlightedQualSum:HighlightedQualSum,
                             IncludeInCV:Text(1),
-                            SP_QualMasterID: ResumeGalleryViewCV.Selected.cr63b_id
+                            SP_QualMasterID: ResumeGalleryViewCV.Selected.ID
                         }
                     )
                 )
@@ -264,7 +264,7 @@ EditScreenQualifications As screen:
 
     "GalleryEditAddQualificationsSummary As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
         Height: =526
-        Items: =Filter('PA_summary of qualifications (test)',SP_QualMasterID = ResumeGalleryViewCV.Selected.cr63b_id)
+        Items: =Filter('PA_summary of qualifications (test)',SP_QualMasterID = ResumeGalleryViewCV.Selected.ID)
         Layout: =Layout.Vertical
         OnSelect: =
         TemplatePadding: =0

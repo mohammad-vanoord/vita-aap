@@ -45,7 +45,7 @@ EditScreenRoles As screen:
                             'Months of experience in this role':AddRoleExperience,
                             ProjectOrAddedRole:ProjectOrAddedRole,
                             IncludeInCV:Text(1),
-                            PA_MasterIDRoles: ResumeGalleryViewCV.Selected.cr63b_id
+                            PA_MasterIDRoles: ResumeGalleryViewCV.Selected.ID
                         }
                     )
                 )
@@ -278,7 +278,7 @@ EditScreenRoles As screen:
 
     "GalleryProjects_14 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
         Height: =382
-        Items: =Filter('PA_Roles (test)',PA_MasterIDRoles = ResumeGalleryViewCV.Selected.cr63b_id)
+        Items: =Filter('PA_Roles (test)',PA_MasterIDRoles = ResumeGalleryViewCV.Selected.ID)
         Layout: =Layout.Vertical
         TemplatePadding: =0
         TemplateSize: =93

@@ -1,3 +1,123 @@
 App As appinfo:
     BackEnabled: =false
+    OnStart: |
+        =ClearCollect(
+            colMenu,
+            {
+                menuID: 1,
+                menuLabel: "My Personalia",
+                menuScreen: NewResume,
+                menuformId:FormNewMaster.LastSubmit.ID
+            },
+            {
+                menuID: 2,
+                menuLabel: "My Projects",
+                menuScreen: CreateMyProjects,
+                menuformId:FormNewMaster.LastSubmit.ID
+            },
+            {
+                menuID: 3,
+                menuLabel: "My Roles & Skills",
+                menuScreen: CreateMyRoleSkill,
+                menuformId:FormNewMaster.LastSubmit.ID
+            },
+            {
+                menuID: 4,
+                menuLabel: "My Education",
+                menuScreen: CreateMyEdu,
+                menuformId:FormNewMaster.LastSubmit.ID
+            },
+            {
+                menuID: 5,
+                menuLabel: "My Employers",
+                menuScreen: CreateMyEmploy,
+                menuformId:FormNewMaster.LastSubmit.ID
+            },
+            {
+                menuID: 6,
+                menuLabel: "My Certificates & Courses",
+                menuScreen: CreateMyCertCourse,
+                menuformId:FormNewMaster.LastSubmit.ID
+            }
+        );
+        ClearCollect(
+            ProjectsCollection,
+            {
+                ProjName: "",
+                ProjNumber: 0,
+                ProjToMonth: 0,
+                ProjToYear: 0,
+                ProjFromMonth: 0,
+                ProjFromYear: 0,
+                ProjDescr: "",
+                ProjCountry: "",
+                ProjRoleName: "",
+                ProjClient: "",
+                ProjTotalMonth: 0,
+                ProjectOrAddedRole: "",
+                HighlightedProject: "",
+                ShowSaveButtonsProj: true
+            }
+        );
+        ClearCollect(
+            AddRolesCollection,
+            {
+                AddRoleName: "",
+                AddRoleDescr: "",
+                AddRoleExperience: 0,
+                ProjectOrAddedRole: "",
+                ShowSaveButtonsAddRole: true
+            }
+        );
+        ClearCollect(
+            SkillsCollection,
+            {
+                SkillName: "",
+                SkillDescr: "",
+                SkillExperience: 0,
+                SkillSwitch: "",
+                HighlightedSkill: "",
+                ShowSaveButtonsSkill: true
+            }
+        );
+        ClearCollect(
+            EducationCollection,
+            {
+                EduSchool: "",
+                EduStart: "",
+                EduEnd: "",
+                EduDeg: "",
+                EduTitle: "",
+                ShowSaveButtonsEdu: true
+            }
+        );
+        ClearCollect(
+            EmployersCollection,
+            {
+                EmplName: "",
+                EmplPosition: "",
+                EmplToMonth: 0,
+                EmplToYear: 0,
+                EmplFromMonth: 0,
+                EmplFromYear: 0,
+                EmplDescr: "",
+                EmplRoleName: "",
+                EmplTotalMonth: 0,
+                HighlightedEmpl: "",
+                ShowSaveButtonsEmpl: true
+            }
+        );
+        ClearCollect(
+            CertCollection,
+            {
+                CertName: "",
+                CertDescr: "",
+                CertStart: "",
+                CertEnd: "",
+                CertSwitch: "",
+                CertOrganiser: "",
+                ShowSaveButtonsCert: true
+            }
+        );
+    StartScreen: =
 

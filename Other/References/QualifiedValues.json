@@ -1,100 +1,6 @@
 {
   "QualifiedValues": [
     {
-      "Kind": "default.cds_cr63b_pa_yearsselection_forms",
-      "Namespace": "PA_YearsSelections (Forms)",
-      "Values": {
-        "Information": "06c6192b-03a1-42c2-9559-dc4e130b9269"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_pa_masterlist_forms",
-      "Namespace": "PA_MasterLists (Forms)",
-      "Values": {
-        "Information": "72713736-e025-487d-8f1a-e2ad2a2584e9"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_pa_certificationstest_forms",
-      "Namespace": "PA_Certifications (test)s (Forms)",
-      "Values": {
-        "Information": "b6fa96e7-4a83-47b4-85c0-c46984121c5b"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_pa_languagenames_forms",
-      "Namespace": "PA_LanguageNamess (Forms)",
-      "Values": {
-        "Information": "326c4e45-1f04-40e1-92c4-c9d561ab6f09"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_pa_langprof_forms",
-      "Namespace": "PA_LangProfs (Forms)",
-      "Values": {
-        "Information": "e29314f9-631f-47da-b2f4-e804d71c66d3"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_pa_language_forms",
-      "Namespace": "PA_Languages (Forms)",
-      "Values": {
-        "Information": "d5b20501-60fd-4e47-a99a-cfbdbbc7bd38"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_vita_matercv_forms",
-      "Namespace": "Vita_MasterCVS (Forms)",
-      "Values": {
-        "Information": "68320f62-f72c-489f-bfc1-f3aedd0457a9"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_vita_summary_qualification_forms",
-      "Namespace": "Vita_Summary_Qualifications (Forms)",
-      "Values": {
-        "Information": "a28ff946-476b-43f5-82e4-a6c0462964d3"
-      }
-    },
-    {
-      "Kind": "default.cds_systemuser_forms",
-      "Namespace": "Users (Forms)",
-      "Values": {
-        "Application User": "d26924ef-4d80-46f7-ab1d-e6ae80a54ce8",
-        "Information": "094fb08a-77bb-49e0-b7ea-8dbddfd01294",
-        "User": "c2cd9e55-d4b4-4b55-9951-16ead79643e5",
-        "User form – Business": "c2413504-7eb2-4c59-a087-95d819866114",
-        "User Hierarchy Tile Form": "c68d6c09-d7a7-4959-8d0f-44b8cff9b452"
-      }
-    },
-    {
-      "Kind": "default.cds_email_forms",
-      "Namespace": "Email Messages (Forms)",
-      "Values": {
-        "Email": "0d1e47ff-12b2-4f53-9090-bee951b98cb4",
-        "Email Card form": "e5538bb9-77ec-4d24-bc5f-8cb2d825f664",
-        "Email for Interactive experience": "1d5ad078-3edb-4edc-98c6-c0c21e3125e3",
-        "Email Reference Panel": "6661cf9b-c178-44fd-b70b-8c632bd0bfb2",
-        "Enhanced Email": "63769d04-c74f-4808-b0aa-77339e1b9191",
-        "Information": "394ca387-4777-457c-b5ae-c7a3e632be41",
-        "Wizard": "9360ee64-5238-4334-a1de-c155d20fe63d"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_vita_masteruser_forms",
-      "Namespace": "Vita_MasterUsers (Forms)",
-      "Values": {
-        "Information": "9271b05e-1603-4737-921a-96e985326f04"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_vita_certification_forms",
-      "Namespace": "Vita_Certifications (Forms)",
-      "Values": {
-        "Information": "a282609f-d69b-42d4-88d2-7ffaeca00c74"
-      }
-    },
-    {
       "Kind": "default.cds_cr63b_vita_rolesfunctionslist_forms",
       "Namespace": "Vita_RolesFunctionsLists (Forms)",
       "Values": {
@@ -102,29 +8,8 @@
       }
     },
     {
-      "Kind": "default.cds_cr63b_vita_yearsselection_forms",
-      "Namespace": "Vita_YearsSelections (Forms)",
-      "Values": {
-        "Information": "494008ff-f6b2-46d9-9f9c-e47e261b5d4d"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_vita_month_forms",
-      "Namespace": "Vita_Months (Forms)",
-      "Values": {
-        "Information": "211eb2ba-6443-4a2c-8c8e-fe280d3f0102"
-      }
-    },
-    {
-      "Kind": "default.cds_cr63b_vita_workexperience_forms",
-      "Namespace": "Vita_Work Experiences (Forms)",
-      "Values": {
-        "Information": "bf2fa412-b8d2-41aa-a1d9-f4b06f4a686b"
-      }
-    },
-    {
       "Kind": "default.cds_cr63b_vita_matercv_forms",
-      "Namespace": "Vita_MaterCVS (Forms)",
+      "Namespace": "Vita_MasterCVS (Forms)",
       "Values": {
         "Information": "68320f62-f72c-489f-bfc1-f3aedd0457a9"
       }

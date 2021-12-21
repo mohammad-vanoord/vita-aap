@@ -1,0 +1,30 @@
+Screen1 As screen:
+
+    SideNavigation_1 As SideNavigation:
+        FormID: =Label28.Text
+        X: =1120
+        Y: =180
+        ZIndex: =2
+
+    Label28 As label:
+        Text: =
+        X: =584
+        Y: =425
+        ZIndex: =3
+
+    Label29 As label:
+        Text: =SideNavigation_1.FormID
+        X: =546
+        Y: =465
+        ZIndex: =4
+
+    HeaderComponent_1 As HeaderComponent:
+        BackscreenNav: =MainScreen
+        HeaderTitle: ="cv"
+        Height: =149
+        HomescreenNav: =MainScreen
+        InstructionScreen: =InstructionsScreen
+        SearchcvScreen: =SearchCVsStart
+        ViewmycvScreen: =ViewMyCVs
+        ZIndex: =5
+

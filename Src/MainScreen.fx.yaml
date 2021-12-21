@@ -1,5 +1,4 @@
 MainScreen As screen:
-    Fill: =
 
     imgLogoVanOord As image:
         Height: =74
@@ -86,12 +85,11 @@ MainScreen As screen:
     Label7 As label:
         Color: =RGBA(255, 135, 2, 1)
         Font: =Font.'Patrick Hand'
-        Height: =87
         Italic: =true
         Size: =26
         Text: =Office365Users.MyProfile().GivenName & ", be yourself, everyone else is already taken."
-        Width: =684
+        Width: =655
         X: =155
-        Y: =640
+        Y: =687
         ZIndex: =10
 

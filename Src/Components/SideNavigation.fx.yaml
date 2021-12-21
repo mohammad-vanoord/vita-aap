@@ -1,0 +1,82 @@
+SideNavigation As CanvasComponent:
+    disabledButton: =RGBA(244, 244, 244, 1)
+    Fill: =RGBA(255,255,255,1)
+    FormID: =
+    FormIDout: =
+    Height: =380
+    menuItems: |-
+        =Table(
+            {
+                menuID: 1,
+                menuLabel: "My Personalia",
+                menuScreen: App.ActiveScreen,
+                menuformId:""
+            },
+            {
+                menuID: 2,
+                menuLabel: "My Projects",
+                menuScreen: App.ActiveScreen,
+                menuformId:""
+            },
+            {
+                menuID: 3,
+                menuLabel: "My Roles & Skills",
+                menuScreen: App.ActiveScreen,
+                menuformId:""
+            },
+            {
+                menuID: 4,
+                menuLabel: "My Education",
+                menuScreen: App.ActiveScreen,
+                menuformId:""
+            },
+            {
+                menuID: 5,
+                menuLabel: "My Employers",
+                menuScreen: App.ActiveScreen,
+                menuformId:""
+            },
+            {
+                menuID: 6,
+                menuLabel: "My Certificates & Courses",
+                menuScreen: App.ActiveScreen,
+                menuformId:""
+            }
+        )
+    OnReset: =
+    selectedButton: =RGBA(255,134,2,1)
+    unselectedButton: =RGBA(37,58,121,1)
+    Width: =145
+    X: =0
+    Y: =
+    ZIndex: =1
+
+    "Gallery10 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =380
+        Items: =SideNavigation.menuItems
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =65
+        Width: =145
+        ZIndex: =1
+
+        Label33 As label:
+            Align: =Align.Center
+            BorderThickness: =1
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =
+            Fill: |
+                =If(ThisItem.menuScreen=App.ActiveScreen,SideNavigation.selectedButton,SideNavigation.unselectedButton)
+            FontWeight: =FontWeight.Semibold
+            Height: =58
+            OnSelect: |+
+                =Select(Parent);Navigate(ThisItem.menuScreen,ScreenTransition.Cover);
+                
+                
+                
+            Text: |
+                =ThisItem.menuLabel
+            Width: =145
+            ZIndex: =6
+

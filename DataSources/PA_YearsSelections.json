@@ -1,0 +1,97 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_pa_yearsselections",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_pa_yearsselection",
+    "MaxGetRowsCount": 500,
+    "Name": "PA_YearsSelections",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_pa_yearsselection_AsyncOperations": "System Jobs",
+      "cr63b_pa_yearsselection_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_pa_yearsselection_DuplicateBaseRecord": "Duplicate Records (cr63b_pa_yearsselection_DuplicateBaseRecord)",
+      "cr63b_pa_yearsselection_DuplicateMatchingRecord": "Duplicate Records (cr63b_pa_yearsselection_DuplicateMatchingRecord)",
+      "cr63b_pa_yearsselection_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_pa_yearsselection_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_pa_yearsselection_ProcessSession": "Process Sessions",
+      "cr63b_pa_yearsselection_SyncErrors": "Sync Errors",
+      "cr63b_pa_yearsselectionid": "PA_YearsSelection",
+      "cr63b_years": "Years",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "PA_YearsSelections",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "PA_YearsSelections (Views)",
+    "Name": "_cr63b_pa_yearsselection_views",
+    "RelatedEntityName": "PA_YearsSelections",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2099b489-7aa4-427c-b198-b56036ca99bb": "Active PA_YearsSelections",
+      "5875cc33-2bab-4e8e-a1ab-6728b48cf061": "PA_YearsSelection Lookup View",
+      "81393c1f-cdc3-432f-b199-09fe86e756e0": "PA_YearsSelection Advanced Find View",
+      "93f06040-16d7-4b21-a7d0-ef6cde29bfa8": "PA_YearsSelection Associated View",
+      "9c0f5e3e-6ea9-48d8-a8d6-cfb16a48cb6c": "Inactive PA_YearsSelections"
+    }
+  },
+  {
+    "DisplayName": "Status (PA_YearsSelections)",
+    "Name": "cr63b_pa_yearsselection_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "PA_YearsSelections"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "PA_YearsSelections",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (PA_YearsSelections)",
+    "Name": "cr63b_pa_yearsselection_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "PA_YearsSelections"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "PA_YearsSelections",
+    "Type": "OptionSetInfo"
+  }
+]

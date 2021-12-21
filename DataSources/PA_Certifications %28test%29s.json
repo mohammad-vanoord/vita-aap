@@ -1,0 +1,104 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_pa_certificationstests",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_pa_certificationstest",
+    "MaxGetRowsCount": 500,
+    "Name": "PA_Certifications (test)s",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_certificateorcourse": "CertificateOrCourse",
+      "cr63b_certificationname": "Certification Name",
+      "cr63b_dateoncertificate": "DateonCertificate",
+      "cr63b_descriptionofthecertification": "Descriptionofthecertification",
+      "cr63b_expires": "Expires",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_organiser": "Organiser",
+      "cr63b_pa_certificationstest_AsyncOperations": "System Jobs",
+      "cr63b_pa_certificationstest_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_pa_certificationstest_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_pa_certificationstest_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_pa_certificationstest_ProcessSession": "Process Sessions",
+      "cr63b_pa_certificationstest_SyncErrors": "Sync Errors",
+      "cr63b_pa_certificationstestid": "PA_Certifications (test)",
+      "cr63b_PA_MasterIDCert": "PA_MasterIDCert",
+      "cr63b_title": "Title",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "PA_Certifications (test)s",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "PA_Certifications (test)s (Views)",
+    "Name": "_cr63b_pa_certificationstest_views",
+    "RelatedEntityName": "PA_Certifications (test)s",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1e11e835-0f49-449d-b857-86f9d0f91626": "PA_Certifications (test) Lookup View",
+      "63d8c7e2-4bfb-456d-9c94-824aaadf3877": "Active PA_Certifications (test)s",
+      "b3ff35ef-3a2c-4544-b8ea-ef2ea82d036b": "PA_Certifications (test) Advanced Find View",
+      "be8ca17e-1cc2-424c-b63a-215801998f04": "Inactive PA_Certifications (test)s",
+      "f716f60a-c8a9-4bcb-8f1c-699137c84900": "PA_Certifications (test) Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (PA_Certifications (test)s)",
+    "Name": "cr63b_pa_certificationstest_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "PA_Certifications (test)s"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "PA_Certifications (test)s",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (PA_Certifications (test)s)",
+    "Name": "cr63b_pa_certificationstest_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "PA_Certifications (test)s"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "PA_Certifications (test)s",
+    "Type": "OptionSetInfo"
+  }
+]

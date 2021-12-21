@@ -1,0 +1,107 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_pa_masterlists",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_pa_masterlist",
+    "MaxGetRowsCount": 500,
+    "Name": "PA_MasterLists",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_firstname": "FirstName",
+      "cr63b_id": "ID",
+      "cr63b_lastname": "LastName",
+      "cr63b_mailaddress": "MailAddress",
+      "cr63b_masterorcopy": "MasterOrCopy",
+      "cr63b_nationality": "Nationality",
+      "cr63b_PA_Certificationstest_PA_MasterIDCe": "PA_Certifications (test)s",
+      "cr63b_pa_masterlist_AsyncOperations": "System Jobs",
+      "cr63b_pa_masterlist_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_pa_masterlist_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_pa_masterlist_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_pa_masterlist_ProcessSession": "Process Sessions",
+      "cr63b_pa_masterlist_SyncErrors": "Sync Errors",
+      "cr63b_pa_masterlistid": "PA_MasterList",
+      "cr63b_position": "Position",
+      "cr63b_startatvanoord": "StartatVanOord",
+      "cr63b_startprofessionalcareer": "Startprofessionalcareer",
+      "cr63b_title": "Title",
+      "cr63b_yearofbirth": "YearofBirth",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "PA_MasterLists",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "PA_MasterLists (Views)",
+    "Name": "_cr63b_pa_masterlist_views",
+    "RelatedEntityName": "PA_MasterLists",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "43f014c5-0b40-4260-a65b-44895a89a6fd": "PA_MasterList Advanced Find View",
+      "553017f3-3442-4dae-912f-eaaee7f01c7b": "PA_MasterList Associated View",
+      "661cb85a-6248-4a8c-a289-d78604be9366": "Active PA_MasterLists",
+      "7fffb42b-e251-ec11-8c62-000d3aba9d51": "Master Query",
+      "8b138e4a-16c5-4770-a61f-e151aa28875a": "PA_MasterList Lookup View",
+      "ece9ed5a-5755-4e0b-a642-db2f1b5ea1eb": "Inactive PA_MasterLists"
+    }
+  },
+  {
+    "DisplayName": "Status (PA_MasterLists)",
+    "Name": "cr63b_pa_masterlist_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "PA_MasterLists"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "PA_MasterLists",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (PA_MasterLists)",
+    "Name": "cr63b_pa_masterlist_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "PA_MasterLists"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "PA_MasterLists",
+    "Type": "OptionSetInfo"
+  }
+]

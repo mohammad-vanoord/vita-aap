@@ -1,0 +1,9 @@
+[
+  {
+    "IsComponentScoped": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "SummaryRoleCollectionSearch2",
+    "Type": "CollectionDataSourceInfo"
+  }
+]

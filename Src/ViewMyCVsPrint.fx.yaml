@@ -1,0 +1,1044 @@
+ViewMyCVsPrint As screen:
+    OnVisible: =ClearCollect(colSumLangIncludeInCV, ShowColumns( Filter('PA_Languages (test)',ResumeGalleryViewCV.Selected.cr63b_id=SP_LangMasterID), "IncludeInCV"));ClearCollect(colSumQualSumIncludeInCV, ShowColumns( Filter('PA_summary of qualifications (test)',ResumeGalleryViewCV.Selected.cr63b_id=SP_QualMasterID), "IncludeInCV"));ClearCollect(colSumProjIncludeInCV, ShowColumns( Filter('PA_Project experience (test)',ResumeGalleryViewCV.Selected.cr63b_id=PA_ProjMasterID), "IncludeInCV"));ClearCollect(colSumSkillIncludeInCV, ShowColumns( Filter('PA_Skills (test)',ResumeGalleryViewCV.Selected.cr63b_id=PA_MasterIDSkill), "IncludeInCV"));ClearCollect(colSumEduIncludeInCV, ShowColumns( Filter(PA_Edu,ResumeGalleryViewCV.Selected.cr63b_id=SP_EduMasterID), "IncludeInCV"));ClearCollect(colSumEmplIncludeInCV, ShowColumns( Filter('PA_Work experience (test)',ResumeGalleryViewCV.Selected.cr63b_id=PA_MasterIDEmpl), "IncludeInCV"));ClearCollect(colSumCertIncludeInCV, ShowColumns( Filter('PA_Certifications (test)',ResumeGalleryViewCV.Selected.cr63b_id=PA_MasterIDCert), "IncludeInCV"))
+
+    CanvasCVView_1 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =977
+        X: =268
+        Y: =RectQuickActionBar1.Y + RectQuickActionBar1.Height
+        ZIndex: =1
+
+        DataCardPersonaliaView_1 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =450
+            Width: =977
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            lblTitle_68 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="My Personalia"
+                Width: =538
+                ZIndex: =1
+
+            lblTitle_70 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="Summary of Qualifications"
+                Width: =409
+                Y: =199
+                ZIndex: =2
+
+            lblTitle_69 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="Languages"
+                Width: =408
+                X: =505
+                Y: =1
+                ZIndex: =3
+
+            "GalleryViewLanguages_2 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                Height: =187
+                Items: =Filter('PA_Languages (test)',SP_LangMasterID = varMasterIDSelected)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =24
+                Width: =455
+                X: =505
+                Y: =51
+                ZIndex: =4
+
+                Title_Language_1 As label:
+                    Height: =22
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.LangName
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =251
+                    X: =5
+                    ZIndex: =1
+
+                Subtitle_Proficiency_1 As label:
+                    Height: =22
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.LangProf
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =164
+                    X: =259
+                    ZIndex: =2
+
+                Checkbox1_1 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch('PA_Languages (test)',ThisItem,{IncludeInCV:"1"});ClearCollect(colSumLangIncludeInCV, ShowColumns( Filter('PA_Languages (test)',varMasterIDSelected=SP_LangMasterID), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch('PA_Languages (test)',ThisItem,{IncludeInCV:"0"});ClearCollect(colSumLangIncludeInCV, ShowColumns( Filter('PA_Languages (test)',varMasterIDSelected=SP_LangMasterID), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =24
+                    X: =420
+                    ZIndex: =3
+
+            "GalleryViewPersonalia_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                Height: =148
+                Items: =Filter(PA_MasterList,ID= varMasterIDSelected)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =136
+                Width: =505
+                Y: =51
+                ZIndex: =5
+
+                Subtitle_FirstName_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.'First Name'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =252
+                    X: =214
+                    ZIndex: =2
+
+                Subtitle_LastName_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.'Last Name'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =252
+                    X: =214
+                    Y: =20
+                    ZIndex: =5
+
+                SubtitleStartAtVO_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =22
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.'Start at Van Oord'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =122
+                    X: =214
+                    Y: =104
+                    ZIndex: =6
+
+                SubtitleStartProfCar_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =19
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.'Start professional career'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =122
+                    X: =214
+                    Y: =84
+                    ZIndex: =7
+
+                SubtitlePosition_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =21
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.Position
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =252
+                    X: =214
+                    Y: =40
+                    ZIndex: =8
+
+                SubtitleNationality_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =22
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =12
+                    Text: =ThisItem.Nationality
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =252
+                    X: =214
+                    Y: =61
+                    ZIndex: =9
+
+                Label12_12 As label:
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        ="First Name:"
+                    ZIndex: =10
+
+                Label12_13 As label:
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        ="Last Name:"
+                    Y: =20
+                    ZIndex: =11
+
+                Label12_14 As label:
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        ="Position:"
+                    Y: =40
+                    ZIndex: =12
+
+                Label12_15 As label:
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        ="Nationality:"
+                    Y: =60
+                    ZIndex: =13
+
+                Label12_16 As label:
+                    Height: =24
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        ="Start professional career:"
+                    Width: =214
+                    Y: =80
+                    ZIndex: =14
+
+                Label12_17 As label:
+                    Height: =24
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        ="Start at Van Oord:"
+                    Width: =252
+                    Y: =102
+                    ZIndex: =15
+
+            "GalleryViewQual_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                Height: =187
+                Items: =Filter('PA_summary of qualifications (test)',SP_QualMasterID = varMasterIDSelected)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =114
+                Width: =957
+                Y: =251
+                ZIndex: =6
+
+                Separator9_5 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =4
+
+                Label13_6 As label:
+                    FontWeight: =FontWeight.Bold
+                    Height: =24
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Title
+                    Width: =891
+                    ZIndex: =5
+
+                Label13_7 As label:
+                    Height: =90
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.QualAbout
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =891
+                    Y: =24
+                    ZIndex: =6
+
+                Checkbox1_2 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch('PA_summary of qualifications (test)',ThisItem,{IncludeInCV:"1"});ClearCollect(colSumQualSumIncludeInCV, ShowColumns(Filter('PA_summary of qualifications (test)',varMasterIDSelected=SP_QualMasterID), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch('PA_summary of qualifications (test)',ThisItem,{IncludeInCV:"0"});ClearCollect(colSumQualSumIncludeInCV, ShowColumns(Filter('PA_summary of qualifications (test)',varMasterIDSelected=SP_QualMasterID), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =24
+                    X: =847
+                    ZIndex: =8
+
+            lblTitle_82 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =26
+                Size: =8
+                Text: ="Include in CV"
+                Width: =109
+                X: =825
+                Y: =225
+                ZIndex: =8
+
+            lblTitle_83 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =23
+                Size: =8
+                Text: ="Include in CV"
+                Width: =78
+                X: =873
+                Y: =21
+                ZIndex: =10
+
+            Label13 As label:
+                Color: =RGBA(255, 0, 0, 1)
+                Size: =8
+                Text: =If(Sum(colSumQualSumIncludeInCV,IncludeInCV)=0,"Select 1 Summary of Qualifications to include in CV",If(Sum(colSumQualSumIncludeInCV,IncludeInCV)>1,"Select 1 Summary of Qualifications to include in CV"))
+                Width: =165
+                X: =786
+                Y: =199
+                ZIndex: =11
+
+            Label13_12 As label:
+                Color: =RGBA(255, 0, 0, 1)
+                Size: =8
+                Text: =If(Sum(colSumLangIncludeInCV,IncludeInCV)>0,"","Select at least 1 language to include in CV")
+                X: =801
+                ZIndex: =12
+
+        DataCardProjectsView_1 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =450
+            Width: =977
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            lblTitle_71 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="My Projects"
+                Width: =538
+                ZIndex: =1
+
+            "GalleryProjectsView_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =356
+                Items: =SortByColumns(Filter('PA_Project experience (test)',PA_ProjMasterID = varMasterIDSelected),"ToYear",Descending,"ToMonth",Descending)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =157
+                Width: =958
+                Y: =52
+                ZIndex: =2
+
+                Separator2_35 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =1
+
+                Label1_23 As label:
+                    Height: =20
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: |-
+                        ="VO Project number:"
+                    Width: =177
+                    X: =16
+                    ZIndex: =3
+
+                Label3_16 As label:
+                    Height: =32
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: |-
+                        ="Months total:"
+                    Width: =94
+                    X: =16
+                    Y: =32
+                    ZIndex: =25
+
+                Label4_42 As label:
+                    Height: =24
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: |-
+                        ="Role description:"
+                    Width: =105
+                    X: =16
+                    Y: =108
+                    ZIndex: =27
+
+                Label15_6 As label:
+                    FontWeight: =FontWeight.Semibold
+                    Height: =12
+                    OnSelect: =Select(Parent)
+                    Size: =10
+                    Text: =ThisItem.VOProjectNumber
+                    Width: =120
+                    X: =16
+                    Y: =20
+                    ZIndex: =28
+
+                HtmlText2_18 As htmlViewer:
+                    Height: =82
+                    HtmlText: ="<b>"&ThisItem.RoleProject&"</b>" & " | " & ThisItem.ProjectDescriptionShort
+                    OnSelect: =Select(Parent)
+                    Width: =702
+                    X: =153
+                    Y: =26
+                    ZIndex: =30
+
+                HtmlText1_3 As htmlViewer:
+                    Height: =32
+                    HtmlText: ="<b>" & ThisItem.Title & "</b>" & " | " & ThisItem.CountryProject & " | " & ThisItem.FromMonth & "-" & ThisItem.FromYear & " to " & ThisItem.ToMonth & "-" & ThisItem.ToYear
+                    OnSelect: =Select(Parent)
+                    Width: =702
+                    X: =153
+                    ZIndex: =31
+
+                Label15_7 As label:
+                    FontWeight: =FontWeight.Semibold
+                    Height: =32
+                    OnSelect: =Select(Parent)
+                    Size: =10
+                    Text: =ThisItem.TotalMonthsOnProject
+                    Width: =44
+                    X: =99
+                    Y: =32
+                    ZIndex: =32
+
+                Label4_43 As label:
+                    Height: =48
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: =ThisItem.ProjRoleDescr
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =702
+                    X: =153
+                    Y: =108
+                    ZIndex: =33
+
+                Checkbox1 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =20
+                    OnCheck: |-
+                        =Patch('PA_Project experience (test)',ThisItem,{IncludeInCV:"1"});ClearCollect(colSumProjIncludeInCV, ShowColumns( Filter('PA_Project experience (test)',varMasterIDSelected=PA_ProjMasterID), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch('PA_Project experience (test)',ThisItem,{IncludeInCV:"0"});ClearCollect(colSumProjIncludeInCV, ShowColumns( Filter('PA_Project experience (test)',varMasterIDSelected=PA_ProjMasterID), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =21
+                    X: =848
+                    ZIndex: =35
+
+                Checkbox2 As checkbox:
+                    CheckboxBorderColor: =RGBA(37, 58, 121, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(37, 58, 121, 1)
+                    Default: =If(ThisItem.HighlightedProject="1",true,false)
+                    Height: =20
+                    OnCheck: |-
+                        =Patch('PA_Project experience (test)',ThisItem,{HighlightedProject:"1"})
+                    OnSelect: =
+                    OnUncheck: |-
+                        =Patch('PA_Project experience (test)',ThisItem,{HighlightedProject:"0"})
+                    Text: =""
+                    Width: =26
+                    X: =877
+                    ZIndex: =36
+
+            lblTitle_81 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =23
+                Size: =8
+                Text: ="Include in CV | Highlight"
+                Width: =145
+                X: =801
+                Y: =26
+                ZIndex: =4
+
+            Label13_1 As label:
+                Color: =RGBA(255, 0, 0, 1)
+                Size: =8
+                Text: =If(Sum(colSumProjIncludeInCV,IncludeInCV)>0,Blank(),"Select at least 1 Project to include in CV")
+                X: =796
+                ZIndex: =5
+
+        DataCardRolesView_1 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =592
+            Width: =977
+            X: =0
+            Y: =2
+            ZIndex: =3
+
+            lblTitle_72 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =44
+                Size: =20
+                Text: ="My Roles"
+                Width: =538
+                ZIndex: =1
+
+            "GalleryRolesView_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =282
+                Items: =Filter('PA_Roles (test)',PA_MasterIDRoles = varMasterIDSelected)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =93
+                Width: =956
+                Y: =44
+                ZIndex: =2
+
+                Separator2_36 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =1
+
+                HtmlText2_19 As htmlViewer:
+                    Height: =28
+                    HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.'Months of experience in this role' & " months of experience"
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    Width: =855
+                    ZIndex: =30
+
+                Label4_44 As label:
+                    Height: =68
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: =ThisItem.'What did you do in this role?'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =855
+                    Y: =25
+                    ZIndex: =33
+
+            lblTitle_73 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =44
+                Size: =20
+                Text: ="My Skills"
+                Width: =538
+                Y: =326
+                ZIndex: =3
+
+            "GallerySkillsView_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =222
+                Items: =SortByColumns(Filter('PA_Skills (test)',PA_MasterIDSkill = varMasterIDSelected),"Yearsofexperienceinskill",Descending)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =93
+                Width: =945
+                Y: =370
+                ZIndex: =4
+
+                Separator2_37 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =1
+
+                HtmlText2_20 As htmlViewer:
+                    Height: =28
+                    HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.'Years of experience in skill' & " years of experience | " & ThisItem.SkillOrEquipment
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    Width: =855
+                    ZIndex: =30
+
+                Label4_45 As label:
+                    Height: =68
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: =ThisItem.'Description of skill'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =855
+                    Y: =25
+                    ZIndex: =33
+
+                Checkbox1_3 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch('PA_Skills (test)',ThisItem,{IncludeInCV:"1"});ClearCollect(colSumSkillIncludeInCV, ShowColumns( Filter('PA_Skills (test)',varMasterIDSelected=PA_MasterIDSkill), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch('PA_Skills (test)',ThisItem,{IncludeInCV:"0"});ClearCollect(colSumSkillIncludeInCV, ShowColumns( Filter('PA_Skills (test)',varMasterIDSelected=PA_MasterIDSkill), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =24
+                    X: =817
+                    ZIndex: =35
+
+            lblTitle_84 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =23
+                Size: =8
+                Text: ="Include in CV"
+                Width: =107
+                X: =793
+                Y: =347
+                ZIndex: =6
+
+            Label13_8 As label:
+                Color: =RGBA(246, 88, 16, 1)
+                Size: =8
+                Text: =If(Sum(colSumSkillIncludeInCV,IncludeInCV)>0,Blank(),"You have not selected 1 skill in your CV")
+                X: =751
+                Y: =307
+                ZIndex: =7
+
+        DataCardEducationView_1 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =350
+            Width: =977
+            X: =0
+            Y: =3
+            ZIndex: =4
+
+            lblTitle_74 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="My Education"
+                Width: =538
+                ZIndex: =1
+
+            "GalleryEducationView_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =222
+                Items: =SortByColumns(Filter(PA_Edu,SP_EduMasterID = varMasterIDSelected),"SP_EduEnd",Descending)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =56
+                Width: =960
+                Y: =52
+                ZIndex: =2
+
+                Separator2_38 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =1
+
+                HtmlText2_21 As htmlViewer:
+                    Height: =28
+                    HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.SP_EduDeg & " | " & ThisItem.SP_EduTitle
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    Width: =855
+                    ZIndex: =30
+
+                Label4_46 As label:
+                    Height: =21
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: |-
+                        ="From:  " & Text(ThisItem.SP_EduStart,"[$-en-US]dd-mmm-yyyy") & " to: " & Text(ThisItem.SP_EduEnd,"[$-en-US]dd-mmm-yyyy")
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =855
+                    Y: =25
+                    ZIndex: =33
+
+                Checkbox1_4 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch(PA_Edu,ThisItem,{IncludeInCV:"1"});ClearCollect(colSumEduIncludeInCV, ShowColumns( Filter(PA_Edu,varMasterIDSelected=SP_EduMasterID), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch(PA_Edu,ThisItem,{IncludeInCV:"0"});ClearCollect(colSumEduIncludeInCV, ShowColumns( Filter(PA_Edu,varMasterIDSelected=SP_EduMasterID), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =24
+                    X: =831
+                    ZIndex: =34
+
+            lblTitle_85 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =23
+                Size: =8
+                Text: ="Include in CV"
+                Width: =78
+                X: =797
+                Y: =29
+                ZIndex: =3
+
+            Label13_9 As label:
+                Color: =RGBA(255, 0, 0, 1)
+                Size: =8
+                Text: =If(Sum(colSumEduIncludeInCV,IncludeInCV)>0,Blank(), "Select at least 1 Education to include in CV")
+                X: =761
+                ZIndex: =4
+
+        DataCardEmployersView_1 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =450
+            Width: =977
+            X: =0
+            Y: =4
+            ZIndex: =5
+
+            lblTitle_75 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="My Employers"
+                Width: =538
+                ZIndex: =1
+
+            "GalleryEmployersView_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =399
+                Items: =SortByColumns(Filter('PA_Work experience (test)',PA_MasterIDEmpl = varMasterIDSelected),"ToYearEmpl",Descending,"ToMonthEmpl",Descending)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =92
+                Width: =964
+                Y: =51
+                ZIndex: =2
+
+                Separator2_39 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =1
+
+                HtmlText2_22 As htmlViewer:
+                    Height: =28
+                    HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.Position & " | " & ThisItem.FromMonthEmpl & "-" & ThisItem.FromYearEmpl & " to "& ThisItem.ToMonthEmpl & "-" & ThisItem.ToYearEmpl 
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    Width: =855
+                    ZIndex: =30
+
+                Label4_47 As label:
+                    Height: =66
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: =ThisItem.'Description of the work experience'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =855
+                    Y: =25
+                    ZIndex: =33
+
+                Checkbox1_5 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch('PA_Work experience (test)',ThisItem,{IncludeInCV:"1"});ClearCollect(colSumEmplIncludeInCV, ShowColumns( Filter('PA_Work experience (test)',varMasterIDSelected=PA_MasterIDEmpl), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch('PA_Work experience (test)',ThisItem,{IncludeInCV:"0"});ClearCollect(colSumEmplIncludeInCV, ShowColumns( Filter('PA_Work experience (test)',varMasterIDSelected=PA_MasterIDEmpl), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =24
+                    X: =827
+                    ZIndex: =35
+
+                Checkbox2_3 As checkbox:
+                    CheckboxBorderColor: =RGBA(37, 58, 121, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(37, 58, 121, 1)
+                    Default: =If(ThisItem.HighlightedEmpl="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch('PA_Work experience (test)',ThisItem,{HighlightedEmpl:"1"})
+                    OnSelect: =
+                    OnUncheck: |-
+                        =Patch('PA_Work experience (test)',ThisItem,{HighlightedEmpl:"0"})
+                    Text: =""
+                    Width: =26
+                    X: =866
+                    ZIndex: =36
+
+            lblTitle_86 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =23
+                Size: =8
+                Text: ="Include in CV | Highlight"
+                Width: =129
+                X: =788
+                Y: =28
+                ZIndex: =4
+
+            Label13_10 As label:
+                Color: =RGBA(255, 0, 0, 1)
+                Size: =8
+                Text: =If(Sum(colSumEmplIncludeInCV,IncludeInCV)>0,Blank(),"Select at least 1 Employer to include in CV")
+                X: =767
+                ZIndex: =5
+
+        DataCardCertificatesView_1 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =450
+            Width: =977
+            X: =0
+            Y: =5
+            ZIndex: =7
+
+            lblTitle_76 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =66
+                Size: =20
+                Text: ="My Certificates & Courses"
+                Width: =538
+                ZIndex: =1
+
+            "GalleryCourseCertView_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =222
+                Items: =SortByColumns(Filter('PA_Certifications (test)', PA_MasterIDCert = varMasterIDSelected),"CertificateOrCourse",Ascending,"Expires",Ascending)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =95
+                Width: =955
+                Y: =52
+                ZIndex: =2
+
+                Separator2_40 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =1
+
+                HtmlText2_23 As htmlViewer:
+                    Height: =28
+                    HtmlText: |-
+                        ="<b>"&ThisItem.CertificateOrCourse&"</b>" & " | " & ThisItem.Title & " | " & ThisItem.Organiser & " | Course date: " & ThisItem.'Date on Certificate' & If(ThisItem.CertificateOrCourse="Certificate"," | Expiry date certificate: " & ThisItem.Expires,"") 
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    Width: =855
+                    ZIndex: =30
+
+                Label4_48 As label:
+                    Height: =50
+                    OnSelect: =Select(Parent)
+                    Size: =9
+                    Text: =ThisItem.'Description of the certification'
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =855
+                    Y: =25
+                    ZIndex: =33
+
+                Checkbox1_6 As checkbox:
+                    BorderColor: =RGBA(255, 191, 0, 1)
+                    CheckboxBorderColor: =RGBA(255, 135, 2, 1)
+                    CheckboxSize: =25
+                    CheckmarkFill: =RGBA(255, 135, 2, 1)
+                    Default: =If(ThisItem.IncludeInCV="1",true,false)
+                    Height: =22
+                    OnCheck: |-
+                        =Patch('PA_Certifications (test)',ThisItem,{IncludeInCV:"1"});ClearCollect(colSumCertIncludeInCV, ShowColumns( Filter('PA_Certifications (test)',varMasterIDSelected=PA_MasterIDCert), "IncludeInCV"))
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =Patch('PA_Certifications (test)',ThisItem,{IncludeInCV:"0"});ClearCollect(colSumCertIncludeInCV, ShowColumns( Filter('PA_Certifications (test)',varMasterIDSelected=PA_MasterIDCert), "IncludeInCV"))
+                    Size: =9
+                    Text: =
+                    Width: =24
+                    X: =878
+                    ZIndex: =34
+
+            lblTitle_87 As label:
+                Color: =RGBA(37, 58, 121, 1)
+                Font: =Font.'Lato Black'
+                Height: =23
+                Size: =8
+                Text: ="Include in CV"
+                Width: =78
+                X: =852
+                Y: =21
+                ZIndex: =3
+
+            Label13_11 As label:
+                Color: =RGBA(246, 88, 16, 1)
+                Height: =32
+                Size: =8
+                Text: =If(Sum(colSumCertIncludeInCV,IncludeInCV)>0,Blank(),"You have not selected 1 course or certificate in your CV")
+                Width: =165
+                X: =788
+                ZIndex: =4
+
+    imgLogoVanOord_19 As image:
+        Height: =74
+        Image: =imgVanOordCrownLogo
+        Width: =194
+        X: =1159
+        Y: =39
+        ZIndex: =2
+
+    icnHome_18 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: ='ICON BL home'
+        OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+        Width: =90
+        X: =1276
+        Y: =678
+        ZIndex: =3
+
+    icnInstruction_10 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1276
+        Y: =588
+        ZIndex: =4
+
+    lblTitlePageViewMyCV_10 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =72
+        Size: =20
+        Text: |-
+            =LookUp(PA_MasterList,ID=varMasterIDSelected,Title) & " - CV ID: " & varMasterIDSelected
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =779
+        X: =268
+        Y: =27
+        ZIndex: =5
+
+    Button4_4 As button:
+        DisplayMode: =If(Sum(colSumLangIncludeInCV,IncludeInCV)=0 Or Sum(colSumQualSumIncludeInCV,IncludeInCV)=0 Or Sum(colSumQualSumIncludeInCV,IncludeInCV)>1 Or Sum(colSumProjIncludeInCV,IncludeInCV)=0 Or Sum(colSumEduIncludeInCV,IncludeInCV)=0 Or Sum(colSumEmplIncludeInCV,IncludeInCV)=0,Disabled,Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        OnSelect: ='CreateaCVfromVita2(test2)'.Run(varMasterIDSelected,Office365Users.MyProfile().Mail,LookUp(PA_MasterList,ID=varMasterIDSelected,Title))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =10
+        Text: ="Send as PDF"
+        Width: =112
+        X: =1047
+        Y: =39
+        ZIndex: =6
+
+    ButtonEditAddProj_7 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =32
+        OnSelect: =Back(ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =13
+        Text: ="Go back"
+        Width: =90
+        X: =1276
+        Y: =549
+        ZIndex: =7
+
+    Label13_13 As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =39
+        Size: =8
+        Text: ="Include one or more items to your CV"
+        Visible: =If(Button4_4.DisplayMode=Disabled,true,false)
+        Width: =112
+        X: =1047
+        ZIndex: =8
+

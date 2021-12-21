@@ -1,0 +1,301 @@
+"ViewMyCVs As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    "ResumeGalleryViewCV As gallery.'BrowseLayout_Vertical_TwoTextOneImageTwoColumnOverlayVariant_ver4.0'":
+        Height: =623
+        Items: =Filter(Vita_MasterCVS, 'Vita_MasterCVS (Views)'.'My CV', StartsWith(Title,TextInput1_1.Text))
+        Layout: =Layout.Vertical
+        OnSelect: |-
+            =UpdateContext({showGallery3:true})
+        TemplatePadding: =4
+        TemplateSize: =Min(320, Self.Height - 60)
+        Width: =1245
+        WrapCount: =4
+        Y: =145
+        ZIndex: =1
+
+        Image6 As image:
+            Height: =320
+            Image: =If(Office365Users.UserPhotoMetadata(ThisItem.'Mail Address').HasPhoto, Office365Users.UserPhotoV2(ThisItem.'Mail Address'), 'dummy User')
+            ImagePosition: =ImagePosition.Fill
+            OnSelect: =Select(Parent)
+            Width: =306
+            ZIndex: =1
+
+        Overlay1 As rectangle:
+            Fill: =RGBA(255, 191, 0, 0.21)
+            Height: =83
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =205
+            ZIndex: =2
+
+        Title2 As label:
+            Height: =31
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: =ThisItem.Position
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 64
+            X: =20
+            Y: =223
+            ZIndex: =3
+
+        Subtitle5 As label:
+            Height: =30
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: =ThisItem.'First Name' &" "& ThisItem.'Last Name'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =267
+            X: =19
+            Y: =193
+            ZIndex: =4
+
+        Subtitle5_1 As label:
+            Align: =Align.Right
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =8
+            Text: |-
+                =ThisItem.'Master Copy' & " | "& "Last modified: " & ThisItem.'Modified On'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title2.Width
+            X: =56
+            Y: =273
+            ZIndex: =5
+
+        Button4 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =33
+            OnSelect: =Navigate(ViewMyCVsPrint,ScreenTransition.Cover);
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="View"
+            Width: =64
+            X: =8
+            Y: =287
+            ZIndex: =6
+
+        Button4_1 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =32
+            OnSelect: =Navigate(EditMyCV,ScreenTransition.Cover)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Edit"
+            Width: =64
+            X: =80
+            Y: =287
+            ZIndex: =7
+
+        Button4_2 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =32
+            OnSelect: =CopyVitaCVFlow.Run(ResumeGalleryViewCV.Selected.cr63b_id)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Copy"
+            Width: =64
+            X: =152
+            Y: =287
+            ZIndex: =8
+
+        Button4_3 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =31
+            OnSelect: =Set(DeleteVerificationScreenVisible,true)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Delete"
+            Width: =74
+            X: =223
+            Y: =288
+            ZIndex: =9
+
+    RectQuickActionBar1 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =106
+        Width: =1041
+        X: =325
+        ZIndex: =2
+
+    imgLogoVanOord_10 As image:
+        Height: =74
+        Image: =imgVanOordCrownLogo
+        Width: =194
+        X: =1152
+        Y: =32
+        ZIndex: =3
+
+    lblTitle_16 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: =
+        Width: =538
+        X: =60
+        Y: =40
+        ZIndex: =4
+
+    TextInput1_1 As text:
+        Default: =
+        HintText: ="Search for CV on Lastname"
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =277
+        X: =20
+        Y: =104
+        ZIndex: =5
+
+    icnHome_8 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: ='ICON BL home'
+        OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+        Width: =90
+        X: =1269
+        Y: =671
+        ZIndex: =6
+
+    icnInstruction_7 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1269
+        Y: =581
+        ZIndex: =7
+
+    lblTitlePageViewMyCV As label:
+        FontWeight: =FontWeight.Semibold
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =820
+        X: =273
+        Y: =32
+        ZIndex: =8
+
+    Label19 As label:
+        Text: =
+        X: =345
+        ZIndex: =9
+
+    DeleteVerificationScreen_1 As label:
+        Fill: =RGBA(250, 155, 112, 0.34)
+        FontWeight: =FontWeight.Semibold
+        Height: =768
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Size: =20
+        Text: =""
+        VerticalAlign: =VerticalAlign.Top
+        Visible: =DeleteVerificationScreenVisible
+        Width: =1366
+        ZIndex: =11
+
+    DeleteVerificationScreen As label:
+        Fill: =RGBA(250, 155, 112, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =388
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Size: =20
+        Text: |-
+            ="Are you sure you want to delete CV with title: 
+            
+            '" & ResumeGalleryViewCV.Selected.Title & "'? 
+            
+            The CV will be PERMANENTLY DELETED due to GDPR regulations, it can't be restored." 
+        VerticalAlign: =VerticalAlign.Top
+        Visible: =DeleteVerificationScreenVisible
+        Width: =737
+        X: =278
+        Y: =177
+        ZIndex: =12
+
+    DeleteCVButton As button:
+        BorderThickness: =0
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =82
+        OnSelect: =DeleteaCVVitaCVFlow.Run(ResumeGalleryViewCV.Selected.ID);Set(DeleteVerificationScreenVisible,false)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =20
+        Text: ="Permanently DELETE this CV"
+        Visible: =DeleteVerificationScreen.Visible
+        Width: =274
+        X: =301
+        Y: =466
+        ZIndex: =13
+
+    CancelDeleteCVButton As button:
+        BorderThickness: =0
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =82
+        OnSelect: =Set(DeleteVerificationScreenVisible,false)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =20
+        Text: ="Cancel"
+        Visible: =DeleteVerificationScreen.Visible
+        Width: =274
+        X: =713
+        Y: =466
+        ZIndex: =14
+
+    ButtonEditAddProj_8 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =32
+        OnSelect: =Back(ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =13
+        Text: ="Go back"
+        Width: =90
+        X: =1269
+        Y: =543
+        ZIndex: =15
+

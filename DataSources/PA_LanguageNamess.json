@@ -1,0 +1,95 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_pa_languagenameses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_pa_languagenames",
+    "Name": "PA_LanguageNamess",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_pa_languagenames_AsyncOperations": "System Jobs",
+      "cr63b_pa_languagenames_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_pa_languagenames_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_pa_languagenames_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_pa_languagenames_ProcessSession": "Process Sessions",
+      "cr63b_pa_languagenames_SyncErrors": "Sync Errors",
+      "cr63b_pa_languagenamesid": "PA_LanguageNames",
+      "cr63b_title": "Title",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "PA_LanguageNamess",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "PA_LanguageNamess (Views)",
+    "Name": "_cr63b_pa_languagenames_views",
+    "RelatedEntityName": "PA_LanguageNamess",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0672512d-80f0-41a6-ab6b-8633420442e3": "PA_LanguageNames Advanced Find View",
+      "2a174684-e1f4-4021-b0f8-8806a7aecf3d": "Active PA_LanguageNamess",
+      "35cc21e2-3ef0-4f30-ab2f-37a099dd4511": "PA_LanguageNames Associated View",
+      "7db21046-4a20-45c9-a708-b3da90568bde": "Inactive PA_LanguageNamess",
+      "edad070f-cfa5-4aaf-93ec-ce8f002afbc8": "PA_LanguageNames Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (PA_LanguageNamess)",
+    "Name": "cr63b_pa_languagenames_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "PA_LanguageNamess"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "PA_LanguageNamess",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (PA_LanguageNamess)",
+    "Name": "cr63b_pa_languagenames_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "PA_LanguageNamess"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "PA_LanguageNamess",
+    "Type": "OptionSetInfo"
+  }
+]

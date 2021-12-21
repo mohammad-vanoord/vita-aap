@@ -1,0 +1,487 @@
+EditScreenSkills As screen:
+
+    lblTitle_53 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Add a Skill"
+        Width: =409
+        X: =75
+        Y: =106
+        ZIndex: =7
+
+    btnBacktoEditProj_2 As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: =If(!ShowSaveAddSkillSuccess, Set(GoBackScreenAddSkill, true),Navigate(EditMyCV,ScreenTransition.Cover))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =12
+        Text: ="Back to Edit CV"
+        Width: =125
+        X: =1032
+        Y: =713
+        ZIndex: =8
+
+    btnSaveEditProj_2 As button:
+        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(
+                SkillsCollection,
+                If(
+                    !IsBlank(SkillName),
+                    Patch(
+                        'PA_Skills (test)',
+                        Defaults('PA_Skills (test)'),
+                        {
+                            Title:SkillName,
+                            'Description of skill':SkillDescr,
+                            SkillOrEquipment:SkillSwitch,
+                            'Years of experience in skill':SkillExperience,
+                            HighlightedSkill:HighlightedSkill,
+                            IncludeInCV:Text(1),
+                            PA_MasterIDSkill:ResumeGalleryViewCV.Selected.cr63b_id
+                        }
+                    )
+                )            
+            );
+            Set(
+                ShowSaveAddSkillSuccess,
+                true
+            );ClearCollect(SkillsCollection, {SkillName: "", SkillDescr:"",SkillExperience:0,SkillSwitch:"",HighlightedSkill:"", ShowSaveButtonsSkill:true})
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =125
+        X: =896
+        Y: =713
+        ZIndex: =9
+
+    lblTitle_55 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =15
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =25
+        Y: =164
+        ZIndex: =10
+
+    lblSaveWarningEditRole_1 As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =27
+        Size: =11
+        Text: ="Save skill first"
+        Visible: =NeedssavedQual
+        Width: =156
+        X: =896
+        Y: =663
+        ZIndex: =11
+
+    lblTitlePageViewMyCV_6 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =72
+        PaddingBottom: =0
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =708
+        X: =449
+        Y: =18
+        ZIndex: =12
+
+    lblTitle_54 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Your Skills"
+        Width: =409
+        X: =745
+        Y: =113
+        ZIndex: =13
+
+    "GallerySkillColl_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =588
+        Items: =SkillsCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =181
+        Width: =550
+        Y: =180
+        ZIndex: =14
+
+        Separator2_27 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputSkillName_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.SkillName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsSkill,DisplayMode.Edit,View)
+            Height: =30
+            HintText: ="e.g. MS PowerApps/ Vox Apolonia/ Deep Digit"
+            OnChange: =Set(NeedssavedSkill,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =340
+            X: =16
+            Y: =60
+            ZIndex: =2
+
+        Label1_17 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Skill/Equipment/Tool:"
+            Width: =233
+            X: =16
+            Y: =32
+            ZIndex: =5
+
+        inputSkillDescr_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.SkillDescr
+            DisplayMode: =inputSkillName_1.DisplayMode
+            Height: =44
+            HintText: ="Create apps, workflows, and custom, rich forms to streamline processes."
+            MaxLength: =150
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedSkill,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =508
+            X: =16
+            Y: =122
+            ZIndex: =8
+
+        Label4_33 As label:
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Description of Skill/Equipment/Tool:"
+            Width: =294
+            X: =16
+            Y: =90
+            ZIndex: =9
+
+        iconSaveSkill_1 As icon.Save:
+            Height: =44
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    SkillsCollection,
+                    ThisItem,
+                    {
+                        SkillName: inputSkillName_1.Text,
+                        SkillDescr: inputSkillDescr_1.Text,
+                        SkillExperience:Value(inputSkillExperience_1.Text),
+                        HighlightedSkill: lblHighlightedSkill.Text,
+                        SkillSwitch: radioSkill_1.SelectedText.Value, ShowSaveButtonsSkill: false
+                    }
+                );If(EditPressedSkill, false, 
+                Collect(
+                    SkillsCollection,
+                    {
+                        SkillName: "",
+                        SkillDescr: "",
+                        SkillExperience:0,
+                        HighlightedSkill:"",
+                        SkillSwitch: "",  ShowSaveButtonsSkill: true
+                    }
+                ));UpdateContext({EditPressedSkill: false});Set(NeedssavedSkill, false)
+            Visible: =ThisItem.ShowSaveButtonsSkill
+            Width: =44
+            X: =371
+            Y: =8
+            ZIndex: =12
+
+        iconDeleteSkill_1 As icon.Trash:
+            Height: =44
+            Icon: =Icon.Trash
+            OnSelect: =Remove(SkillsCollection,ThisItem);Set(NeedssavedSkill,false)
+            Visible: =iconSaveSkill_1.Visible
+            Width: =44
+            X: =424
+            Y: =8
+            ZIndex: =13
+
+        icnEditSkill_1 As icon.Edit:
+            Height: =44
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(SkillsCollection,ThisItem, {ShowSaveButtonsSkill: true});UpdateContext({EditPressedSkill:true})
+            Visible: =!ThisItem.ShowSaveButtonsSkill
+            Width: =40
+            X: =468
+            Y: =8
+            ZIndex: =18
+
+        radioSkill_1 As radio:
+            Default: =ThisItem.SkillSwitch
+            Height: =23
+            Items: =["Skill","Equipment/Tool"]
+            Layout: =Layout.Horizontal
+            OnChange: =Set(NeedssavedCert,true)
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingTop: =0
+            RadioSize: =20
+            Tooltip: ="After following a course, if you also receive a certificate that can expire, select 'certificate', otherwise just 'course'."
+            Width: =284
+            X: =8
+            Y: =8
+            ZIndex: =19
+
+        inputSkillExperience_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.SkillExperience
+            DisplayMode: =If(ThisItem.ShowSaveButtonsSkill,DisplayMode.Edit,View)
+            Height: =29
+            HintText: ="[years]"
+            OnChange: =Set(NeedssavedSkill,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =74
+            X: =450
+            Y: =61
+            ZIndex: =21
+
+        Label1_18 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Years of experience:"
+            Width: =84
+            X: =370
+            Y: =61
+            ZIndex: =22
+
+        lblHighlightedSkill As label:
+            Height: =27
+            OnSelect: =Select(Parent)
+            Text: ="0"
+            Visible: =false
+            Width: =42
+            X: =508
+            Y: =153
+            ZIndex: =23
+
+    "GalleryProjects_15 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =390
+        Items: =SortByColumns(Filter('PA_Skills (test)',PA_MasterIDSkill = ResumeGalleryViewCV.Selected.cr63b_id),"Yearsofexperienceinskill",Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =93
+        Width: =621
+        X: =745
+        Y: =172
+        ZIndex: =15
+
+        Separator2_28 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        HtmlText2_14 As htmlViewer:
+            Height: =31
+            HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.'Years of experience in skill' & " years of experience | " & ThisItem.SkillOrEquipment
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            Width: =598
+            Y: =4
+            ZIndex: =30
+
+        Label4_34 As label:
+            Height: =58
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =ThisItem.'Description of skill'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =598
+            Y: =35
+            ZIndex: =33
+
+    btnAddRow_5 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                SkillsCollection,
+                {
+                    SkillName: "",
+                    SkillDescr: "",
+                    SkillExperience:0,
+                    HighlightedSkill:"",
+                    SkillSwitch: "",  ShowSaveButtonsSkill: true
+                }
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =25
+        Y: =113
+        ZIndex: =16
+
+    Group1_5 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =24
+
+        imgLogoVanOord_15 As image:
+            Height: =74
+            Image: =imgVanOordCrownLogo
+            Width: =194
+            X: =1132
+            Y: =32
+            ZIndex: =1
+
+        lblTitle_52 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =20
+            Text: ="Edit CV - My Skills"
+            Width: =409
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        icnEye_10 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_eye
+            OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1268
+            Y: =573
+            ZIndex: =3
+
+        icnHome_14 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL home'
+            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+            Width: =90
+            X: =1268
+            Y: =668
+            ZIndex: =4
+
+        icnInstruction_13 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_lightbulb
+            OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1173
+            Y: =573
+            ZIndex: =5
+
+        icnSearch_10 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL Vergrootglas'
+            Width: =90
+            X: =1173
+            Y: =668
+            ZIndex: =6
+
+    Group3_3 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =46
+
+        Label11_4 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =179
+            PaddingLeft: =15
+            PaddingRight: =15
+            PaddingTop: =15
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =GoBackScreenAddSkill = true
+            Width: =455
+            X: =404
+            Y: =297
+            ZIndex: =17
+
+        btnBacktoEditCVAddLang_6 As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =45
+            OnSelect: =Navigate(EditMyCV,ScreenTransition.Cover);Set(GoBackScreenAddSkill,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Visible: =Label11_4.Visible
+            Width: =125
+            X: =449
+            Y: =412
+            ZIndex: =18
+
+        Button6_4 As button:
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =46
+            OnSelect: =Set(GoBackScreenAddSkill,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =Label11_4.Visible
+            Width: =125
+            X: =684
+            Y: =412
+            ZIndex: =19
+

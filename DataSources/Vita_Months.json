@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_months",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_month",
+    "Name": "Vita_Months",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_monthname": "Month Name",
+      "cr63b_monthnumber": "Month Number",
+      "cr63b_monthshortname": "Month Short Name",
+      "cr63b_vita_month_AsyncOperations": "System Jobs",
+      "cr63b_vita_month_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_month_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_month_DuplicateBaseRecord)",
+      "cr63b_vita_month_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_month_DuplicateMatchingRecord)",
+      "cr63b_vita_month_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_month_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_month_ProcessSession": "Process Sessions",
+      "cr63b_vita_month_SyncErrors": "Sync Errors",
+      "cr63b_vita_monthid": "Vita_Month",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Months",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Months (Views)",
+    "Name": "_cr63b_vita_month_views",
+    "RelatedEntityName": "Vita_Months",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "5ef27b65-0cb0-489d-8221-8361f9ff501a": "Vita_Month Lookup View",
+      "6491d80f-79e2-437b-94e5-25f998b002a7": "Active Vita_Months",
+      "add97383-6c4e-4bb0-a18e-74b51c51ef59": "Inactive Vita_Months",
+      "c5b481fc-d888-4f02-9e0b-2a59525bc327": "Vita_Month Advanced Find View",
+      "f795b415-56b4-48bc-9236-f41490aeaba6": "Vita_Month Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Months)",
+    "Name": "cr63b_vita_month_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Months"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Months",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Months)",
+    "Name": "cr63b_vita_month_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Months"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Months",
+    "Type": "OptionSetInfo"
+  }
+]

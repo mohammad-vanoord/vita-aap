@@ -1,0 +1,463 @@
+EditScreenEdu As screen:
+
+    lblTitle_57 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Add a Education"
+        Width: =409
+        X: =75
+        Y: =106
+        ZIndex: =7
+
+    btnBacktoEditProj_3 As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: =If(!ShowSaveAddEduSuccess, Set(GoBackScreenAddEdu, true),Navigate(EditMyCV,ScreenTransition.Cover))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =12
+        Text: ="Back to Edit CV"
+        Width: =125
+        X: =1032
+        Y: =713
+        ZIndex: =8
+
+    btnSaveEditProj_3 As button:
+        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(EducationCollection,If(!IsBlank(EduSchool), Patch(PA_Edu, Defaults(PA_Edu), {Title: EduSchool, SP_EduStart: DateValue(EduStart), SP_EduEnd: DateValue(EduEnd), SP_EduDeg: EduDeg, SP_EduTitle: EduTitle,IncludeInCV:Text(1), SP_EduMasterID:ResumeGalleryViewCV.Selected.cr63b_id})));
+            Set(
+                ShowSaveAddEduSuccess,
+                true
+            );ClearCollect(EducationCollection, {EduSchool: "", EduStart: "", EduEnd: "", EduDeg: "", EduTitle: "",ShowSaveButtonsEdu: true});
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =125
+        X: =896
+        Y: =713
+        ZIndex: =9
+
+    lblTitle_59 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =15
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =25
+        Y: =164
+        ZIndex: =10
+
+    lblSaveWarningEditRole_2 As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =27
+        Size: =11
+        Text: ="Save skill first"
+        Visible: =NeedssavedQual
+        Width: =156
+        X: =896
+        Y: =663
+        ZIndex: =11
+
+    lblTitlePageViewMyCV_7 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =72
+        PaddingBottom: =0
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =708
+        X: =449
+        Y: =18
+        ZIndex: =12
+
+    lblTitle_58 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Your Education"
+        Width: =205
+        X: =827
+        Y: =120
+        ZIndex: =13
+
+    "GalleryEduColl_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =570
+        Items: =EducationCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =264
+        Width: =743
+        Y: =188
+        ZIndex: =14
+
+        Separator2_29 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputEduSchool_2 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EduSchool
+            DisplayMode: =If(ThisItem.ShowSaveButtonsEdu,DisplayMode.Edit,View)
+            HintText: ="e.g. University of Twente"
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =362
+            X: =16
+            Y: =40
+            ZIndex: =2
+
+        Label1_19 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="School / University:"
+            Width: =177
+            X: =16
+            ZIndex: =5
+
+        Label2_7 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Start date:"
+            X: =400
+            ZIndex: =6
+
+        Label3_12 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="End date:"
+            X: =572
+            ZIndex: =7
+
+        inputEduDeg_2 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EduDeg
+            DisplayMode: =inputEduSchool_2.DisplayMode
+            Height: =42
+            HintText: ="e.g. Master of Science Civil Engineering"
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =508
+            X: =16
+            Y: =132
+            ZIndex: =8
+
+        Label4_35 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Achieved degree:"
+            X: =16
+            Y: =92
+            ZIndex: =9
+
+        inputEduTitle_2 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EduTitle
+            DisplayMode: =inputEduSchool_2.DisplayMode
+            HintText: ="e.g. MSc."
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =170
+            X: =550
+            Y: =134
+            ZIndex: =10
+
+        Label5_7 As label:
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Title (abbreviation):"
+            Width: =170
+            X: =550
+            Y: =94
+            ZIndex: =11
+
+        iconSave_8 As icon.Save:
+            DisplayMode: =If(IsBlank(inputEduSchool_2.Text)|| IsBlank(inputEduDeg_2.Text),DisplayMode.Disabled,DisplayMode.Edit)
+            Height: =38
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    EducationCollection,
+                    ThisItem,
+                    {
+                        EduSchool: inputEduSchool_2.Text,
+                        EduStart: inputEduStart_2.SelectedDate,
+                        EduEnd: inputEduEnd_2.SelectedDate,
+                        EduDeg: inputEduDeg_2.Text,
+                        EduTitle: inputEduTitle_2.Text, ShowSaveButtonsEdu: false
+                    }
+                );If(EditPressedEdu, false, 
+                Collect(
+                    EducationCollection,
+                    {
+                        EduSchool: "",
+                        EduStart: "",
+                        EduEnd: "",
+                        EduDeg: "",
+                        EduTitle: "",  ShowSaveButtonsEdu: true
+                    }
+                ));UpdateContext({EditPressedEdu: false});Set(NeedssavedEdu, false)
+            Visible: =ThisItem.ShowSaveButtonsEdu
+            Width: =55
+            X: =617
+            Y: =207
+            ZIndex: =12
+
+        iconDelete_8 As icon.Trash:
+            Height: =50
+            Icon: =Icon.Trash
+            OnSelect: =Remove(EducationCollection,ThisItem);Set(NeedssavedEdu,false)
+            Visible: =iconSave_8.Visible
+            Width: =39
+            X: =672
+            Y: =199
+            ZIndex: =13
+
+        inputEduStart_2 As datepicker:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            DisplayMode: =inputEduSchool_2.DisplayMode
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            Width: =139
+            X: =404
+            Y: =40
+            ZIndex: =16
+
+        inputEduEnd_2 As datepicker:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            DisplayMode: =inputEduSchool_2.DisplayMode
+            OnChange: =Set(NeedssavedEdu,true)
+            OnSelect: =Select(Parent)
+            Width: =139
+            X: =572
+            Y: =40
+            ZIndex: =17
+
+        Icon5_6 As icon.Edit:
+            Height: =72
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(EducationCollection,ThisItem, {ShowSaveButtonsEdu: true});UpdateContext({EditPressedEdu:true})
+            Visible: =!ThisItem.ShowSaveButtonsEdu
+            Width: =67
+            X: =738
+            Y: =20
+            ZIndex: =18
+
+    Button3_8 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                EducationCollection,
+                {
+                    EduSchool: "",
+                    EduStart: "",
+                    EduEnd: "",
+                    EduDeg: "",
+                    EduTitle: "",  ShowSaveButtonsEdu: true
+                })
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =25
+        Y: =114
+        ZIndex: =15
+
+    "GalleryProjects_16 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =364
+        Items: =SortByColumns(Filter(PA_Edu,SP_EduMasterID = ResumeGalleryViewCV.Selected.cr63b_id),"SP_EduEnd",Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =106
+        Width: =470
+        X: =840
+        Y: =186
+        ZIndex: =16
+
+        Separator2_30 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        HtmlText2_15 As htmlViewer:
+            Height: =49
+            HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.SP_EduDeg & " | " & ThisItem.SP_EduTitle
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            Width: =449
+            ZIndex: =30
+
+        Label4_36 As label:
+            Height: =31
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="From:  " & Text(ThisItem.SP_EduStart,"[$-en-US]dd-mmm-yyyy") & " to: " & Text(ThisItem.SP_EduEnd,"[$-en-US]dd-mmm-yyyy")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =470
+            Y: =49
+            ZIndex: =33
+
+    Group1_6 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =24
+
+        imgLogoVanOord_16 As image:
+            Height: =74
+            Image: =imgVanOordCrownLogo
+            Width: =194
+            X: =1132
+            Y: =32
+            ZIndex: =1
+
+        lblTitle_56 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =20
+            Text: ="Edit CV - My Education"
+            Width: =409
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        icnEye_11 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_eye
+            OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1268
+            Y: =573
+            ZIndex: =3
+
+        icnHome_15 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL home'
+            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+            Width: =90
+            X: =1268
+            Y: =668
+            ZIndex: =4
+
+        icnInstruction_14 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_lightbulb
+            OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1173
+            Y: =573
+            ZIndex: =5
+
+        icnSearch_11 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL Vergrootglas'
+            Width: =90
+            X: =1173
+            Y: =668
+            ZIndex: =6
+
+    Group3_4 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =46
+
+        Label11_5 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =179
+            PaddingLeft: =15
+            PaddingRight: =15
+            PaddingTop: =15
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =GoBackScreenAddEdu = true
+            Width: =455
+            X: =404
+            Y: =297
+            ZIndex: =17
+
+        btnBacktoEditCVAddLang_7 As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =45
+            OnSelect: =Navigate(EditMyCV,ScreenTransition.Cover);Set(GoBackScreenAddEdu,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Visible: =Label11_5.Visible
+            Width: =125
+            X: =449
+            Y: =412
+            ZIndex: =18
+
+        Button6_5 As button:
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =46
+            OnSelect: =Set(GoBackScreenAddEdu,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =Label11_5.Visible
+            Width: =125
+            X: =684
+            Y: =412
+            ZIndex: =19
+

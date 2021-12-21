@@ -1,0 +1,98 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_masterusers",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_masteruser",
+    "Name": "Vita_MasterUsers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_MasterUseraccount": "MasterUser account",
+      "cr63b_title": "Title",
+      "cr63b_vita_masteruser_AsyncOperations": "System Jobs",
+      "cr63b_vita_masteruser_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_masteruser_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_masteruser_DuplicateBaseRecord)",
+      "cr63b_vita_masteruser_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_masteruser_DuplicateMatchingRecord)",
+      "cr63b_vita_masteruser_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_masteruser_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_masteruser_ProcessSession": "Process Sessions",
+      "cr63b_vita_masteruser_SyncErrors": "Sync Errors",
+      "cr63b_vita_masteruserid": "Vita_MasterUser",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_MasterUsers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_MasterUsers (Views)",
+    "Name": "_cr63b_vita_masteruser_views",
+    "RelatedEntityName": "Vita_MasterUsers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "3a9f25f8-5592-41e9-a161-9097d62c0d47": "Active Vita_MasterUsers",
+      "99fbad94-db3f-492c-a109-72b97b5be572": "Inactive Vita_MasterUsers",
+      "d049eb81-8406-4d4e-b844-8784e1b8d74e": "Vita_MasterUser Associated View",
+      "d28e6d82-f662-4c3a-ae87-a2d282c7dfdd": "Vita_MasterUser Advanced Find View",
+      "f2870a15-79c5-44c5-aec0-a18ee237502d": "Vita_MasterUser Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_MasterUsers)",
+    "Name": "cr63b_vita_masteruser_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_MasterUsers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_MasterUsers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_MasterUsers)",
+    "Name": "cr63b_vita_masteruser_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_MasterUsers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_MasterUsers",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,565 @@
+EditScreenEmpl As screen:
+    OnVisible: =true
+
+    lblTitle_61 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =31
+        Size: =20
+        Text: ="Add an Employer"
+        Width: =233
+        X: =75
+        Y: =131
+        ZIndex: =7
+
+    btnBacktoEditProj_4 As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: =If(!ShowSaveAddEmplSuccess, Set(GoBackScreenAddEmpl, true),Navigate(EditMyCV,ScreenTransition.Cover))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =12
+        Text: ="Back to Edit CV"
+        Width: =125
+        X: =1032
+        Y: =713
+        ZIndex: =8
+
+    btnSaveEditProj_4 As button:
+        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(EmployersCollection,If(!IsBlank(EmplName), Patch('Vita_Work Experiences', Defaults('Vita_Work Experiences'), {Employer: EmplName, 'Work Description': EmplDescr, Position: EmplRoleName, FromMonthEmpl:EmplFromMonth,FromYearEmpl:EmplFromYear,ToMonthEmpl:EmplToMonth,ToYearEmpl:EmplToYear,TotalMonthsForEmployer:EmplTotalMonth,HighlightedEmpl:HighlightedEmpl,IncludeInCV:Text(1), Vita_MasterID: LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.cr63b_id)})));
+            Set(
+                ShowSaveAddEmplSuccess,
+                true
+            );ClearCollect(EmployersCollection, {EmplName: "", EmplPosition: "",EmplToMonth: 0, EmplToYear: 0, EmplFromMonth:0,EmplFromYear:0,EmplDescr:"",EmplRoleName: "",EmplTotalMonth: 0, HighlightedEmpl:"", ShowSaveButtonsEmpl:true})
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =125
+        X: =896
+        Y: =713
+        ZIndex: =9
+
+    lblTitle_63 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =15
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =25
+        Y: =172
+        ZIndex: =10
+
+    lblSaveWarningEditRole_3 As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =27
+        Size: =11
+        Text: ="Save Employer first"
+        Visible: =NeedssavedQual
+        Width: =156
+        X: =896
+        Y: =663
+        ZIndex: =11
+
+    lblTitlePageViewMyCV_8 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =72
+        PaddingBottom: =0
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =708
+        X: =449
+        Y: =18
+        ZIndex: =12
+
+    lblTitle_62 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Your Employers history"
+        Width: =409
+        X: =890
+        Y: =114
+        ZIndex: =13
+
+    Button3_9 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(EmployersCollection, {EmplName: "", EmplPosition: "",EmplToMonth: 0, EmplToYear: 0, EmplFromMonth:0,EmplFromYear:0,EmplDescr:"",EmplRoleName: "",EmplTotalMonth: 0,HighlightedEmpl:"", ShowSaveButtonsEmpl:true})
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =25
+        Y: =122
+        ZIndex: =14
+
+    "GalleryEmplColl_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =493
+        Items: =EmployersCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =274
+        Width: =843
+        Y: =191
+        ZIndex: =15
+
+        Separator2_31 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        Label2_8 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="From:"
+            X: =671
+            ZIndex: =4
+
+        Label3_13 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="to:"
+            X: =671
+            Y: =54
+            ZIndex: =5
+
+        inputEmplName_2 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.EmplName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsEmpl,DisplayMode.Edit,View)
+            Height: =34
+            HintText: ="Your current or previous employer."
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =366
+            X: =19
+            Y: =20
+            ZIndex: =6
+
+        Label4_37 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Employer name:"
+            Width: =137
+            X: =19
+            ZIndex: =7
+
+        iconSaveEmplColl_1 As icon.Save:
+            DisplayMode: =If(IsBlank(inputEmplName_2.Text) || IsBlank(drpdwnFromYearEmpl_1.Selected.Year)|| IsBlank(drpdwnToYearEmpl_1.Selected.Year) || Value(lblAmountofMonthsEmpl_1.Text)<1 ,DisplayMode.Disabled,DisplayMode.Edit)
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    EmployersCollection,
+                    ThisItem,
+                    {
+                        EmplFromMonth: Value(drpdwnFromMonthEmpl_1.Selected.cr63b_monthshortname),
+                        EmplFromYear: Value(drpdwnFromYearEmpl_1.Selected.Year),
+                        EmplToMonth: Value(drpdwnToMonthEmpl_1.Selected.cr63b_monthshortname),
+                        EmplToYear: Value(drpdwnToYearEmpl_1.Selected.cr63b_year),
+                        EmplName: inputEmplName_2.Text,
+                        EmplDescr: inputEmplDescription_1.Text, 
+                        EmplRoleName: lblComboFuncConcEmpl_1.Text,
+                        EmplTotalMonth: Value(lblAmountofMonthsEmpl_1.Text),
+                        HighlightedEmpl: lblHighlightedEmplDefault.Text,  
+                        ShowSaveButtonsEmpl: false
+                    }
+                );If(EditPressedEmpl, false, 
+                Collect(
+                    EmployersCollection,
+                    {
+                        EmplFromMonth: 0,
+                        EmplFromYear: 0,
+                        EmplToMonth: 0,
+                        EmplToYear: 0,
+                        EmplName: "",
+                        EmplDescr: "", 
+                        EmplRoleName: "",
+                        EmplTotalMonth: 0,
+                        HighlightedEmpl:"",  
+                        ShowSaveButtonsEmpl: true
+                    }
+                ));UpdateContext({EditPressedEmpl: false});Set(NeedssavedEmpl, false)
+            Visible: =ThisItem.ShowSaveButtonsEmpl
+            X: =666
+            Y: =200
+            ZIndex: =9
+
+        iconDeleteEmplColl_1 As icon.Trash:
+            Icon: =Icon.Trash
+            OnSelect: =Remove(EmployersCollection,ThisItem);Set(NeedssavedEmpl,false)
+            Visible: =iconSaveEmplColl_1.Visible
+            X: =730
+            Y: =200
+            ZIndex: =10
+
+        IconEditEmplColl_1 As icon.Edit:
+            Height: =72
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(EmployersCollection,ThisItem, {ShowSaveButtonsEmpl: true});UpdateContext({EditPressedEmpl:true})
+            Visible: =!ThisItem.ShowSaveButtonsEmpl
+            Width: =67
+            X: =687
+            Y: =196
+            ZIndex: =11
+
+        comboboxFunctionEmpl_1 As combobox:
+            DefaultSelectedItems: =Filter(Vita_RolesFunctionsLists, 'Roles Name' in ThisItem.EmplRoleName)
+            DisplayFields: =["cr63b_rolesname"]
+            DisplayMode: =If(ThisItem.ShowSaveButtonsEmpl,DisplayMode.Edit,View)
+            Height: =34
+            InputTextPlaceholder: ="Select position(s)"
+            Items: =Vita_RolesFunctionsLists.'Roles Name'
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            SearchFields: =["cr63b_rolesname"]
+            SearchItems: =Search(Vita_RolesFunctionsLists.'Roles Name',comboboxFunctionEmpl_1.SearchText,"cr63b_rolesname")
+            Size: =11
+            Width: =258
+            X: =399
+            Y: =20
+            ZIndex: =12
+
+        inputEmplDescription_1 As text:
+            Default: =ThisItem.EmplDescr
+            DisplayMode: =inputEmplName_2.DisplayMode
+            Height: =99
+            HintText: ="Max 350 characters, provide a summary input of your task(s) for this Employer, Projects and Roles should be filled in in the previous sections."
+            MaxLength: =350
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =642
+            X: =16
+            Y: =74
+            ZIndex: =13
+
+        Label5_8 As label:
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: ="Function/ position"
+            Width: =170
+            X: =397
+            ZIndex: =14
+
+        drpdwnToYearEmpl_1 As dropdown:
+            AllowEmptySelection: =true
+            Default: =ThisItem.EmplToYear
+            DisplayMode: =inputEmplName_2.DisplayMode
+            Height: =34
+            Items: =Vita_YearsSelections
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =89
+            X: =741
+            Y: =74
+            ZIndex: =15
+
+        drpdwnToMonthEmpl_1 As dropdown:
+            Default: =ThisItem.EmplToMonth
+            DisplayMode: =inputEmplName_2.DisplayMode
+            Height: =34
+            Items: =Vita_Months
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =70
+            X: =671
+            Y: =74
+            ZIndex: =16
+
+        drpdwnFromYearEmpl_1 As dropdown:
+            AllowEmptySelection: =true
+            Default: =ThisItem.EmplFromYear
+            DisplayMode: =inputEmplName_2.DisplayMode
+            Height: =34
+            Items: =Vita_YearsSelections
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =89
+            X: =738
+            Y: =20
+            ZIndex: =17
+
+        drpdwnFromMonthEmpl_1 As dropdown:
+            Default: =ThisItem.EmplFromMonth
+            DisplayMode: =inputEmplName_2.DisplayMode
+            Height: =34
+            Items: =Vita_Months
+            OnChange: =Set(NeedssavedEmpl,true)
+            OnSelect: =Select(Parent)
+            Width: =67
+            X: =671
+            Y: =20
+            ZIndex: =18
+
+        Label4_38 As label:
+            Height: =22
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Description of the work experience:"
+            Width: =244
+            X: =16
+            Y: =52
+            ZIndex: =19
+
+        lblComboFuncConcEmpl_1 As label:
+            Height: =34
+            OnSelect: =Select(Parent)
+            Text: =Concat(comboboxFunctionEmpl_1.SelectedItems,'Roles Name', ", ")
+            Visible: =false
+            Width: =325
+            X: =19
+            Y: =234
+            ZIndex: =21
+
+        lblAmountofMonthsEmpl_1 As label:
+            Align: =Align.Right
+            FontWeight: =FontWeight.Bold
+            Height: =19
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =((Value(drpdwnToYearEmpl_1.Selected.cr63b_year)-Value(drpdwnFromYearEmpl_1.Selected.Year))*12+(Value(drpdwnToMonthEmpl_1.Selected.cr63b_monthshortname)-Value(drpdwnFromMonthEmpl_1.Selected.cr63b_monthshortname))+1)
+            Width: =36
+            X: =793
+            Y: =153
+            ZIndex: =23
+
+        lblSaveWarningEmpl_1 As label:
+            Color: =RGBA(255, 0, 0, 1)
+            Height: =15
+            Size: =9
+            Text: ="Travelled back in time?"
+            Visible: =If(Value(lblAmountofMonthsEmpl_1.Text)<1,true,false)
+            Width: =173
+            X: =671
+            Y: =113
+            ZIndex: =24
+
+        Label3_14 As label:
+            Align: =Align.Right
+            Height: =20
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                ="Months total:"
+            Width: =134
+            X: =671
+            Y: =153
+            ZIndex: =25
+
+        lblHighlightedEmplDefault As label:
+            OnSelect: =Select(Parent)
+            Text: ="0"
+            Visible: =false
+            Width: =50
+            X: =805
+            Y: =234
+            ZIndex: =26
+
+    "GalleryProjects_17 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =272
+        Items: =SortByColumns(Filter('Vita_Work Experiences', Vita_MasterID.ID = ResumeGalleryViewCV.Selected.cr63b_id),"cr63b_toyearempl",Descending,"cr63b_tomonthempl",Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =92
+        Width: =484
+        X: =882
+        Y: =172
+        ZIndex: =16
+
+        Separator2_32 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        HtmlText2_16 As htmlViewer:
+            Height: =91
+            HtmlText: ="<b>"&ThisItem.Employer&"</b>" & " | " & ThisItem.Position & " | " & ThisItem.FromMonthEmpl & "-" & ThisItem.FromYearEmpl & " to "& ThisItem.ToMonthEmpl & "-" & ThisItem.ToYearEmpl 
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            Width: =476
+            ZIndex: =30
+
+        Label4_39 As label:
+            Height: =55
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =
+            VerticalAlign: =VerticalAlign.Top
+            Width: =451
+            Y: =36
+            ZIndex: =33
+
+    Group1_7 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =24
+
+        imgLogoVanOord_17 As image:
+            Height: =74
+            Image: =imgVanOordCrownLogo
+            Tooltip: ="Select position(s)"
+            Width: =194
+            X: =1132
+            Y: =32
+            ZIndex: =1
+
+        lblTitle_60 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =20
+            Text: ="Edit CV - My Employers"
+            Tooltip: ="Select position(s)"
+            Width: =409
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        icnEye_12 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_eye
+            OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Tooltip: ="Select position(s)"
+            Width: =90
+            X: =1268
+            Y: =573
+            ZIndex: =3
+
+        icnHome_16 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL home'
+            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+            Tooltip: ="Select position(s)"
+            Width: =90
+            X: =1268
+            Y: =668
+            ZIndex: =4
+
+        icnInstruction_15 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_lightbulb
+            OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Tooltip: ="Select position(s)"
+            Width: =90
+            X: =1173
+            Y: =573
+            ZIndex: =5
+
+        icnSearch_12 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL Vergrootglas'
+            Tooltip: ="Select position(s)"
+            Width: =90
+            X: =1173
+            Y: =668
+            ZIndex: =6
+
+    EditMyEmpPopup_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =25
+
+        Rectangle2_1 As rectangle:
+            Fill: =RGBA(0, 0, 0, .5)
+            Height: =768
+            Visible: =GoBackScreenAddEmpl
+            Width: =1366
+            ZIndex: =20
+
+        Rectangle3_1 As rectangle:
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =248
+            Visible: =GoBackScreenAddEmpl
+            Width: =560
+            X: =413
+            Y: =251
+            ZIndex: =21
+
+        Label24_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =93
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            Visible: =GoBackScreenAddEmpl
+            Width: =470
+            X: =458
+            Y: =295
+            ZIndex: =22
+
+        Button6_7 As button:
+            Height: =53
+            OnSelect: =Navigate(EditMyCV,ScreenTransition.Cover);Set(GoBackScreenAddEmpl,false)
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Visible: =GoBackScreenAddEmpl
+            Width: =146
+            X: =545
+            Y: =416
+            ZIndex: =23
+
+        Button8_1 As button:
+            Height: =53
+            OnSelect: =Set(GoBackScreenAddEmpl,false)
+            Size: =13
+            Text: ="Cancel"
+            Visible: =GoBackScreenAddEmpl
+            Width: =133
+            X: =743
+            Y: =416
+            ZIndex: =24
+

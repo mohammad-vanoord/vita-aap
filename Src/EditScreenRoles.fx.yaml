@@ -1,0 +1,468 @@
+EditScreenRoles As screen:
+
+    lblTitle_49 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Add a Role"
+        Width: =409
+        X: =75
+        Y: =106
+        ZIndex: =7
+
+    btnBacktoEditProj_1 As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: =If(!ShowSaveAddRoleSuccess, Set(GoBackScreenAddRole, true),Navigate(EditMyCV,ScreenTransition.Cover))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =12
+        Text: ="Back to Edit CV"
+        Width: =125
+        X: =1032
+        Y: =713
+        ZIndex: =8
+
+    btnSaveEditProj_1 As button:
+        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(
+                AddRolesCollection,
+                If(
+                    !IsBlank(AddRoleName),
+                    Patch(
+                        'PA_Roles (test)',
+                        Defaults('PA_Roles (test)'),
+                        {
+                            Title: AddRoleName,
+                            'What did you do in this role?': AddRoleDescr,
+                            'Months of experience in this role':AddRoleExperience,
+                            ProjectOrAddedRole:ProjectOrAddedRole,
+                            IncludeInCV:Text(1),
+                            PA_MasterIDRoles: ResumeGalleryViewCV.Selected.cr63b_id
+                        }
+                    )
+                )
+            );
+            
+            Set(
+                ShowSaveAddRoleSuccess,
+                true
+            );ClearCollect(AddRolesCollection, {AddRoleName: "", AddRoleDescr: "", AddRoleExperience:0, ProjectOrAddedRole:"", ShowSaveButtonsAddRole:true});
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =125
+        X: =896
+        Y: =713
+        ZIndex: =9
+
+    lblTitle_51 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =15
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =25
+        Y: =164
+        ZIndex: =10
+
+    lblSaveWarningEditRole As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =27
+        Size: =11
+        Text: ="Save role first"
+        Visible: =NeedssavedQual
+        Width: =156
+        X: =896
+        Y: =663
+        ZIndex: =11
+
+    lblTitlePageViewMyCV_5 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =72
+        PaddingBottom: =0
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =708
+        X: =449
+        Y: =18
+        ZIndex: =12
+
+    lblTitle_50 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Your Roles"
+        Width: =409
+        X: =745
+        Y: =113
+        ZIndex: =13
+
+    "GalleryAddRoleColl_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =569
+        Items: =AddRolesCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =149
+        Width: =550
+        Y: =173
+        ZIndex: =14
+
+        Separator2_25 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputAddRoleName_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.AddRoleName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsAddRole,DisplayMode.Edit,View)
+            Height: =30
+            HintText: ="Chair Strategy 2030 committee "
+            OnChange: =Set(NeedssavedAddRole,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =340
+            X: =16
+            Y: =28
+            ZIndex: =2
+
+        Label1_15 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Role/ function/ position :"
+            Width: =233
+            X: =16
+            ZIndex: =5
+
+        inputAddRoleDescr_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.AddRoleDescr
+            DisplayMode: =inputAddRoleName_1.DisplayMode
+            Height: =57
+            HintText: ="e.g. Strategy 2030 group, responsible for the Strategy Plan 2030 for the department."
+            MaxLength: =150
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedAddRole,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =340
+            X: =16
+            Y: =84
+            ZIndex: =8
+
+        Label4_31 As label:
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Description role:"
+            Width: =294
+            X: =16
+            Y: =52
+            ZIndex: =9
+
+        iconSaveAddRole_1 As icon.Save:
+            Height: =44
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    AddRolesCollection,
+                    ThisItem,
+                    {
+                        AddRoleName: inputAddRoleName_1.Text,
+                        AddRoleDescr: inputAddRoleDescr_1.Text,
+                        AddRoleExperience:Value(inputAddRoleExperience_1.Text),
+                        ProjectOrAddedRole:lblProjectOrAddedRoleDefaultAddedRole.Text,
+                        ShowSaveButtonsAddRole: false
+                    }
+                );If(EditPressedAddRole, false, 
+                Collect(
+                    AddRolesCollection,
+                    {
+                        AddRoleName: "",
+                        AddRoleDescr: "",
+                        AddRoleExperience:0,
+                        ProjectOrAddedRole:"",
+                        ShowSaveButtonsAddRole: true
+                    }
+                ));UpdateContext({EditPressedAddRole: false});Set(NeedssavedAddRole, false)
+            Visible: =ThisItem.ShowSaveButtonsAddRole
+            Width: =44
+            X: =371
+            Y: =97
+            ZIndex: =12
+
+        iconDeleteAddRole_1 As icon.Trash:
+            Height: =44
+            Icon: =Icon.Trash
+            OnSelect: =Remove(AddRolesCollection,ThisItem);Set(NeedssavedAddRole,false)
+            Visible: =iconSaveAddRole_1.Visible
+            Width: =44
+            X: =424
+            Y: =97
+            ZIndex: =13
+
+        icnEditRole_1 As icon.Edit:
+            Height: =44
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(AddRolesCollection,ThisItem, {ShowSaveButtonsAddRole: true});UpdateContext({EditPressedAddRole:true})
+            Visible: =!ThisItem.ShowSaveButtonsAddRole
+            Width: =40
+            X: =483
+            Y: =97
+            ZIndex: =18
+
+        inputAddRoleExperience_1 As text:
+            BorderColor: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.AddRoleExperience
+            DisplayMode: =If(ThisItem.ShowSaveButtonsAddRole,DisplayMode.Edit,View)
+            Height: =29
+            HintText: ="[years]"
+            OnChange: =Set(NeedssavedAddRole,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =74
+            X: =449
+            Y: =29
+            ZIndex: =21
+
+        Label1_16 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Months of experience:"
+            Width: =84
+            X: =369
+            Y: =29
+            ZIndex: =22
+
+        lblProjectOrAddedRoleDefaultAddedRole As label:
+            Height: =26
+            OnSelect: =Select(Parent)
+            Text: ="1"
+            Width: =27
+            X: =523
+            Y: =120
+            ZIndex: =23
+
+    "GalleryProjects_14 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =382
+        Items: =Filter('PA_Roles (test)',PA_MasterIDRoles = ResumeGalleryViewCV.Selected.cr63b_id)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =93
+        Width: =620
+        X: =745
+        Y: =172
+        ZIndex: =15
+
+        Separator2_26 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        HtmlText2_13 As htmlViewer:
+            Height: =28
+            HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.'Months of experience in this role' & " months of experience"
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            Width: =594
+            ZIndex: =30
+
+        Label4_32 As label:
+            Height: =68
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =ThisItem.'What did you do in this role?'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =594
+            Y: =25
+            ZIndex: =33
+
+    btnAddRow_4 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                AddRolesCollection,
+                {
+                    AddRoleName: "",
+                    AddRoleDescr: "",
+                    AddRoleExperience:0,
+                    ProjectOrAddedRole:"",
+                    ShowSaveButtonsAddRole: true
+                }
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =25
+        Y: =114
+        ZIndex: =16
+
+    Group1_4 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =24
+
+        imgLogoVanOord_14 As image:
+            Height: =74
+            Image: =imgVanOordCrownLogo
+            Width: =194
+            X: =1132
+            Y: =32
+            ZIndex: =1
+
+        lblTitle_48 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =20
+            Text: ="Edit CV - My Roles"
+            Width: =409
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        icnEye_9 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_eye
+            OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1268
+            Y: =573
+            ZIndex: =3
+
+        icnHome_13 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL home'
+            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+            Width: =90
+            X: =1268
+            Y: =668
+            ZIndex: =4
+
+        icnInstruction_12 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_lightbulb
+            OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1173
+            Y: =573
+            ZIndex: =5
+
+        icnSearch_9 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL Vergrootglas'
+            Width: =90
+            X: =1173
+            Y: =668
+            ZIndex: =6
+
+    Group3_2 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =46
+
+        Label11_3 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =179
+            PaddingLeft: =15
+            PaddingRight: =15
+            PaddingTop: =15
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =GoBackScreenAddRole = true
+            Width: =455
+            X: =404
+            Y: =297
+            ZIndex: =17
+
+        btnBacktoEditCVAddLang_5 As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =45
+            OnSelect: =Navigate(EditMyCV,ScreenTransition.Cover);Set(GoBackScreenAddRole,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Visible: =Label11_3.Visible
+            Width: =125
+            X: =449
+            Y: =412
+            ZIndex: =18
+
+        Button6_3 As button:
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =46
+            OnSelect: =Set(GoBackScreenAddRole,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =Label11_3.Visible
+            Width: =125
+            X: =684
+            Y: =412
+            ZIndex: =19
+

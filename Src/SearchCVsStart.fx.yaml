@@ -1,0 +1,822 @@
+SearchCVsStart As screen:
+
+    "Gallery7 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+        Height: =613
+        Items: |-
+            =If(CheckboxLanguageSearch.Value=true,Distinct(CollectSearchLanguage,SP_LangMasterID),CheckboxCertSearch.Value=true,Distinct(CollectSearchCert,PA_MasterIDCert),CheckboxCourseSearch.Value=true,Distinct(CollectSearchCourse,PA_MasterIDCert),CheckboxEmplSearch.Value=true,Distinct(CollectSearchEmpl,PA_MasterIDEmpl),
+            CheckboxEduSearch.Value=true,Distinct(CollectSearchEdu,SP_EduMasterID),
+            CheckboxEduTitleSearch.Value=true,Distinct(CollectSearchEduTitle,SP_EduMasterID),
+            CheckboxEduStudySearch.Value=true,Distinct(CollectSearchEduStudy,SP_EduMasterID),
+            CheckboxSkillSearch.Value=true,Distinct(CollectSearchSkill,PA_MasterIDSkill),
+            CheckboxEquipmentSearch.Value=true,Distinct(CollectSearchEquipment,PA_MasterIDSkill),
+            CheckboxCVID.Value=true,Distinct(CollectSearchCVID,ID))
+        Layout: =Layout.Vertical
+        TemplateFill: =
+        TemplatePadding: =0
+        TemplateSize: =64
+        Visible: =!Button7.Visible
+        Width: =756
+        X: =520
+        Y: =112
+        ZIndex: =1
+
+        Separator16 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =4
+
+        Label27 As label:
+            Height: =16
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: |-
+                ="CV ID: " & ThisItem.Result
+            Width: =72
+            X: =64
+            Y: =48
+            ZIndex: =5
+
+        Label25 As label:
+            Height: =28
+            Italic: =true
+            Size: =11
+            Text: =LookUp(PA_MasterList,ID=ThisItem.Result,Position)
+            Width: =345
+            X: =64
+            Y: =20
+            ZIndex: =6
+
+        Image4 As image:
+            Height: =62
+            Image: =LookUp(PA_MasterList,ID=ThisItem.Result,Office365Users.UserPhoto(MailAddress))
+            OnSelect: =Select(Parent)
+            Width: =60
+            ZIndex: =8
+
+        Label27_1 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =28
+            OnSelect: =Select(Parent)
+            Text: =LookUp(PA_MasterList,ID=ThisItem.Result,'First Name') &" "&  LookUp(PA_MasterList,ID=ThisItem.Result,'Last Name')
+            Width: =332
+            X: =64
+            ZIndex: =9
+
+        Button4_5 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =20
+            OnSelect: =Navigate(ViewMyCVsPrint,ScreenTransition.Cover); Set(varMasterIDSelected,ThisItem.Result)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13
+            Text: ="View"
+            Width: =64
+            X: =667
+            Y: =8
+            ZIndex: =10
+
+        Button4_6 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =20
+            OnSelect: ='CreateaCVfromVita2(test2)'.Run(ThisItem.Result,Office365Users.MyProfile().Mail,LookUp(PA_MasterList,ID=ThisItem.Result,Title))
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13
+            Text: ="PDF"
+            Width: =64
+            X: =667
+            Y: =35
+            ZIndex: =11
+
+        Label20 As label:
+            Height: =62
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: =Concat(Filter('PA_Project experience (test)',ThisItem.Result=PA_ProjMasterID),Title & "; ")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =252
+            X: =415
+            ZIndex: =12
+
+        Label22 As label:
+            Height: =16
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =LookUp(Filter('PA_Skills (test)',ThisItem.Result=PA_MasterIDSkill),Title=ComboBoxSkillSearch.Selected.Result,'Years of experience in skill') & "Years of experience"
+            Visible: =If(CheckboxSkillSearch.Value=true,true,false)
+            Width: =41
+            X: =325
+            Y: =48
+            ZIndex: =13
+
+        Label23 As label:
+            Height: =14
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: |-
+                ="years of experience:"
+            Visible: =If(CheckboxSkillSearch.Value=true,true,false)
+            Width: =112
+            X: =213
+            Y: =49
+            ZIndex: =14
+
+        Label22_1 As label:
+            Height: =16
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =LookUp(Filter('PA_Skills (test)',ThisItem.Result=PA_MasterIDSkill),Title=ComboBoxEquipmentSearch.Selected.Result,'Years of experience in skill')
+            Visible: =If(CheckboxEquipmentSearch.Value=true,true,false)
+            Width: =41
+            X: =325
+            Y: =48
+            ZIndex: =15
+
+        Label23_1 As label:
+            Height: =14
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: |-
+                ="years of experience:"
+            Visible: =If(CheckboxEquipmentSearch.Value=true,true,false)
+            Width: =112
+            X: =213
+            Y: =49
+            ZIndex: =16
+
+    "Gallery4 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+        Height: =609
+        Items: =SortByColumns(SummaryRoleCollectionSearch3,"Sum Of Months",Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =68
+        Visible: =Button7.Visible
+        Width: =756
+        X: =520
+        Y: =116
+        ZIndex: =1
+
+        Subtitle1 As label:
+            Height: =17
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: |-
+                ="Weeks experience in selected role: " & ThisItem.'Sum Of Months'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =343
+            X: =65
+            Y: =51
+            ZIndex: =2
+
+        Separator9 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =4
+
+        Label25_1 As label:
+            Height: =23
+            Italic: =true
+            Size: =11
+            Text: =LookUp(PA_MasterList,ID=ThisItem.PA_MasterIDRoles,Position)
+            Width: =432
+            X: =60
+            Y: =28
+            ZIndex: =5
+
+        Label27_2 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =35
+            OnSelect: =Select(Parent)
+            Text: =LookUp(PA_MasterList,ID=ThisItem.PA_MasterIDRoles,'First Name') &" "&  LookUp(PA_MasterList,ID=ThisItem.PA_MasterIDRoles,'Last Name')
+            Width: =432
+            X: =60
+            ZIndex: =6
+
+        Label27_3 As label:
+            Height: =15
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: |-
+                ="CV ID: " & ThisItem.PA_MasterIDRoles
+            Width: =64
+            X: =692
+            Y: =20
+            ZIndex: =7
+
+        Image4_1 As image:
+            Height: =62
+            Image: =LookUp(PA_MasterList,ID=ThisItem.PA_MasterIDRoles,Office365Users.UserPhoto(MailAddress))
+            OnSelect: =Select(Parent)
+            Width: =60
+            ZIndex: =8
+
+        Button4_7 As button:
+            BorderThickness: =0
+            Fill: =RGBA(37, 58, 121, 0.61)
+            Height: =20
+            OnSelect: =
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13
+            Text: ="View"
+            Width: =64
+            X: =692
+            ZIndex: =9
+
+        Label20_1 As label:
+            Height: =62
+            OnSelect: =Select(Parent)
+            Size: =8
+            Text: =Concat(Filter('PA_Project experience (test)',ThisItem.PA_MasterIDRoles=PA_ProjMasterID),Title & "; ")
+            Width: =266
+            X: =426
+            ZIndex: =10
+
+    Button5 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        OnSelect: |-
+            =If(
+                CheckboxLanguageSearch.Value = true,
+                ClearCollect(
+                    CollectSearchLanguage,
+                    Filter(
+                        'PA_Languages (test)',
+                        LangName = ComboBoxLanguageSearch.Selected.Title
+                    )
+                )
+            );
+            
+            If(
+                CheckboxCertSearch.Value = true,
+                ClearCollect(
+                    CollectSearchCert,
+                    Filter(
+                        'PA_Certifications (test)',
+                        Title = ComboBoxCertSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxCourseSearch.Value = true,
+                ClearCollect(
+                    CollectSearchCourse,
+                    Filter(
+                        'PA_Certifications (test)',
+                        Title = ComboBoxCourseSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxEmplSearch.Value = true,
+                ClearCollect(
+                    CollectSearchEmpl,
+                    Filter(
+                        'PA_Work experience (test)',
+                        Title = ComboBoxEmplSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxEduSearch.Value = true,
+                ClearCollect(
+                    CollectSearchEdu,
+                    Filter(
+                        PA_Edu,
+                        Title = ComboBoxEduSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxEduTitleSearch.Value = true,
+                ClearCollect(
+                    CollectSearchEduTitle,
+                    Filter(
+                        PA_Edu,
+                        SP_EduTitle = ComboBoxEduTitleSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxEduStudySearch.Value = true,
+                ClearCollect(
+                    CollectSearchEduStudy,
+                    Filter(
+                        PA_Edu,
+                        SP_EduDeg = ComboBoxStudySearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxSkillSearch.Value = true,
+                ClearCollect(
+                    CollectSearchSkill,
+                    Filter(
+                        'PA_Skills (test)',
+                        Title = ComboBoxSkillSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxEquipmentSearch.Value = true,
+                ClearCollect(
+                    CollectSearchEquipment,
+                    Filter(
+                        'PA_Skills (test)',
+                        Title = ComboBoxEquipmentSearch.Selected.Result
+                    )
+                )
+            );
+            If(
+                CheckboxCVID.Value = true,
+                ClearCollect(
+                    CollectSearchCVID,
+                    Filter(
+                        PA_MasterList,
+                        ID = Value(TextInput1.Text)
+                    )
+                ))
+            
+            /*
+            If(CheckboxLanguageSearch.Value=true,ForAll(CollectSearchLanguage,
+            If(CheckboxRoleSearch.Value=true,ForAll(CollectSearchRoles,
+            If(CheckboxCertSearch.Value=true,ForAll(CollectSearchCert,
+            If(CheckboxCourseSearch.Value=true,ForAll(CollectSearchCourse,
+            If(CheckboxEmplSearch.Value=true,ForAll(CollectSearchEmpl,
+            If(CheckboxEduSearch.Value=true,ForAll(CollectSearchEdu,
+            If(CheckboxEduTitleSearch.Value=true,ForAll(CollectSearchEduTitle,
+            If(CheckboxEduStudySearch.Value=true,ForAll(CollectSearchEduStudy,
+            If(CheckboxSkillSearch.Value=true,ForAll(CollectSearchSkill,
+            If(CheckboxEquipmentSearch.Value=true,ForAll(CollectSearchEquipment,
+            If(PA_MasterIDRoles=SP_LangMasterID=PA_MasterIDCert=PA_MasterIDEmpl=SP_EduMasterID=PA_MasterIDSkill,Collect(colMatchLangRole,{matchFound:PA_MasterIDRoles})))))))))))))))))))))) */
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Search"
+        Visible: =!Button7.Visible
+        X: =239
+        Y: =670
+        ZIndex: =5
+
+    ComboBoxLanguageSearch As combobox:
+        ChevronDisabledFill: =RGBA(237, 237, 237, 1)
+        DefaultSelectedItems: =
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Title"]
+        DisplayMode: =If(CheckboxLanguageSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on language"
+        Items: =PA_LanguageNames.Title
+        SearchFields: =["Title"]
+        SearchItems: =Search(PA_LanguageNames.Title,ComboBoxLanguageSearch.SearchText,"Title")
+        SelectMultiple: =false
+        X: =71
+        Y: =112
+        ZIndex: =8
+
+    ComboBoxRoleSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxRoleSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on role"
+        Items: =SortByColumns(Distinct('PA_Roles (test)'.Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct('PA_Roles (test)'.Title,Title),"Result",Ascending),ComboBoxRoleSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =162
+        ZIndex: =9
+
+    ComboBoxCertSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxCertSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on certificates"
+        Items: =SortByColumns(Distinct(Filter('PA_Certifications (test)',CertificateOrCourse="Certificate").Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(Filter('PA_Certifications (test)',CertificateOrCourse="Certificate").Title,Title),"Result",Ascending),ComboBoxCertSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =212
+        ZIndex: =10
+
+    ComboBoxCourseSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxCourseSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on course"
+        Items: =SortByColumns(Distinct(Filter('PA_Certifications (test)',CertificateOrCourse="Course").Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(Filter('PA_Certifications (test)',CertificateOrCourse="Course").Title,Title),"Result",Ascending),ComboBoxCourseSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =261
+        ZIndex: =11
+
+    ComboBoxEmplSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxEmplSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on employer"
+        Items: =SortByColumns(Distinct('PA_Work experience (test)'.Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct('PA_Work experience (test)'.Title,Title),"Result",Ascending),ComboBoxEmplSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =313
+        ZIndex: =12
+
+    ComboBoxEduSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxEduSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on education"
+        Items: =SortByColumns(Distinct(PA_Edu.Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(PA_Edu.Title,Title),"Result",Ascending),ComboBoxEduSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =362
+        ZIndex: =13
+
+    ComboBoxEduTitleSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxEduTitleSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on educational title"
+        Items: =SortByColumns(Distinct(PA_Edu.SP_EduTitle,SP_EduTitle),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(PA_Edu.SP_EduTitle,SP_EduTitle),"Result",Ascending),ComboBoxEduTitleSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =415
+        ZIndex: =14
+
+    ComboBoxStudySearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxEduStudySearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on study"
+        Items: =SortByColumns(Distinct(PA_Edu.SP_EduDeg,SP_EduDeg),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(PA_Edu.SP_EduDeg,SP_EduDeg),"Result",Ascending),ComboBoxStudySearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =465
+        ZIndex: =15
+
+    ComboBoxSkillSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxSkillSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on Skill"
+        Items: =SortByColumns(Distinct(Filter('PA_Skills (test)',SkillOrEquipment="Skill").Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(Filter('PA_Skills (test)',SkillOrEquipment="Skill").Title,Title),"Result",Ascending),ComboBoxSkillSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =515
+        ZIndex: =16
+
+    ComboBoxEquipmentSearch As combobox:
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisplayFields: =["Result"]
+        DisplayMode: =If(CheckboxEquipmentSearch.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        InputTextPlaceholder: ="Search on Equipment"
+        Items: =SortByColumns(Distinct(Filter('PA_Skills (test)',SkillOrEquipment="Equipment/Tool").Title,Title),"Result",Ascending)
+        SearchFields: =["Result"]
+        SearchItems: =Search(SortByColumns(Distinct(Filter('PA_Skills (test)',SkillOrEquipment="Equipment/Tool").Title,Title),"Result",Ascending),ComboBoxEquipmentSearch.SearchText,"Result")
+        SelectMultiple: =false
+        X: =71
+        Y: =565
+        ZIndex: =17
+
+    CheckboxLanguageSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =112
+        ZIndex: =18
+
+    CheckboxRoleSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =162
+        ZIndex: =19
+
+    CheckboxCertSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =212
+        ZIndex: =20
+
+    CheckboxCourseSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =262
+        ZIndex: =21
+
+    CheckboxEmplSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =313
+        ZIndex: =22
+
+    CheckboxEduSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =362
+        ZIndex: =23
+
+    CheckboxEduTitleSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =415
+        ZIndex: =24
+
+    CheckboxEduStudySearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =465
+        ZIndex: =25
+
+    CheckboxSkillSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =515
+        ZIndex: =26
+
+    CheckboxEquipmentSearch As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =565
+        ZIndex: =27
+
+    Group1_9 As group:
+        Height: =5
+        Width: =5
+        X: =8
+        Y: =10
+        ZIndex: =40
+
+        imgLogoVanOord_20 As image:
+            Height: =74
+            Image: =imgVanOordCrownLogo
+            Width: =194
+            X: =1140
+            Y: =42
+            ZIndex: =28
+
+        lblTitle_17 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =20
+            Text: ="Search Criteria (select 1)"
+            Width: =409
+            X: =48
+            Y: =50
+            ZIndex: =29
+
+        icnHome_19 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL home'
+            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+            Width: =90
+            X: =1276
+            Y: =678
+            ZIndex: =37
+
+        icnInstruction_17 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_lightbulb
+            OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1276
+            Y: =585
+            ZIndex: =38
+
+    lblTitle_20 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: |-
+            ="Search Results:"
+        Width: =409
+        X: =520
+        Y: =50
+        ZIndex: =41
+
+    Label21 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Language"
+        Visible: =If(CheckboxLanguageSearch.Value=true,false,true)
+        Width: =292
+        X: =72
+        Y: =112
+        ZIndex: =42
+
+    Label21_1 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Role in project"
+        Visible: =If(CheckboxRoleSearch.Value=true,false,true)
+        Width: =293
+        X: =71
+        Y: =162
+        ZIndex: =43
+
+    Label21_2 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Certificate"
+        Visible: =If(CheckboxCertSearch.Value=true,false,true)
+        Width: =293
+        X: =71
+        Y: =211
+        ZIndex: =44
+
+    Label21_3 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Course"
+        Visible: =If(CheckboxCourseSearch.Value=true,false,true)
+        Width: =293
+        X: =71
+        Y: =261
+        ZIndex: =45
+
+    Label21_4 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Employer"
+        Visible: =If(CheckboxEmplSearch.Value=true,false,true)
+        Width: =293
+        X: =71
+        Y: =311
+        ZIndex: =46
+
+    Label21_5 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="School/ University"
+        Visible: =If(CheckboxEduSearch.Value=true,false,true)
+        Width: =292
+        X: =72
+        Y: =362
+        ZIndex: =47
+
+    Label21_6 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Educational Title"
+        Visible: =If(CheckboxEduTitleSearch.Value=true,false,true)
+        Width: =292
+        X: =72
+        Y: =415
+        ZIndex: =48
+
+    Label21_7 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Educational degree"
+        Visible: =If(CheckboxEduStudySearch.Value=true,false,true)
+        Width: =292
+        X: =72
+        Y: =466
+        ZIndex: =49
+
+    Label21_8 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Skill"
+        Visible: =If(CheckboxSkillSearch.Value=true,false,true)
+        Width: =292
+        X: =72
+        Y: =516
+        ZIndex: =50
+
+    Label21_9 As label:
+        Color: =RGBA(166, 166, 166, 1)
+        Size: =10
+        Text: ="Tool equipment"
+        Visible: =If(CheckboxEquipmentSearch.Value=true,false,true)
+        Width: =292
+        X: =72
+        Y: =565
+        ZIndex: =51
+
+    Button7 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        OnSelect: |-
+            =Collect(SummaryRoleCollectionSearch, 'PA_Roles (test)');
+            ForAll('PA_Project experience (test)',Collect(SummaryRoleCollectionSearch,{PA_MasterIDRoles:PA_ProjMasterID,Title:RoleProject,'Months of experience in this role':TotalMonthsOnProject}));
+            ClearCollect(SummaryRoleCollectionSearch2, GroupBy(Filter(SummaryRoleCollectionSearch,Title = ComboBoxRoleSearch.Selected.Result),"PA_MasterIDRoles","Data"));
+            ClearCollect(SummaryRoleCollectionSearch3, AddColumns(SummaryRoleCollectionSearch2,"Sum Of Months", Sum(Data,'Months of experience in this role')))
+            
+            
+            /*
+            ClearCollect(SummaryRoleCollectionSearch, 'PA_Roles (test)');
+            ClearCollect(SummaryRoleCollectionSearch2, GroupBy(Filter(SummaryRoleCollectionSearch,Title = ComboBoxRoleSearch.Selected.Result),"PA_MasterIDRoles","Data"));
+            ClearCollect(SummaryRoleCollectionSearch3, AddColumns(SummaryRoleCollectionSearch2,"Sum of Months", Sum(Data,'Months of experience in this role')));
+            */
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Search role"
+        Visible: =If(CheckboxRoleSearch.Value=true,true,false)
+        X: =239
+        Y: =670
+        ZIndex: =52
+
+    CheckboxCVID As checkbox:
+        Height: =40
+        Text: =
+        Width: =40
+        X: =31
+        Y: =612
+        ZIndex: =54
+
+    TextInput1 As text:
+        Default: =""
+        DisplayMode: =If(CheckboxCVID.Value=true, DisplayMode.Edit, DisplayMode.Disabled)
+        HintText: ="Search on CV ID"
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =10
+        Width: =328
+        X: =71
+        Y: =615
+        ZIndex: =56
+
+    lblTitle_21 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =31
+        Size: =8
+        Text: ="at the moment, you can only search on 1 criterium"
+        Width: =152
+        X: =239
+        Y: =710
+        ZIndex: =57
+
+    ButtonEditAddProj_10 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =32
+        OnSelect: =Back(ScreenTransition.CoverRight)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =13
+        Text: ="Go back"
+        Width: =90
+        X: =1276
+        Y: =546
+        ZIndex: =58
+

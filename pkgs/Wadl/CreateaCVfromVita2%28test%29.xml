@@ -1,0 +1,74 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://europe-001.azure-apim.net/apim/logicflows" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="CreateaCVfromVita2(test)" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Create a CV from Vita2 (test)" />
+  <grammars>
+    <jsonTypes targetNamespace="https://europe-001.azure-apim.net/apim/logicflows" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_File_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_LastName_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_FirstName_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_UniversityName_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_JobName_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_Languages_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_StartProfCar_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_WorkingForVanOordSince_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_LanguageTotalLanguage1-1_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_LanguageTotalProficiency1-1_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_ProjectNameCountry1-1_def" />
+      <string name="ManualTriggerInput_PopulateaMicrosoftWordtemplate_ProjectNameShortDescription1-1_def" />
+      <string name="ManualTriggerInput_Setvariable_Value_def" />
+      <string name="ManualTriggerInput_Initializevariable2_Value_def" />
+      <object name="ManualTriggerInput">
+        <property name="PopulateaMicrosoftWordtemplate_File" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_LastName" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_FirstName" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_UniversityName" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_JobName" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_Languages" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_StartProfCar" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_WorkingForVanOordSince" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_LanguageTotalLanguage1-1" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_LanguageTotalProficiency1-1" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_ProjectNameCountry1-1" type="string" />
+        <property name="PopulateaMicrosoftWordtemplate_ProjectNameShortDescription1-1" type="string" />
+        <property name="Setvariable_Value" type="string" />
+        <property name="Initializevariable2_Value" type="string" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://europe-001.azure-apim.net/apim/logicflows">
+    <resource path="/{connectionId}/triggers/manual/run">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="Run">
+        <doc title="Runs a logic flow trigger." />
+        <request>
+          <param style="query" name="api-version" type="xs:string" required="true" fixed="2015-02-01-preview">
+            <doc title="The api version" />
+          </param>
+          <representation mediaType="application/json">
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_File" path="/PopulateaMicrosoftWordtemplate_File" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_LastName" path="/PopulateaMicrosoftWordtemplate_LastName" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_FirstName" path="/PopulateaMicrosoftWordtemplate_FirstName" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_UniversityName" path="/PopulateaMicrosoftWordtemplate_UniversityName" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_JobName" path="/PopulateaMicrosoftWordtemplate_JobName" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_Languages" path="/PopulateaMicrosoftWordtemplate_Languages" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_StartProfCar" path="/PopulateaMicrosoftWordtemplate_StartProfCar" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_WorkingForVanOordSince" path="/PopulateaMicrosoftWordtemplate_WorkingForVanOordSince" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_LanguageTotalLanguage1-1" path="/PopulateaMicrosoftWordtemplate_LanguageTotalLanguage1-1" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_LanguageTotalProficiency1-1" path="/PopulateaMicrosoftWordtemplate_LanguageTotalProficiency1-1" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_ProjectNameCountry1-1" path="/PopulateaMicrosoftWordtemplate_ProjectNameCountry1-1" type="xs:string" required="true" />
+            <param style="plain" name="PopulateaMicrosoftWordtemplate_ProjectNameShortDescription1-1" path="/PopulateaMicrosoftWordtemplate_ProjectNameShortDescription1-1" type="xs:string" required="true" />
+            <param style="plain" name="Setvariable_Value" path="/Setvariable_Value" type="xs:string" required="true" />
+            <param style="plain" name="Initializevariable2_Value" path="/Initializevariable2_Value" type="xs:string" required="true" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="logicflows" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "32b0f8da-a5c8-41f8-9ee1-90340419addc",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "CreateaCVfromVita2(test2)",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

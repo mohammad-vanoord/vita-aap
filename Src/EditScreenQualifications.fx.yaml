@@ -1,0 +1,405 @@
+EditScreenQualifications As screen:
+
+    lblTitle_41 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Add a Qualification summary"
+        Width: =409
+        X: =75
+        Y: =106
+        ZIndex: =13
+
+    btnBacktoEditCVAddLang_3 As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: =If(!ShowSaveAddQualSuccess, Set(GoBackScreenAddQual, true),Navigate(EditMyCV,ScreenTransition.Cover))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =12
+        Text: ="Back to Edit CV"
+        Width: =125
+        X: =1129
+        Y: =713
+        ZIndex: =14
+
+    btnSaveEditAddLang_1 As button:
+        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(
+                QualificationCollection,
+                If(
+                    !IsBlank(QualName),
+                    Patch(
+                        'PA_summary of qualifications (test)',
+                        Defaults('PA_summary of qualifications (test)'),
+                        {
+                            Title: QualName,
+                            QualAbout: QualAbout,
+                            HighlightedQualSum:HighlightedQualSum,
+                            IncludeInCV:Text(1),
+                            SP_QualMasterID: ResumeGalleryViewCV.Selected.cr63b_id
+                        }
+                    )
+                )
+            );Set(
+                ShowSaveAddQualSuccess,
+                true
+            );
+            ClearCollect(
+                QualificationCollection,
+                {
+                    QualName: "",
+                    QualAbout: "",
+                    HighlightedQualSum:"",
+                    ShowSaveButtonsQual: true
+                })
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =125
+        X: =993
+        Y: =713
+        ZIndex: =15
+
+    lblTitle_43 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =15
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =25
+        Y: =164
+        ZIndex: =16
+
+    lblSaveWarningQualEdit As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =27
+        Size: =11
+        Text: ="Save Summary first"
+        Visible: =NeedssavedQual
+        Width: =156
+        X: =896
+        Y: =663
+        ZIndex: =17
+
+    lblTitlePageViewMyCV_3 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =72
+        PaddingBottom: =0
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =708
+        X: =449
+        Y: =18
+        ZIndex: =18
+
+    lblTitle_42 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Your qualification summaries"
+        Width: =409
+        X: =751
+        Y: =114
+        ZIndex: =19
+
+    "GalleryAddQualSummary As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =402
+        Items: =QualificationCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =266
+        Width: =738
+        Y: =185
+        ZIndex: =20
+
+        Separator2_22 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        inputSumName_1 As text:
+            Default: =ThisItem.QualName   
+            DisplayMode: =If(ThisItem.ShowSaveButtonsQual,DisplayMode.Edit,View)
+            EnableSpellCheck: =true
+            HintText: ="[max 100 characters, title that relates to your summary below]"
+            MaxLength: =100
+            OnChange: =Set(NeedssavedQual,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =565
+            X: =16
+            Y: =40
+            ZIndex: =2
+
+        Label1_12 As label:
+            OnSelect: =Select(Parent)
+            Text: ="Summary title"
+            Width: =259
+            X: =16
+            ZIndex: =5
+
+        inputAbout_1 As text:
+            Default: =ThisItem.QualAbout
+            DisplayMode: =inputSumName_1.DisplayMode
+            EnableSpellCheck: =true
+            Height: =132
+            HintText: ="[[max 350 characters, provide a short summary of you as an employee. You can create more summaries applicable to different roles/disciplines you want to highlight. The title of the summary differentiates them in case you have more then 1 summary]"
+            MaxLength: =350
+            Mode: =TextMode.MultiLine
+            OnChange: =Set(NeedssavedQual,true)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =565
+            X: =16
+            Y: =120
+            ZIndex: =8
+
+        Label4_11 As label:
+            OnSelect: =Select(Parent)
+            Text: ="About the employee"
+            Width: =215
+            X: =16
+            Y: =80
+            ZIndex: =9
+
+        iconSave_6 As icon.Save:
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    QualificationCollection,
+                    ThisItem,
+                    {
+                        QualName: inputSumName_1.Text,
+                        QualAbout: inputAbout_1.Text,
+                        HighlightedQualSum: lblHighlightedDefaultAddQual.Text,
+                        ShowSaveButtonsQual: false
+                    }
+                );If(EditPressedQual, false, 
+                Collect(
+                    QualificationCollection,
+                    {
+                        QualName: "",
+                        QualAbout: "",
+                        HighlightedQualSum:"",
+                        ShowSaveButtonsQual: true
+                    }
+                ));UpdateContext({EditPressedQual: false});Set(NeedssavedQual, false)
+            Visible: =ThisItem.ShowSaveButtonsQual
+            X: =612
+            Y: =24
+            ZIndex: =12
+
+        iconDelete_6 As icon.Trash:
+            Icon: =Icon.Trash
+            OnSelect: =Remove(QualificationCollection,ThisItem);Set(NeedssavedQual,false)
+            Visible: =iconSave_6.Visible
+            X: =612
+            Y: =96
+            ZIndex: =13
+
+        IconChange_2 As icon.Edit:
+            Height: =36
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(QualificationCollection,ThisItem, {ShowSaveButtonsQual: true});UpdateContext({EditPressedQual:true})
+            Visible: =!ThisItem.ShowSaveButtonsQual
+            Width: =32
+            X: =675
+            ZIndex: =18
+
+        lblHighlightedDefaultAddQual As label:
+            Height: =37
+            OnSelect: =Select(Parent)
+            Text: ="0"
+            Visible: =false
+            Width: =63
+            X: =675
+            Y: =228
+            ZIndex: =19
+
+    Button3_6 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                QualificationCollection,
+                {
+                    QualName: "",
+                    QualAbout: "",
+                    HighlightedEmpl:"",
+                    ShowSaveButtonsQual: true
+                })
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =25
+        Y: =114
+        ZIndex: =21
+
+    "GalleryEditAddQualificationsSummary As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+        Height: =526
+        Items: =Filter('PA_summary of qualifications (test)',SP_QualMasterID = ResumeGalleryViewCV.Selected.cr63b_id)
+        Layout: =Layout.Vertical
+        OnSelect: =
+        TemplatePadding: =0
+        TemplateSize: =185
+        Width: =511
+        X: =757
+        Y: =164
+        ZIndex: =22
+
+        Separator9_4 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =184
+            ZIndex: =4
+
+        Label13_4 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.Title
+            Width: =376
+            ZIndex: =5
+
+        Label13_5 As label:
+            Height: =139
+            OnSelect: =Select(Parent)
+            Text: =ThisItem.QualAbout
+            VerticalAlign: =VerticalAlign.Top
+            Width: =388
+            Y: =45
+            ZIndex: =6
+
+    Group1_2 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =24
+
+        imgLogoVanOord_12 As image:
+            Height: =74
+            Image: =imgVanOordCrownLogo
+            Width: =194
+            X: =1132
+            Y: =32
+            ZIndex: =1
+
+        lblTitle_15 As label:
+            Color: =RGBA(37, 58, 121, 1)
+            Font: =Font.'Lato Black'
+            Height: =66
+            Size: =20
+            Text: ="Edit CV - Qualification summary"
+            Width: =409
+            X: =40
+            Y: =40
+            ZIndex: =2
+
+        icnEye_7 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: =VanOord_icons_eye
+            OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            Width: =90
+            X: =1268
+            Y: =573
+            ZIndex: =9
+
+        icnHome_11 As image:
+            BorderThickness: =1
+            Height: =90
+            Image: ='ICON BL home'
+            OnSelect: =Navigate(MainScreen,ScreenTransition.Cover)
+            Width: =90
+            X: =1268
+            Y: =668
+            ZIndex: =10
+
+    Group3 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =46
+
+        Label11_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =179
+            PaddingLeft: =15
+            PaddingRight: =15
+            PaddingTop: =15
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =GoBackScreenAddQual = true
+            Width: =455
+            X: =404
+            Y: =297
+            ZIndex: =23
+
+        btnBacktoEditCVAddLang_2 As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =45
+            OnSelect: =Navigate(EditMyCV,ScreenTransition.Cover);Set(GoBackScreenAddQual,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Visible: =Label11_1.Visible
+            Width: =125
+            X: =449
+            Y: =412
+            ZIndex: =24
+
+        Button6_1 As button:
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =46
+            OnSelect: =Set(GoBackScreenAddQual,false)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =Label11_1.Visible
+            Width: =125
+            X: =684
+            Y: =412
+            ZIndex: =25
+

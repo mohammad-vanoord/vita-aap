@@ -1,0 +1,52 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2021-12-09T00:17:15.9610000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {
+      "{Attachments}": "Attachments",
+      "{Attachments}@odata.type": "{Attachments} ({Attachments}@odata.type)",
+      "{FilenameWithExtension}": "File name with extension",
+      "{FullPath}": "Full Path",
+      "{HasAttachments}": "Has attachments",
+      "{Identifier}": "Identifier",
+      "{IsFolder}": "IsFolder",
+      "{Link}": "Link to item",
+      "{ModerationComment}": "Comments associated with the content approval of this list item",
+      "{ModerationStatus}": "Content approval status",
+      "{Name}": "Name",
+      "{Path}": "Folder path",
+      "{Thumbnail}": "Thumbnail",
+      "{TriggerWindowEndToken}": "Trigger Window End Token",
+      "{TriggerWindowStartToken}": "Trigger Window Start Token",
+      "{VersionNumber}": "Version number",
+      "Author": "Created By",
+      "Author#Claims": "Created By Claims",
+      "Award_x0020_date": "Award date",
+      "ComplianceAssetId": "Compliance Asset Id",
+      "Country": "Country",
+      "Created": "Created",
+      "Editor": "Modified By",
+      "Editor#Claims": "Modified By Claims",
+      "Final_x0020_completion": "Final completion",
+      "ID": "ID",
+      "Modified": "Modified",
+      "Project_x0020_in_x0020_1_x0020_s": "Project in 1 sentence",
+      "Project_x0020_in_x0020_3_x0020_s": "Project in 3 sentences",
+      "Project_x0020_name": "Project name",
+      "Title": "Title",
+      "Van_x0020_Oord_x0020_Organisatio": "Van Oord Organisation - Business Unit",
+      "Van_x0020_Oord_x0020_Organisatio0": "Van Oord Organisation - Area",
+      "Van_x0020_Oord_x0020_Organisatio1": "Van Oord Organisation - Sub Area / Product Group"
+    },
+    "DatasetName": "https://vanoord01.sharepoint.com/sites/Vita",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "PA_ProjectsCaptureToVita",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]

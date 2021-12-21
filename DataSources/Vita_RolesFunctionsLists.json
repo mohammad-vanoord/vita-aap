@@ -1,0 +1,98 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_rolesfunctionslists",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_rolesfunctionslist",
+    "Name": "Vita_RolesFunctionsLists",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_roledescription": "Role Description",
+      "cr63b_rolesname": "Roles Name",
+      "cr63b_vita_rolesfunctionslist_AsyncOperations": "System Jobs",
+      "cr63b_vita_rolesfunctionslist_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_rolesfunctionslist_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_rolesfunctionslist_DuplicateBaseRecord)",
+      "cr63b_vita_rolesfunctionslist_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_rolesfunctionslist_DuplicateMatchingRecord)",
+      "cr63b_vita_rolesfunctionslist_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_rolesfunctionslist_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_rolesfunctionslist_ProcessSession": "Process Sessions",
+      "cr63b_vita_rolesfunctionslist_SyncErrors": "Sync Errors",
+      "cr63b_vita_rolesfunctionslistid": "Vita_RolesFunctionsList",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_RolesFunctionsLists",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_RolesFunctionsLists (Views)",
+    "Name": "_cr63b_vita_rolesfunctionslist_views",
+    "RelatedEntityName": "Vita_RolesFunctionsLists",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1deabc6b-558f-4d80-920b-4a9fb255f57b": "Vita_RolesFunctionsList Advanced Find View",
+      "21d8b137-3410-4751-b553-eccfc927df14": "Active Vita_RolesFunctionsLists",
+      "2942e733-b7c7-409b-8ebd-8e29d908dfd9": "Vita_RolesFunctionsList Associated View",
+      "32262533-b842-4af1-8952-53590cff014b": "Inactive Vita_RolesFunctionsLists",
+      "9de4d292-fa9f-415c-b77f-68e9da79d3c2": "Vita_RolesFunctionsList Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_RolesFunctionsLists)",
+    "Name": "cr63b_vita_rolesfunctionslist_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_RolesFunctionsLists"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_RolesFunctionsLists",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_RolesFunctionsLists)",
+    "Name": "cr63b_vita_rolesfunctionslist_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_RolesFunctionsLists"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_RolesFunctionsLists",
+    "Type": "OptionSetInfo"
+  }
+]

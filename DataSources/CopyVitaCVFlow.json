@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "b743f5c6-68da-4637-9df7-5de26995d3a6",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "CopyVitaCVFlow",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "0feced09-54ea-4be2-a665-f16e22980fae",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "DeleteaCVVitaCVFlow",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

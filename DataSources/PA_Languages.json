@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_pa_languages",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_pa_language",
+    "MaxGetRowsCount": 500,
+    "Name": "PA_Languages",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_languagename": "LangName",
+      "cr63b_masterid_language": "SP_LangMasterID",
+      "cr63b_pa_language_AsyncOperations": "System Jobs",
+      "cr63b_pa_language_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_pa_language_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_pa_language_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_pa_language_ProcessSession": "Process Sessions",
+      "cr63b_pa_language_SyncErrors": "Sync Errors",
+      "cr63b_pa_languageid": "PA_Languages",
+      "cr63b_proficiencylevel": "LangProf",
+      "cr63b_title": "Title",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "PA_Languages",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "PA_Languages (Views)",
+    "Name": "_cr63b_pa_language_views",
+    "RelatedEntityName": "PA_Languages",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "41dad6b8-95c1-4bc4-b75c-23941354c739": "Active PA_Languagess",
+      "9a22feb7-858f-41c6-bc29-a8170556a935": "Inactive PA_Languagess",
+      "c540949d-b902-4025-afd8-307cd869423c": "PA_Languages Associated View",
+      "cded761b-a122-4870-b9be-d4acfb8c9621": "PA_Languages Lookup View",
+      "e7cdfabe-ce62-491d-bee3-3513fcd2ebbf": "PA_Languages Advanced Find View",
+      "fbd7f376-7756-ec11-8f8f-000d3abaada0": "Selected_Language_View"
+    }
+  },
+  {
+    "DisplayName": "Status (PA_Languages)",
+    "Name": "cr63b_pa_language_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "PA_Languages"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "PA_Languages",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (PA_Languages)",
+    "Name": "cr63b_pa_language_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "PA_Languages"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "PA_Languages",
+    "Type": "OptionSetInfo"
+  }
+]

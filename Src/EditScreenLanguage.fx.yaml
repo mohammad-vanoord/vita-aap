@@ -1,0 +1,332 @@
+EditScreenLanguage As screen:
+    OnVisible: =
+
+    lblTitle_38 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Add a language"
+        Width: =215
+        X: =82
+        Y: =163
+        ZIndex: =1
+
+    "GalleryLanguage_AddLang As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        Height: =301
+        Items: =LanguageCollection
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =87
+        Width: =373
+        X: =29
+        Y: =257
+        ZIndex: =2
+
+        Separator2_21 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        iconSave_5 As icon.Save:
+            Height: =40
+            Icon: =Icon.Save
+            OnSelect: |-
+                =Patch(
+                    LanguageCollection,
+                    ThisItem,
+                    {
+                        LangName: drpdwnLangName_1.SelectedText.Value,
+                        LangProf: drpdwnLangProf_1.SelectedText.Value,
+                        ShowSaveButtonsAddLang: false
+                    });If(EditPressedAddLang, false);UpdateContext({EditPressedAddLang: false});Set(NeedssavedAddLang, false)
+            Visible: =ThisItem.ShowSaveButtonsAddLang
+            Width: =51
+            X: =278
+            ZIndex: =12
+
+        iconDelete_5 As icon.Trash:
+            Height: =40
+            Icon: =Icon.Trash
+            OnSelect: |-
+                =Remove(LanguageCollection,ThisItem);Set(NeedssavedAddLang,false); UpdateContext({EditPressedAddLang:true})
+            Visible: =iconSave_5.Visible
+            Width: =39
+            X: =322
+            ZIndex: =13
+
+        Icon5_4 As icon.Edit:
+            Height: =37
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =Patch(LanguageCollection,ThisItem, {ShowSaveButtonsAddLang: true});UpdateContext({EditPressedAddLang:true})
+            Visible: =!ThisItem.ShowSaveButtonsAddLang
+            Width: =39
+            X: =319
+            ZIndex: =18
+
+        drpdwnLangName_1 As dropdown:
+            AllowEmptySelection: =true
+            ChevronBackground: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.LangName
+            DisplayMode: =If(ThisItem.ShowSaveButtonsAddLang, DisplayMode.Edit,DisplayMode.View)
+            Height: =32
+            Items: =PA_LanguageNamess
+            OnChange: =Set(NeedssavedAddLang,true)
+            OnSelect: =Select(Parent)
+            SelectionFill: =RGBA(37, 58, 121, 1)
+            Size: =10
+            Tooltip: ="Select language"
+            Width: =160
+            X: =16
+            Y: =47
+            ZIndex: =19
+
+        drpdwnLangProf_1 As dropdown:
+            AllowEmptySelection: =true
+            ChevronBackground: =RGBA(37, 58, 121, 1)
+            Default: =ThisItem.LangProf
+            DisplayMode: =If(ThisItem.ShowSaveButtonsAddLang, DisplayMode.Edit,DisplayMode.View)
+            Height: =32
+            Items: =PA_LangProfs
+            OnChange: =Set(NeedssavedAddLang,true)
+            SelectionFill: =RGBA(37, 58, 121, 1)
+            Size: =10
+            Tooltip: ="Select proficiency level"
+            Width: =150
+            X: =208
+            Y: =47
+            ZIndex: =20
+
+    "GalleryViewLanguages_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+        Height: =379
+        Items: =Filter(PA_Languages,cr63b_masterid_language = ResumeGalleryViewCV.Selected.ID)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =26
+        Width: =430
+        X: =656
+        Y: =197
+        ZIndex: =3
+
+        Title6_1 As label:
+            Height: =22
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.cr63b_languagename
+            VerticalAlign: =VerticalAlign.Top
+            Width: =251
+            X: =5
+            ZIndex: =1
+
+        Subtitle6_13 As label:
+            Height: =22
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.cr63b_proficiencylevel
+            VerticalAlign: =VerticalAlign.Top
+            Width: =122
+            X: =259
+            ZIndex: =2
+
+    lblTitle_39 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =20
+        Text: ="Your selected languages"
+        Width: =324
+        X: =610
+        Y: =122
+        ZIndex: =4
+
+    lblTitlePageViewMyCV_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =45
+        PaddingBottom: =0
+        Size: =20
+        Text: =ResumeGalleryViewCV.Selected.Title
+        VerticalAlign: =VerticalAlign.Bottom
+        Width: =715
+        X: =323
+        Y: =44
+        ZIndex: =5
+
+    lblSaveWarningLangEdit As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =27
+        Size: =11
+        Text: ="Save Language first"
+        Visible: =NeedssavedAddLang
+        Width: =156
+        X: =613
+        Y: =650
+        ZIndex: =6
+
+    lblTitle_40 As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Fill: =RGBA(0, 13, 75, 0)
+        Font: =Font.'Lato Black'
+        Height: =15
+        Size: =8
+        Text: ="Add row"
+        Width: =66
+        X: =25
+        Y: =231
+        ZIndex: =7
+
+    Button3_7 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =50
+        OnSelect: |-
+            =Collect(
+                LanguageCollection,
+                {
+                    LangName: "Select language",
+                    LangProf: "-",
+                    ShowSaveButtonsAddLang: true
+                }); Set(
+                ShowSaveAddLangSuccess,
+                false
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="+"
+        Width: =50
+        X: =25
+        Y: =172
+        ZIndex: =8
+
+    btnSaveEditAddLang As button:
+        DisplayMode: =If(NeedssavedAddLang,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =ForAll(
+                LanguageCollection,
+                If(
+                    !IsMatch(
+                        LangName,
+                        "Select language"
+                    ),
+                    Patch(PA_Languages, Defaults( PA_Languages ),
+                    { 
+                        
+                        cr63b_languagename: LangName,
+                        cr63b_title: LangName,
+                        cr63b_proficiencylevel: LangProf,
+                         cr63b_includeincv:Text(1),
+                         cr63b_masterid_language: ResumeGalleryViewCV.Selected.ID
+                    }
+                    
+                    )
+                )
+            );
+            Set(
+                ShowSaveAddLangSuccess,
+                true
+            )
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Save"
+        Width: =125
+        X: =629
+        Y: =701
+        ZIndex: =9
+
+    btnBacktoEditCVAddLang As button:
+        DisplayMode: =
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =45
+        OnSelect: |-
+            =If(!ShowSaveAddLangSuccess, UpdateContext({BacktoCVEdit: true}),Navigate(EditMyCV,ScreenTransition.Cover))
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =12
+        Text: ="Back to Edit CV"
+        Width: =125
+        X: =809
+        Y: =701
+        ZIndex: =14
+
+    Popup As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =18
+
+        Rectangle1 As rectangle:
+            Fill: =RGBA(0, 0, 0, 0.8)
+            Height: =768
+            Visible: =BacktoCVEdit
+            Width: =1366
+            ZIndex: =10
+
+        Label11 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =179
+            PaddingLeft: =15
+            PaddingRight: =15
+            PaddingTop: =15
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =BacktoCVEdit
+            Width: =455
+            X: =404
+            Y: =297
+            ZIndex: =11
+
+        btnCancel_popup As button:
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =46
+            OnSelect: |-
+                =UpdateContext({BacktoCVEdit:false})
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Cancel"
+            Visible: =BacktoCVEdit
+            Width: =125
+            X: =684
+            Y: =412
+            ZIndex: =12
+
+        btnBacktoEditCVAddLang_popup As button:
+            DisplayMode: =
+            Fill: =RGBA(37, 58, 121, 1)
+            Height: =45
+            OnSelect: |-
+                =Navigate(EditMyCV,ScreenTransition.Cover);Set(GoBackScreenAddLang,false); UpdateContext({BacktoCVEdit:false})
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Visible: =BacktoCVEdit
+            Width: =125
+            X: =449
+            Y: =412
+            ZIndex: =13
+

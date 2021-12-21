@@ -1,0 +1,97 @@
+MainScreen As screen:
+    Fill: =
+
+    imgLogoVanOord As image:
+        Height: =74
+        Image: =imgVanOordCrownLogo
+        Width: =194
+        X: =1132
+        Y: =32
+        ZIndex: =2
+
+    lblTitle As label:
+        Color: =RGBA(37, 58, 121, 1)
+        Font: =Font.'Lato Black'
+        Height: =66
+        Size: =40
+        Text: ="Vita CV database"
+        Width: =461
+        X: =43
+        Y: =40
+        ZIndex: =3
+
+    btnCreateNewCV As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =300
+        OnSelect: |-
+            =NewForm(FormNewMaster);ClearCollect(QualificationCollection, {QualName: "", QualAbout: "",HighlightedQualSum:"", ShowSaveButtonsQual:true});ClearCollect(LanguageCollection, {LangName: "", LangProf:"", ShowSaveButtonsLang:true}); Navigate(NewResume,ScreenTransition.Cover);Set(ShowSaveMasterSuccess, false);Set(ShowSaveProjSuccess, false); Set(ShowSaveAddRoleAndSkillSuccess, false) ;Set(ShowSaveEduSuccess, false) ;Set(ShowSaveEmplSuccess, false);Set(ShowSaveCertSuccess, false)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Create new CV"
+        Width: =300
+        X: =204
+        Y: =228
+        ZIndex: =4
+
+    btnCreateNewCV_2 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =300
+        OnSelect: =Navigate(ViewMyCVs,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="View, Edit or Copy my CV"
+        Width: =300
+        X: =539
+        Y: =228
+        ZIndex: =6
+
+    Image3 As image:
+        Image: =iconVita
+        X: =40
+        Y: =627
+        ZIndex: =7
+
+    btnCreateNewCV_3 As button:
+        Fill: =RGBA(37, 58, 121, 1)
+        Height: =300
+        OnSelect: =Navigate(SearchCVsStart,ScreenTransition.Cover)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Search CVs"
+        Width: =300
+        X: =873
+        Y: =228
+        ZIndex: =8
+
+    icnInstruction_6 As image:
+        BorderThickness: =1
+        Height: =90
+        Image: =VanOord_icons_lightbulb
+        OnSelect: =Navigate(InstructionsScreen,ScreenTransition.Cover)
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        Width: =90
+        X: =1236
+        Y: =640
+        ZIndex: =9
+
+    Label7 As label:
+        Color: =RGBA(255, 135, 2, 1)
+        Font: =Font.'Patrick Hand'
+        Height: =87
+        Italic: =true
+        Size: =26
+        Text: =Office365Users.MyProfile().GivenName & ", be yourself, everyone else is already taken."
+        Width: =684
+        X: =155
+        Y: =640
+        ZIndex: =10
+

@@ -1,0 +1,102 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_summary_qualifications",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_summary_qualification",
+    "MaxGetRowsCount": 500,
+    "Name": "Vita_Summary_Qualifications",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_highlightedqualsum": "HighlightedQualSum",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_qualabout": "QualAbout",
+      "cr63b_qualname": "QualName",
+      "cr63b_Vita_MasterID": "Vita_MasterID",
+      "cr63b_vita_summary_qualification_AsyncOperations": "System Jobs",
+      "cr63b_vita_summary_qualification_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_summary_qualification_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_summary_qualification_DuplicateBaseRecord)",
+      "cr63b_vita_summary_qualification_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_summary_qualification_DuplicateMatchingRecord)",
+      "cr63b_vita_summary_qualification_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_summary_qualification_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_summary_qualification_ProcessSession": "Process Sessions",
+      "cr63b_vita_summary_qualification_SyncErrors": "Sync Errors",
+      "cr63b_vita_summary_qualificationid": "Vita_Summary_Qualification",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Summary_Qualifications",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Summary_Qualifications (Views)",
+    "Name": "_cr63b_vita_summary_qualification_views",
+    "RelatedEntityName": "Vita_Summary_Qualifications",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2dad224a-ebd9-42f0-ad49-b9ba3f077fe1": "Active Vita_Summary_Qualifications",
+      "31a509d1-b3b5-439e-9e57-904da232c978": "Vita_Summary_Qualification Associated View",
+      "3d988ebb-990e-429d-9367-db30ac8a7606": "Vita_Summary_Qualification Lookup View",
+      "4c5a5191-04f5-41e5-a44d-c5939dc381d5": "Inactive Vita_Summary_Qualifications",
+      "69667531-2b89-4a31-87d1-fed08f620826": "Vita_Summary_Qualification Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Summary_Qualifications)",
+    "Name": "cr63b_vita_summary_qualification_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Summary_Qualifications"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Summary_Qualifications",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Summary_Qualifications)",
+    "Name": "cr63b_vita_summary_qualification_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Summary_Qualifications"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Summary_Qualifications",
+    "Type": "OptionSetInfo"
+  }
+]

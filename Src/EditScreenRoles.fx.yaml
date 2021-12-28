@@ -37,15 +37,15 @@ EditScreenRoles As screen:
                 If(
                     !IsBlank(AddRoleName),
                     Patch(
-                        'PA_Roles (test)',
-                        Defaults('PA_Roles (test)'),
+                        Vita_Roles,
+                        Defaults(Vita_Roles),
                         {
-                            Title: AddRoleName,
-                            'What did you do in this role?': AddRoleDescr,
+                            'Role Name': AddRoleName,
+                            'What did you do in this role': AddRoleDescr,
                             'Months of experience in this role':AddRoleExperience,
                             ProjectOrAddedRole:ProjectOrAddedRole,
                             IncludeInCV:Text(1),
-                            PA_MasterIDRoles: ResumeGalleryViewCV.Selected.cr63b_id
+                            Vita_MasterID: LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.cr63b_id)
                         }
                     )
                 )
@@ -118,7 +118,8 @@ EditScreenRoles As screen:
         TemplatePadding: =0
         TemplateSize: =149
         Width: =550
-        Y: =173
+        X: =31
+        Y: =199
         ZIndex: =14
 
         Separator2_25 As rectangle:
@@ -187,6 +188,7 @@ EditScreenRoles As screen:
             ZIndex: =9
 
         iconSaveAddRole_1 As icon.Save:
+            DisplayMode: =If(IsBlank(inputAddRoleName_1.Text),DisplayMode.Disabled,DisplayMode.Edit)
             Height: =44
             Icon: =Icon.Save
             OnSelect: |-
@@ -271,20 +273,21 @@ EditScreenRoles As screen:
             Height: =26
             OnSelect: =Select(Parent)
             Text: ="1"
+            Visible: =false
             Width: =27
             X: =523
             Y: =120
             ZIndex: =23
 
     "GalleryProjects_14 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
-        Height: =382
-        Items: =Filter('PA_Roles (test)',PA_MasterIDRoles = ResumeGalleryViewCV.Selected.cr63b_id)
+        Height: =285
+        Items: =Filter(Vita_Roles, Vita_MasterID.ID = ResumeGalleryViewCV.Selected.ID)
         Layout: =Layout.Vertical
         TemplatePadding: =0
         TemplateSize: =93
-        Width: =620
+        Width: =555
         X: =745
-        Y: =172
+        Y: =189
         ZIndex: =15
 
         Separator2_26 As rectangle:
@@ -296,7 +299,7 @@ EditScreenRoles As screen:
 
         HtmlText2_13 As htmlViewer:
             Height: =28
-            HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.'Months of experience in this role' & " months of experience"
+            HtmlText: ="<b>"&ThisItem.'Role Name'&"</b>" & " | " & ThisItem.'Months of experience in this role' & " months of experience"
             OnSelect: =Select(Parent)
             PaddingBottom: =0
             PaddingLeft: =0
@@ -307,7 +310,7 @@ EditScreenRoles As screen:
             Height: =68
             OnSelect: =Select(Parent)
             Size: =9
-            Text: =ThisItem.'What did you do in this role?'
+            Text: =ThisItem.'What did you do in this role'
             VerticalAlign: =VerticalAlign.Top
             Width: =594
             Y: =25

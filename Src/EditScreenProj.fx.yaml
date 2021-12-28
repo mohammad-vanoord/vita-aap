@@ -32,7 +32,7 @@ EditScreenProj As screen:
         Fill: =RGBA(37, 58, 121, 1)
         Height: =45
         OnSelect: |-
-            =ForAll(ProjectsCollection,If(!IsBlank(ProjName), Patch('PA_Project experience (test)', Defaults('PA_Project experience (test)'), {Title: ProjName, VOProjectNumber: ProjNumber, ProjectDescriptionShort: ProjDescr, RoleProject: ProjRoleName, CountryProject: ProjCountry, FromMonth:ProjFromMonth,FromYear:ProjFromYear,ToMonth:ProjToMonth,ToYear:ProjToYear,TotalMonthsOnProject:ProjTotalMonth,ProjRoleDescr:ProjRoleDescr,ProjectOrAddedRole:ProjectOrAddedRole,HighlightedProject:HighlightedProject,IncludeInCV:Text(1), PA_ProjMasterID:ResumeGalleryViewCV.Selected.cr63b_id})));
+            =ForAll(ProjectsCollection,If(!IsBlank(ProjName), Patch(Vita_Project_Experiences, Defaults(Vita_Project_Experiences), {'Project Name': ProjName, 'VO Project Number': ProjNumber, 'Project Description': ProjDescr, 'Project Role': ProjRoleName, 'Country Project': ProjCountry, 'From Month':ProjFromMonth,'From Year':ProjFromYear,'To Month':ProjToMonth,'To Year':ProjToYear,'Total Months On Project':ProjTotalMonth,'Project Role Description':ProjRoleDescr,'Project Or Added Role':ProjectOrAddedRole,'Highlighted Project':HighlightedProject,IncludeInCV:Text(1), Vita_MasterID:LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.cr63b_id)})));
             
             /* In the past I copied the role in 2 lists, but it is now collected in a later stage of the CV creation.
             ForAll(ProjectsCollection,If(!IsBlank(ProjRoleName), Patch('PA_Roles (test)', Defaults('PA_Roles (test)'), {Title: ProjRoleName, 'What did you do in this role?':ProjRoleDescr, 'Months of experience in this role':ProjTotalMonth, ProjectOrAddedRole:ProjectOrAddedRole,PA_MasterIDRoles:ResumeGalleryViewCV.Selected.ID})));
@@ -82,9 +82,9 @@ EditScreenProj As screen:
         Size: =20
         Text: =ResumeGalleryViewCV.Selected.Title
         VerticalAlign: =VerticalAlign.Bottom
-        Width: =708
-        X: =449
-        Y: =18
+        Width: =781
+        X: =334
+        Y: =16
         ZIndex: =12
 
     lblTitle_46 As label:
@@ -180,7 +180,7 @@ EditScreenProj As screen:
             RadiusTopRight: =0
             Size: =11
             Width: =465
-            X: =193
+            X: =189
             Y: =20
             ZIndex: =6
 
@@ -213,10 +213,10 @@ EditScreenProj As screen:
                     ThisItem,
                     {
                         ProjNumber: Value(inputProjNumber_1.Text),
-                        ProjFromMonth: Value(drpdwnFromMonth_1.Selected.Title),
-                        ProjFromYear: Value(drpdwnFromYear_1.Selected.cr63b_years),
-                        ProjToMonth: Value(drpdwnToMonth_1.Selected.Title),
-                        ProjToYear: Value(drpdwnToYear_1.Selected.Title),
+                        ProjFromMonth: Value(drpdwnFromMonth_1.Selected.'Month Short Name'),
+                        ProjFromYear: Value(drpdwnFromYear_1.Selected.Year),
+                        ProjToMonth: Value(drpdwnToMonth_1.Selected.'Month Short Name'),
+                        ProjToYear: Value(drpdwnToYear_1.Selected.Year),
                         ProjName: inputProjectName_1.Text,
                         ProjCountry: lblComboCountryConc_1.Text,
                         ProjDescr: inputProjectDescription_1.Text, 
@@ -273,14 +273,14 @@ EditScreenProj As screen:
 
         comboboxFunction_1 As combobox:
             DefaultSelectedItems: =RenameColumns(Split(ThisItem.ProjRoleName, ","),"Result","Value")
-            DisplayFields: =["Title"]
+            DisplayFields: =["cr63b_rolesname"]
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =34
-            Items: =PA_RolesFunctionsList.Title
+            Items: =Vita_RolesFunctionsLists.'Roles Name'
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
-            SearchFields: =["Title"]
-            SearchItems: =Search(PA_RolesFunctionsList.Title,comboboxFunction_1.SearchText,"Title")
+            SearchFields: =["cr63b_rolesname"]
+            SearchItems: =Search(Vita_RolesFunctionsLists.'Roles Name',comboboxFunction_1.SearchText,"cr63b_rolesname")
             Size: =11
             Width: =260
             X: =16
@@ -319,7 +319,7 @@ EditScreenProj As screen:
             Default: =ThisItem.ProjToYear
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =25
-            Items: =PA_YearsSelection
+            Items: =Vita_YearsSelections
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
             Size: =11
@@ -332,7 +332,7 @@ EditScreenProj As screen:
             Default: =ThisItem.ProjToMonth
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =25
-            Items: =PA_Months
+            Items: =Vita_Months
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
             Size: =11
@@ -345,7 +345,7 @@ EditScreenProj As screen:
             Default: =ThisItem.ProjFromYear
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =25
-            Items: =PA_YearsSelections
+            Items: =Vita_YearsSelections
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
             Size: =11
@@ -358,7 +358,7 @@ EditScreenProj As screen:
             Default: =ThisItem.ProjFromMonth
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =25
-            Items: =PA_Months
+            Items: =Vita_Months
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
             Size: =11
@@ -380,14 +380,14 @@ EditScreenProj As screen:
 
         comboboxCountry_1 As combobox:
             DefaultSelectedItems: =RenameColumns(Split(ThisItem.ProjCountry, ","),"Result","Value")
-            DisplayFields: =["Title"]
+            DisplayFields: =["cr63b_countryname"]
             DisplayMode: =inputProjNumber_1.DisplayMode
             Height: =34
-            Items: =PA_Countries_List.Title
+            Items: =Vita_Countries_Lists.'Country Name'
             OnChange: =Set(NeedssavedProj,true)
             OnSelect: =Select(Parent)
-            SearchFields: =["Title"]
-            SearchItems: =Search(PA_Countries_List.Title,comboboxCountry_1.SearchText,"Title")
+            SearchFields: =["cr63b_countryname"]
+            SearchItems: =Search(Vita_Countries_Lists.'Country Name',comboboxCountry_1.SearchText,"cr63b_countryname")
             Size: =11
             Width: =292
             X: =366
@@ -397,7 +397,7 @@ EditScreenProj As screen:
         lblComboFuncConc_1 As label:
             Height: =34
             OnSelect: =Select(Parent)
-            Text: =Concat(comboboxFunction_1.SelectedItems,Title, ", ")
+            Text: =Concat(comboboxFunction_1.SelectedItems,'Roles Name', ", ")
             Visible: =false
             Width: =325
             X: =19
@@ -407,7 +407,7 @@ EditScreenProj As screen:
         lblComboCountryConc_1 As label:
             Height: =35
             OnSelect: =Select(Parent)
-            Text: =Concat(comboboxCountry_1.SelectedItems,Title, ", ")
+            Text: =Concat(comboboxCountry_1.SelectedItems,'Country Name', ", ")
             Visible: =false
             Width: =292
             X: =366
@@ -420,7 +420,7 @@ EditScreenProj As screen:
             Height: =19
             OnSelect: =Select(Parent)
             Size: =9
-            Text: =((Value(drpdwnToYear_1.Selected.Title)-Value(drpdwnFromYear_1.Selected.cr63b_years))*12+(Value(drpdwnToMonth_1.Selected.Title)-Value(drpdwnFromMonth_1.Selected.Title))+1)
+            Text: =((Value(drpdwnToYear_1.Selected.Year)-Value(drpdwnFromYear_1.Selected.Year))*12+(Value(drpdwnToMonth_1.Selected.'Month Short Name')-Value(drpdwnFromMonth_1.Selected.'Month Short Name'))+1)
             Width: =36
             X: =793
             Y: =153
@@ -542,7 +542,7 @@ EditScreenProj As screen:
 
     "GalleryProjects_13 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
         Height: =359
-        Items: =SortByColumns(Filter('PA_Project experience (test)',PA_ProjMasterID = ResumeGalleryViewCV.Selected.cr63b_id),"ToYear",Descending,"ToMonth",Descending)
+        Items: =SortByColumns(Filter(Vita_Project_Experiences,Vita_MasterID.ID = ResumeGalleryViewCV.Selected.ID),"cr63b_toyear",Descending,"cr63b_tomonth",Descending)
         Layout: =Layout.Vertical
         OnSelect: =
         TemplatePadding: =0
@@ -596,7 +596,7 @@ EditScreenProj As screen:
             Height: =12
             OnSelect: =Select(Parent)
             Size: =10
-            Text: =ThisItem.VOProjectNumber
+            Text: =ThisItem.'VO Project Number'
             Width: =120
             X: =16
             Y: =20
@@ -604,7 +604,7 @@ EditScreenProj As screen:
 
         HtmlText2_12 As htmlViewer:
             Height: =101
-            HtmlText: ="<b>"&ThisItem.RoleProject&"</b>" & " | " & ThisItem.ProjectDescriptionShort
+            HtmlText: ="<b>"&ThisItem.'Project Role'&"</b>" & " | " & ThisItem.'Project Role Description'
             OnSelect: =Select(Parent)
             Width: =291
             X: =153
@@ -613,7 +613,7 @@ EditScreenProj As screen:
 
         HtmlText1_2 As htmlViewer:
             Height: =49
-            HtmlText: ="<b>" & ThisItem.Title & "</b>" & " | " & ThisItem.CountryProject & " | " & ThisItem.FromMonth & "-" & ThisItem.FromYear & " to " & ThisItem.ToMonth & "-" & ThisItem.ToYear
+            HtmlText: ="<b>" & ThisItem.'Project Name' & "</b>" & " | " & ThisItem.'Country Project' & " | " & ThisItem. 'From Month' & "-" & ThisItem.'From Year' & " to " & ThisItem.'To Month' & "-" & ThisItem.'To Year'
             OnSelect: =Select(Parent)
             Width: =291
             X: =153
@@ -624,7 +624,7 @@ EditScreenProj As screen:
             Height: =32
             OnSelect: =Select(Parent)
             Size: =10
-            Text: =ThisItem.TotalMonthsOnProject
+            Text: =ThisItem.'Total Months On Project'
             Width: =44
             X: =99
             Y: =32
@@ -634,7 +634,7 @@ EditScreenProj As screen:
             Height: =48
             OnSelect: =Select(Parent)
             Size: =9
-            Text: =ThisItem.ProjRoleDescr
+            Text: =ThisItem.'Project Role Description'
             VerticalAlign: =VerticalAlign.Top
             Width: =291
             X: =153
@@ -685,9 +685,9 @@ EditScreenProj As screen:
 
     FormAddNewRoleInEdit As form:
         BorderThickness: =2
-        DataSource: =PA_RolesFunctionsList
+        DataSource: =Vita_RolesFunctionsLists
         Fill: =RGBA(255, 255, 255, 1)
-        Item: =Defaults(PA_RolesFunctionsList)
+        Item: =Defaults(Vita_RolesFunctionsLists)
         NumberOfColumns: =2
         OnSuccess: =Set(AddNewRoleFormScreen,false)
         Visible: =AddNewRoleFormScreen
@@ -695,26 +695,26 @@ EditScreenProj As screen:
         Y: =126
         ZIndex: =21
 
-        Title_DataCard7 As typedDataCard.textualEditCard:
+        "'Roles Name_DataCard4' As typedDataCard.textualEditCard":
             BorderStyle: =BorderStyle.Solid
-            DataField: ="Title"
-            Default: =ThisItem.Title
+            DataField: ="cr63b_rolesname"
+            Default: =ThisItem.'Roles Name'
             DisplayMode: =Parent.DisplayMode
-            DisplayName: ="Title"
+            DisplayName: ="Roles Name"
             Fill: =RGBA(0, 0, 0, 0)
-            Height: =99
-            MaxLength: =DataSourceInfo([@PA_RolesFunctionsList], DataSourceInfo.MaxLength, "Title")
+            Height: =97
+            MaxLength: =DataSourceInfo([@Vita_RolesFunctionsLists], DataSourceInfo.MaxLength, "cr63b_rolesname")
             Required: =true
             Update: =datacardAddNewRoleToList.Text
             Width: =799
             X: =0
             Y: =0
-            ZIndex: =21
+            ZIndex: =1
 
-            DataCardKey41 As label:
+            DataCardKey53 As label:
                 AutoHeight: =true
                 Height: =34
-                Text: ="Title of new function/ role"
+                Text: =Parent.DisplayName
                 Width: =Parent.Width - 60
                 Wrap: =false
                 X: =30
@@ -726,17 +726,18 @@ EditScreenProj As screen:
                 Default: =Parent.Default
                 DelayOutput: =true
                 DisplayMode: =Parent.DisplayMode
+                Height: =45
                 MaxLength: =Parent.MaxLength
+                OnChange: =
                 PaddingLeft: =5
                 RadiusBottomLeft: =0
                 RadiusBottomRight: =0
                 RadiusTopLeft: =0
                 RadiusTopRight: =0
-                Size: =11
                 Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
+                Width: =369
                 X: =30
-                Y: =DataCardKey41.Y + DataCardKey41.Height + 5
+                Y: =44
                 ZIndex: =2
 
             ErrorMessage41 As label:
@@ -756,31 +757,31 @@ EditScreenProj As screen:
 
             StarVisible41 As label:
                 Align: =Align.Center
-                Height: =DataCardKey41.Height
+                Height: =DataCardKey53.Height
                 Text: ="*"
                 Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                 Width: =30
                 Wrap: =false
-                Y: =DataCardKey41.Y
+                Y: =DataCardKey53.Y
                 ZIndex: =4
 
-        RoleDescription_DataCard1 As typedDataCard.textualEditCard:
+        "'Role Description_DataCard4' As typedDataCard.textualEditCard":
             BorderStyle: =BorderStyle.Solid
-            DataField: ="RoleDescription"
-            Default: =ThisItem.RoleDescription
+            DataField: ="cr63b_roledescription"
+            Default: =ThisItem.'Role Description'
             DisplayMode: =Parent.DisplayMode
-            DisplayName: ="RoleDescription"
+            DisplayName: ="Role Description"
             Fill: =RGBA(0, 0, 0, 0)
-            Height: =175
-            MaxLength: =DataSourceInfo([@PA_RolesFunctionsList], DataSourceInfo.MaxLength, "RoleDescription")
+            Height: =50
+            MaxLength: =DataSourceInfo([@Vita_RolesFunctionsLists], DataSourceInfo.MaxLength, "cr63b_roledescription")
             Required: =false
-            Update: =datacardAddNewRoleDescrToList.Text
-            Width: =799
+            Update: =DataCardValue57.Text
+            Width: =400
             X: =0
             Y: =1
-            ZIndex: =21
+            ZIndex: =1
 
-            DataCardKey42 As label:
+            DataCardKey54 As label:
                 AutoHeight: =true
                 Height: =34
                 Text: =Parent.DisplayName
@@ -790,24 +791,22 @@ EditScreenProj As screen:
                 Y: =10
                 ZIndex: =1
 
-            datacardAddNewRoleDescrToList As text:
+            DataCardValue57 As text:
                 BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
                 Default: =Parent.Default
                 DelayOutput: =true
                 DisplayMode: =Parent.DisplayMode
-                Height: =107
+                Height: =42
                 MaxLength: =Parent.MaxLength
-                Mode: =TextMode.MultiLine
                 PaddingLeft: =5
                 RadiusBottomLeft: =0
                 RadiusBottomRight: =0
                 RadiusTopLeft: =0
                 RadiusTopRight: =0
-                Size: =11
                 Tooltip: =Parent.DisplayName
-                Width: =Parent.Width - 60
+                Width: =370
                 X: =30
-                Y: =DataCardKey42.Y + DataCardKey42.Height + 5
+                Y: =44
                 ZIndex: =2
 
             ErrorMessage42 As label:
@@ -822,21 +821,21 @@ EditScreenProj As screen:
                 Visible: =Parent.DisplayMode=DisplayMode.Edit
                 Width: =Parent.Width - 60
                 X: =30
-                Y: =datacardAddNewRoleDescrToList.Y + datacardAddNewRoleDescrToList.Height
+                Y: =DataCardValue57.Y + DataCardValue57.Height
                 ZIndex: =3
 
             StarVisible42 As label:
                 Align: =Align.Center
-                Height: =DataCardKey42.Height
+                Height: =DataCardKey54.Height
                 Text: ="*"
                 Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                 Width: =30
                 Wrap: =false
-                Y: =DataCardKey42.Y
+                Y: =DataCardKey54.Y
                 ZIndex: =4
 
     btnSaveAddNewRole As button:
-        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        DisplayMode: =If(datacardAddNewRoleToList.Text in Vita_RolesFunctionsLists.'Roles Name' ,DisplayMode.Disabled,DisplayMode.Edit)
         Fill: =RGBA(37, 58, 121, 1)
         Height: =45
         OnSelect: =SubmitForm(FormAddNewRoleInEdit)
@@ -871,7 +870,7 @@ EditScreenProj As screen:
         BorderThickness: =1
         Fill: =RGBA(255, 255, 255, 1)
         Height: =100
-        Items: =Filter(PA_RolesFunctionsList, datacardAddNewRoleToList.Text in Title)
+        Items: =Filter(Vita_RolesFunctionsLists, datacardAddNewRoleToList.Text in 'Roles Name')
         Layout: =Layout.Vertical
         TemplateSize: =19
         Visible: =FormAddNewRoleInEdit.Visible
@@ -888,7 +887,7 @@ EditScreenProj As screen:
             PaddingRight: =0
             PaddingTop: =0
             Size: =10
-            Text: =ThisItem.Title
+            Text: =ThisItem.'Roles Name'
             VerticalAlign: =VerticalAlign.Top
             Width: =Parent.TemplateWidth - 104
             ZIndex: =1
@@ -1024,7 +1023,7 @@ EditScreenProj As screen:
             Fill: =RGBA(255, 255, 255, 1)
             Height: =557
             Items: |
-                =If(IsBlank(txtInputProjNumberFindProjectsInCaptureList_1.Text), Filter(PA_ProjectsCaptureToVita,DropdownCountriesFindProjectsInCaptureList_1.Selected.Title=Country),Filter(PA_ProjectsCaptureToVita,StartsWith(Title,txtInputProjNumberFindProjectsInCaptureList_1.Text)))
+                =If(IsBlank(txtInputProjNumberFindProjectsInCaptureList_1.Text), Filter(PA_ProjectsCaptureToVita,DropdownCountriesFindProjectsInCaptureList_1.Selected.cr63b_countryname=Country),Filter(PA_ProjectsCaptureToVita,StartsWith(Title,txtInputProjNumberFindProjectsInCaptureList_1.Text)))
             Layout: =Layout.Vertical
             TemplatePadding: =0
             TemplateSize: =220
@@ -1124,7 +1123,7 @@ EditScreenProj As screen:
             ChevronBackground: =RGBA(37, 58, 121, 1)
             Default: ="Select country"
             Height: =25
-            Items: =PA_Countries_List
+            Items: =Vita_Countries_Lists
             Size: =11
             Visible: =lblFindProjectsInCaptureList_1.Visible
             Width: =283

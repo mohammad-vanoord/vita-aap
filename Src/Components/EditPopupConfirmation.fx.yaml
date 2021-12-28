@@ -1,0 +1,62 @@
+EditPopupConfirmation As CanvasComponent:
+    BtnAction: =varBlnValue
+    CancelEdit: =GoBackScreenBtn
+    Fill: =RGBA(0, 0, 0, 0)
+    GoBackToEditCV: =App.ActiveScreen
+    Height: =Max(App.Height, App.MinScreenHeight)
+    Width: =Max(App.Width, App.MinScreenWidth)
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    CompEditConfirmPopup As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =6
+
+        CompOuterRec As rectangle:
+            Fill: =RGBA(0, 0, 0, .5)
+            Height: =768
+            Width: =1366
+            ZIndex: =1
+
+        CompMsgRec As rectangle:
+            Fill: =RGBA(246, 88, 16, 1)
+            Height: =248
+            Width: =560
+            X: =413
+            Y: =251
+            ZIndex: =2
+
+        CompMsg As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =93
+            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
+            Width: =470
+            X: =458
+            Y: =295
+            ZIndex: =3
+
+        CompButtonGoBack As button:
+            Height: =53
+            OnSelect: =Navigate(EditPopupConfirmation.GoBackToEditCV);Set(varBlnValue, !varBlnValue)
+            Size: =12
+            Text: ="Yes, go back to Edit My CV"
+            Width: =146
+            X: =545
+            Y: =416
+            ZIndex: =4
+
+        CompButtonCancel As button:
+            Height: =53
+            OnSelect: =Set(GoBackScreenBtn,false);Set(varBlnValue, !varBlnValue)
+            Size: =13
+            Text: ="Cancel"
+            Width: =133
+            X: =743
+            Y: =416
+            ZIndex: =5
+

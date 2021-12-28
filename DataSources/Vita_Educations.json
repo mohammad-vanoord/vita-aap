@@ -1,0 +1,104 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_educations",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_education",
+    "MaxGetRowsCount": 500,
+    "Name": "Vita_Educations",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_degree": "Degree",
+      "cr63b_educationname": "Education Name",
+      "cr63b_enddate": "End Date",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_startdate": "Start Date",
+      "cr63b_title": "Title",
+      "cr63b_vita_education_AsyncOperations": "System Jobs",
+      "cr63b_vita_education_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_education_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_education_DuplicateBaseRecord)",
+      "cr63b_vita_education_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_education_DuplicateMatchingRecord)",
+      "cr63b_vita_education_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_education_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_education_ProcessSession": "Process Sessions",
+      "cr63b_vita_education_SyncErrors": "Sync Errors",
+      "cr63b_vita_educationid": "Vita_Education",
+      "cr63b_Vita_MaterCV": "Vita_MaterCV",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Educations",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Educations (Views)",
+    "Name": "_cr63b_vita_education_views",
+    "RelatedEntityName": "Vita_Educations",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "5d964397-e096-46ee-b9ef-0d983915435d": "Active Vita_Educations",
+      "69215f5f-c0e1-4c05-9986-b28a8bf5dca6": "Vita_Education Lookup View",
+      "7b4ce3cc-5d90-444d-802c-85241654b6d6": "Vita_Education Associated View",
+      "8c0b9474-77f3-43a1-959b-56d90f9c7f3f": "Vita_Education Advanced Find View",
+      "d481464a-2cca-43a2-a68d-a1c5e7ec880e": "Inactive Vita_Educations"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Educations)",
+    "Name": "cr63b_vita_education_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Educations"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Educations",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Educations)",
+    "Name": "cr63b_vita_education_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Educations"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Educations",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -120,7 +120,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "Button4_4",
-    "ParentIndex": 2,
+    "ParentIndex": 3,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -8053,7 +8053,7 @@
     "LayoutName": "",
     "MetaDataIDKey": "",
     "Name": "imgLogoVanOord_19",
-    "ParentIndex": 3,
+    "ParentIndex": 2,
     "PersistMetaDataIDKey": false,
     "Properties": [
       {
@@ -11845,7 +11845,14 @@
     "ControlPropertyState": [
       "Live",
       "Overflow",
-      "Text",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "ThisItem.Title",
+        "InvariantPropertyName": "Text",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
       "Role",
       "Color",
       "DisabledColor",
@@ -23529,7 +23536,14 @@
     "ControlPropertyState": [
       "Live",
       "Overflow",
-      "Text",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "ThisItem.ID",
+        "InvariantPropertyName": "Text",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
       "Role",
       "Color",
       "DisabledColor",

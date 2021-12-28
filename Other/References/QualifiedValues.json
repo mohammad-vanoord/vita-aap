@@ -123,6 +123,62 @@
       }
     },
     {
+      "Kind": "default.cds_cr63b_vita_language_forms",
+      "Namespace": "Vita_languages (Forms)",
+      "Values": {
+        "Information": "70833f0c-938c-475d-903d-b9982cdc10e7"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_languagelist_forms",
+      "Namespace": "Vita_LanguageLists (Forms)",
+      "Values": {
+        "Information": "a75bcb22-43da-4af9-8f7f-fb86e6743014"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_languagelevel_forms",
+      "Namespace": "Vita_LanguageLevels (Forms)",
+      "Values": {
+        "Information": "91c58f0b-23e3-4e0e-b4b3-33bde5cb92e5"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_countries_list_forms",
+      "Namespace": "Vita_Countries_Lists (Forms)",
+      "Values": {
+        "Information": "a31f708f-8282-49e6-8a02-f2a2450e8f4b"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_project_experience_forms",
+      "Namespace": "Vita_Project_Experiences (Forms)",
+      "Values": {
+        "Information": "e9a19d8c-33ad-49a7-a187-cd9883edb4ad"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_role_forms",
+      "Namespace": "Vita_Roles (Forms)",
+      "Values": {
+        "Information": "bf8edf70-d5f5-479f-8b4d-e25a749f3007"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_skill_forms",
+      "Namespace": "Vita_Skills (Forms)",
+      "Values": {
+        "Information": "a8975824-c260-45d2-972c-f5b5ce941b59"
+      }
+    },
+    {
+      "Kind": "default.cds_cr63b_vita_education_forms",
+      "Namespace": "Vita_Educations (Forms)",
+      "Values": {
+        "Information": "6f20df9d-8ef5-4ac8-8763-d9a7737f2df1"
+      }
+    },
+    {
       "Kind": "default.cds_cr63b_vita_matercv_forms",
       "Namespace": "Vita_MaterCVS (Forms)",
       "Values": {

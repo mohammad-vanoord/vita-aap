@@ -1,0 +1,97 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_countries_lists",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_countries_list",
+    "Name": "Vita_Countries_Lists",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_countryname": "Country Name",
+      "cr63b_id": "ID",
+      "cr63b_vita_countries_list_AsyncOperations": "System Jobs",
+      "cr63b_vita_countries_list_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_countries_list_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_countries_list_DuplicateBaseRecord)",
+      "cr63b_vita_countries_list_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_countries_list_DuplicateMatchingRecord)",
+      "cr63b_vita_countries_list_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_countries_list_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_countries_list_ProcessSession": "Process Sessions",
+      "cr63b_vita_countries_list_SyncErrors": "Sync Errors",
+      "cr63b_vita_countries_listid": "Vita_Countries_List",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Countries_Lists",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Countries_Lists (Views)",
+    "Name": "_cr63b_vita_countries_list_views",
+    "RelatedEntityName": "Vita_Countries_Lists",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "2e19530b-6fe5-4352-a7a5-66e796ceba09": "Vita_Countries_List Lookup View",
+      "7debec1e-5613-42a8-bf47-dbc145dc6621": "Vita_Countries_List Advanced Find View",
+      "af103c6e-bfb9-4102-a10e-9b84b55b4e7e": "Active Vita_Countries_Lists",
+      "b3ee76ca-4291-455f-a5a5-2dfe76263589": "Inactive Vita_Countries_Lists",
+      "c5d94696-7a69-4495-9efb-51682601adf4": "Vita_Countries_List Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Countries_Lists)",
+    "Name": "cr63b_vita_countries_list_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Countries_Lists"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Countries_Lists",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Countries_Lists)",
+    "Name": "cr63b_vita_countries_list_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Countries_Lists"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Countries_Lists",
+    "Type": "OptionSetInfo"
+  }
+]

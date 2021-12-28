@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "82845866-32e7-4142-95f1-9245e83a636a",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "DeleteCV",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

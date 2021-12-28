@@ -37,16 +37,16 @@ EditScreenSkills As screen:
                 If(
                     !IsBlank(SkillName),
                     Patch(
-                        'PA_Skills (test)',
-                        Defaults('PA_Skills (test)'),
+                        Vita_Skills,
+                        Defaults(Vita_Skills),
                         {
-                            Title:SkillName,
+                            'Name of skill':SkillName,
                             'Description of skill':SkillDescr,
                             SkillOrEquipment:SkillSwitch,
                             'Years of experience in skill':SkillExperience,
                             HighlightedSkill:HighlightedSkill,
                             IncludeInCV:Text(1),
-                            PA_MasterIDSkill:ResumeGalleryViewCV.Selected.cr63b_id
+                            Vita_MasterID:LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.cr63b_id)
                         }
                     )
                 )            
@@ -107,17 +107,18 @@ EditScreenSkills As screen:
         Size: =20
         Text: ="Your Skills"
         Width: =409
-        X: =745
-        Y: =113
+        X: =716
+        Y: =118
         ZIndex: =13
 
     "GallerySkillColl_1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
-        Height: =588
+        Height: =194
         Items: =SkillsCollection
         Layout: =Layout.Vertical
         TemplatePadding: =0
-        TemplateSize: =181
-        Width: =550
+        TemplateSize: =184
+        Width: =631
+        X: =12
         Y: =180
         ZIndex: =14
 
@@ -188,6 +189,7 @@ EditScreenSkills As screen:
             ZIndex: =9
 
         iconSaveSkill_1 As icon.Save:
+            DisplayMode: =If(IsBlank(radioSkill_1.Selected) ||  IsBlank(inputSkillName_1.Text),DisplayMode.Disabled,DisplayMode.Edit)
             Height: =44
             Icon: =Icon.Save
             OnSelect: |-
@@ -214,8 +216,8 @@ EditScreenSkills As screen:
                 ));UpdateContext({EditPressedSkill: false});Set(NeedssavedSkill, false)
             Visible: =ThisItem.ShowSaveButtonsSkill
             Width: =44
-            X: =371
-            Y: =8
+            X: =535
+            Y: =127
             ZIndex: =12
 
         iconDeleteSkill_1 As icon.Trash:
@@ -224,8 +226,8 @@ EditScreenSkills As screen:
             OnSelect: =Remove(SkillsCollection,ThisItem);Set(NeedssavedSkill,false)
             Visible: =iconSaveSkill_1.Visible
             Width: =44
-            X: =424
-            Y: =8
+            X: =591
+            Y: =127
             ZIndex: =13
 
         icnEditSkill_1 As icon.Edit:
@@ -235,8 +237,8 @@ EditScreenSkills As screen:
                 =Patch(SkillsCollection,ThisItem, {ShowSaveButtonsSkill: true});UpdateContext({EditPressedSkill:true})
             Visible: =!ThisItem.ShowSaveButtonsSkill
             Width: =40
-            X: =468
-            Y: =8
+            X: =579
+            Y: =78
             ZIndex: =18
 
         radioSkill_1 As radio:
@@ -295,14 +297,14 @@ EditScreenSkills As screen:
             ZIndex: =23
 
     "GalleryProjects_15 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
-        Height: =390
-        Items: =SortByColumns(Filter('PA_Skills (test)',PA_MasterIDSkill = ResumeGalleryViewCV.Selected.cr63b_id),"Yearsofexperienceinskill",Descending)
+        Height: =255
+        Items: =SortByColumns(Filter(Vita_Skills, Vita_MasterID.ID = ResumeGalleryViewCV.Selected.ID),"cr63b_yearsofexperienceinskill",Descending)
         Layout: =Layout.Vertical
         TemplatePadding: =0
         TemplateSize: =93
-        Width: =621
-        X: =745
-        Y: =172
+        Width: =604
+        X: =722
+        Y: =184
         ZIndex: =15
 
         Separator2_28 As rectangle:
@@ -314,7 +316,7 @@ EditScreenSkills As screen:
 
         HtmlText2_14 As htmlViewer:
             Height: =31
-            HtmlText: ="<b>"&ThisItem.Title&"</b>" & " | " & ThisItem.'Years of experience in skill' & " years of experience | " & ThisItem.SkillOrEquipment
+            HtmlText: ="<b>"&ThisItem.'Name of skill'&"</b>" & " | " & ThisItem.'Years of experience in skill' & " years of experience | " & ThisItem.SkillOrEquipment
             OnSelect: =Select(Parent)
             PaddingBottom: =0
             PaddingLeft: =0

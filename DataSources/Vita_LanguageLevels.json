@@ -1,0 +1,97 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_languagelevels",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_languagelevel",
+    "Name": "Vita_LanguageLevels",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_title": "Title",
+      "cr63b_vita_languagelevel_AsyncOperations": "System Jobs",
+      "cr63b_vita_languagelevel_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_languagelevel_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_languagelevel_DuplicateBaseRecord)",
+      "cr63b_vita_languagelevel_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_languagelevel_DuplicateMatchingRecord)",
+      "cr63b_vita_languagelevel_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_languagelevel_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_languagelevel_ProcessSession": "Process Sessions",
+      "cr63b_vita_languagelevel_SyncErrors": "Sync Errors",
+      "cr63b_vita_languagelevelid": "Vita_LanguageLevel",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_LanguageLevels",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_LanguageLevels (Views)",
+    "Name": "_cr63b_vita_languagelevel_views",
+    "RelatedEntityName": "Vita_LanguageLevels",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "6249c899-d33c-49d9-8a54-a7bb29fb9e6a": "Vita_LanguageLevel Associated View",
+      "81020b90-1d52-49c5-92cf-7760c9b6674d": "Active Vita_LanguageLevels",
+      "ab28b0d4-0e58-4dd2-a05d-4bcf33d4b8d7": "Vita_LanguageLevel Advanced Find View",
+      "b13dbe49-b1b0-4e42-bda2-e36f8eca52bc": "Vita_LanguageLevel Lookup View",
+      "e2e55982-ff82-49a2-8c13-8976266483b1": "Inactive Vita_LanguageLevels"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_LanguageLevels)",
+    "Name": "cr63b_vita_languagelevel_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_LanguageLevels"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_LanguageLevels",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_LanguageLevels)",
+    "Name": "cr63b_vita_languagelevel_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_LanguageLevels"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_LanguageLevels",
+    "Type": "OptionSetInfo"
+  }
+]

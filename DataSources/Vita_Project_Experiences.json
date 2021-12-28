@@ -1,0 +1,112 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_project_experiences",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_project_experience",
+    "Name": "Vita_Project_Experiences",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_clientname": "Client Name",
+      "cr63b_countryproject": "Country Project",
+      "cr63b_frommonth": "From Month",
+      "cr63b_fromyear": "From Year",
+      "cr63b_highlightedproject": "Highlighted Project",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_projectdescription": "Project Description",
+      "cr63b_projectname": "Project Name",
+      "cr63b_projectoraddedrole": "Project Or Added Role",
+      "cr63b_projectrole": "Project Role",
+      "cr63b_projectroledescription": "Project Role Description",
+      "cr63b_tomonth": "To Month",
+      "cr63b_totalmonthsonproject": "Total Months On Project",
+      "cr63b_toyear": "To Year",
+      "cr63b_Vita_MasterID": "Vita_MasterID",
+      "cr63b_vita_project_experience_AsyncOperations": "System Jobs",
+      "cr63b_vita_project_experience_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_project_experience_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_project_experience_DuplicateBaseRecord)",
+      "cr63b_vita_project_experience_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_project_experience_DuplicateMatchingRecord)",
+      "cr63b_vita_project_experience_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_project_experience_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_project_experience_ProcessSession": "Process Sessions",
+      "cr63b_vita_project_experience_SyncErrors": "Sync Errors",
+      "cr63b_vita_project_experienceid": "Vita_Project_Experience",
+      "cr63b_voprojectnumber": "VO Project Number",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Project_Experiences",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Project_Experiences (Views)",
+    "Name": "_cr63b_vita_project_experience_views",
+    "RelatedEntityName": "Vita_Project_Experiences",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1fab2f87-91e1-4766-a827-fac9bc317b8c": "Active Vita_Project_Experiences",
+      "62527302-91a9-4b1f-a61e-687b84e68796": "Vita_Project_Experience Lookup View",
+      "8b4cde7c-9f38-45d6-a57b-8d4d586cc699": "Inactive Vita_Project_Experiences",
+      "951921b9-c5ce-4f63-96f9-e59c1dd77ad3": "Vita_Project_Experience Advanced Find View",
+      "ef38f5d9-c9f6-4d58-8dd1-c0ff86c77ef0": "Vita_Project_Experience Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Project_Experiences)",
+    "Name": "cr63b_vita_project_experience_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Project_Experiences"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Project_Experiences",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Project_Experiences)",
+    "Name": "cr63b_vita_project_experience_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Project_Experiences"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Project_Experiences",
+    "Type": "OptionSetInfo"
+  }
+]

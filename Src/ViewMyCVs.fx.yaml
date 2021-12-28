@@ -37,7 +37,7 @@
             PaddingRight: =0
             PaddingTop: =0
             Size: =10
-            Text: =ThisItem.Position
+            Text: =ThisItem.ID
             VerticalAlign: =VerticalAlign.Top
             Width: =Parent.TemplateWidth - 64
             X: =20
@@ -80,7 +80,8 @@
             BorderThickness: =0
             Fill: =RGBA(37, 58, 121, 0.61)
             Height: =33
-            OnSelect: =Navigate(ViewMyCVsPrint,ScreenTransition.Cover);
+            OnSelect: |-
+                =Navigate(ViewMyCVsPrint,ScreenTransition.Cover, {varMasterIDSelected: ResumeGallery.Selected.ID});
             RadiusBottomLeft: =0
             RadiusBottomRight: =0
             RadiusTopLeft: =0
@@ -254,7 +255,7 @@
         BorderThickness: =0
         Fill: =RGBA(37, 58, 121, 1)
         Height: =82
-        OnSelect: =DeleteaCVVitaCVFlow.Run(ResumeGalleryViewCV.Selected.ID);Set(DeleteVerificationScreenVisible,false)
+        OnSelect: =DeleteCV.Run(ResumeGalleryViewCV.Selected.ID, ResumeGalleryViewCV.Selected.ID);Set(DeleteVerificationScreenVisible,false)
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =0

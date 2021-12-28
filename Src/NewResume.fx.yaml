@@ -19,12 +19,29 @@ NewResume As screen:
                             QualAbout: QualAbout,
                             IncludeInCV:Text(1)
                            // Vita_MasterID: LookUp(Vita_MasterCVS, ID=FormNewMaster.LastSubmit.ID)
-                           
                         }
                     )
                 )
             );
-            
+            ForAll(
+                LanguageCollection,
+                If(
+                    !IsMatch(
+                        LangName,
+                        "Select language"
+                    ),
+                    Patch(
+                        Vita_languages,
+                        Defaults(Vita_languages),
+                        {
+                            'Language Name': LangName,
+                            Level: LangProf,
+                            IncludeInCV:Text(1),
+                            Vita_MasterID:  LookUp(Vita_MasterCVS, ID=FormNewMaster.LastSubmit.ID)
+                        }
+                    )
+                )
+            );
             Set(
                 ShowSaveMasterSuccess,
                 true

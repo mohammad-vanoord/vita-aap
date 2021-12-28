@@ -6,6 +6,7 @@
     "IsSampleData": false,
     "IsWritable": true,
     "LogicalName": "cr63b_vita_rolesfunctionslist",
+    "MaxGetRowsCount": 500,
     "Name": "Vita_RolesFunctionsLists",
     "NativeCDSDataSourceInfoNameMapping": {
       "_ownerid_value": "Owner",

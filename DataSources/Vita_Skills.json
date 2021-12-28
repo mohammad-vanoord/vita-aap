@@ -1,0 +1,103 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_skills",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_skill",
+    "Name": "Vita_Skills",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_descriptionofskill": "Description of skill",
+      "cr63b_highlightedskill": "HighlightedSkill",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_nameofskill": "Name of skill",
+      "cr63b_skillorequipment": "SkillOrEquipment",
+      "cr63b_Vita_MasterID": "Vita_MasterID",
+      "cr63b_vita_skill_AsyncOperations": "System Jobs",
+      "cr63b_vita_skill_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_skill_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_skill_DuplicateBaseRecord)",
+      "cr63b_vita_skill_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_skill_DuplicateMatchingRecord)",
+      "cr63b_vita_skill_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_skill_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_skill_ProcessSession": "Process Sessions",
+      "cr63b_vita_skill_SyncErrors": "Sync Errors",
+      "cr63b_vita_skillid": "Vita_Skill",
+      "cr63b_yearsofexperienceinskill": "Years of experience in skill",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Skills",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Skills (Views)",
+    "Name": "_cr63b_vita_skill_views",
+    "RelatedEntityName": "Vita_Skills",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1da94b47-7220-46a1-a648-633c4ee7edad": "Inactive Vita_Skills",
+      "27400e4f-eeaf-461b-ac05-9e1f9a8bafd5": "Vita_Skill Associated View",
+      "2cecbaee-a7ca-429f-aea4-490d68102a25": "Vita_Skill Lookup View",
+      "a9c932a8-56c4-4444-9e46-08a1aa78cf06": "Active Vita_Skills",
+      "ee82b17f-fab0-4aa6-b174-9868c63cd37f": "Vita_Skill Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Skills)",
+    "Name": "cr63b_vita_skill_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Skills"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Skills",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Skills)",
+    "Name": "cr63b_vita_skill_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Skills"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Skills",
+    "Type": "OptionSetInfo"
+  }
+]

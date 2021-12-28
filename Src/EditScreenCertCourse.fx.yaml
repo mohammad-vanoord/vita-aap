@@ -1,4 +1,5 @@
 EditScreenCertCourse As screen:
+    OnVisible: =
 
     lblTitle_65 As label:
         Color: =RGBA(37, 58, 121, 1)
@@ -16,7 +17,7 @@ EditScreenCertCourse As screen:
         Fill: =RGBA(37, 58, 121, 1)
         Height: =45
         OnSelect: |-
-            =If(ShowSaveAddCertCourseSuccess, UpdateContext({GoBackScreenAddCertCourse: true}),Navigate(EditMyCV,ScreenTransition.Cover))
+            =If(ShowSaveAddCertCourseSuccess, UpdateContext({GoBackScreen: true}),Navigate(EditMyCV,ScreenTransition.Cover));
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =0
@@ -29,7 +30,7 @@ EditScreenCertCourse As screen:
         ZIndex: =8
 
     btnSaveEditProj_5 As button:
-        DisplayMode: =If(NeedssavedQual,DisplayMode.Disabled,DisplayMode.Edit)
+        DisplayMode: =
         Fill: =RGBA(37, 58, 121, 1)
         Height: =45
         OnSelect: |-
@@ -52,7 +53,7 @@ EditScreenCertCourse As screen:
                             Organiser: CertOrganiser,
                             CertificateOrCourse: CertSwitch,
                             IncludeInCV: Value(1),
-                            Vita_MasterID: Value(ResumeGalleryViewCV.Selected.ID)
+                            Vita_MaterCV: LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.cr63b_id)
                         }
                     )
                 )
@@ -102,8 +103,8 @@ EditScreenCertCourse As screen:
         Text: ="Save skill first"
         Visible: =NeedssavedQual
         Width: =156
-        X: =896
-        Y: =663
+        X: =837
+        Y: =665
         ZIndex: =11
 
     lblTitlePageViewMyCV_9 As label:
@@ -215,6 +216,7 @@ EditScreenCertCourse As screen:
             RadiusBottomRight: =0
             RadiusTopLeft: =0
             RadiusTopRight: =0
+            Reset: =true
             Size: =11
             Width: =524
             X: =16
@@ -324,6 +326,7 @@ EditScreenCertCourse As screen:
             PaddingBottom: =0
             PaddingTop: =0
             RadioSize: =20
+            Reset: =true
             Tooltip: ="After following a course, if you also receive a certificate that can expire, select 'certificate', otherwise just 'course'."
             Width: =284
             X: =8
@@ -353,6 +356,7 @@ EditScreenCertCourse As screen:
             RadiusBottomRight: =0
             RadiusTopLeft: =0
             RadiusTopRight: =0
+            Reset: =true
             Size: =11
             Width: =424
             X: =16
@@ -433,6 +437,20 @@ EditScreenCertCourse As screen:
             Y: =52
             ZIndex: =33
 
+    EditPopupConfirmation_1 As EditPopupConfirmation:
+        GoBackToEditCV: =EditMyCV
+        Visible: =GoBackScreen
+        ZIndex: =23
+
+    Toggle1 As toggleSwitch:
+        Default: = EditPopupConfirmation_1.BtnAction
+        OnChange: |-
+            =UpdateContext({GoBackScreen:false})
+        Visible: =false
+        X: =532
+        Y: =128
+        ZIndex: =24
+
     Group1_8 As group:
         Height: =5
         Width: =5
@@ -456,62 +474,4 @@ EditScreenCertCourse As screen:
             Width: =513
             Y: =12
             ZIndex: =2
-
-    EditCoursePopup As group:
-        Height: =5
-        Width: =5
-        X: =40
-        Y: =40
-        ZIndex: =28
-
-        Rectangle2 As rectangle:
-            Fill: =RGBA(0, 0, 0, .5)
-            Height: =768
-            Visible: =GoBackScreenAddCertCourse
-            Width: =1366
-            ZIndex: =23
-
-        Rectangle3 As rectangle:
-            Fill: =RGBA(246, 88, 16, 1)
-            Height: =248
-            Visible: =GoBackScreenAddCertCourse
-            Width: =560
-            X: =413
-            Y: =251
-            ZIndex: =24
-
-        Label24 As label:
-            Align: =Align.Center
-            Color: =RGBA(255, 255, 255, 1)
-            Height: =93
-            Text: ="You haven't saved your changes yet, are you sure you want to go back to Edit My CV?"
-            Visible: =GoBackScreenAddCertCourse
-            Width: =470
-            X: =458
-            Y: =295
-            ZIndex: =25
-
-        Button6 As button:
-            Height: =53
-            OnSelect: |-
-                =Navigate(EditMyCV,ScreenTransition.Cover);UpdateContext({GoBackScreenAddCertCourse:false})
-            Size: =12
-            Text: ="Yes, go back to Edit My CV"
-            Visible: =GoBackScreenAddCertCourse
-            Width: =146
-            X: =545
-            Y: =416
-            ZIndex: =26
-
-        Button8 As button:
-            Height: =53
-            OnSelect: |-
-                =UpdateContext({GoBackScreenAddCertCourse:false});
-            Size: =13
-            Text: ="Cancel"
-            Visible: =GoBackScreenAddCertCourse
-            Width: =133
-            X: =743
-            Y: =416
-            ZIndex: =27
 

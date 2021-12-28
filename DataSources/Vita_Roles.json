@@ -1,0 +1,103 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr63b_vita_roles",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr63b_vita_role",
+    "Name": "Vita_Roles",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr63b_id": "ID",
+      "cr63b_includeincv": "IncludeInCV",
+      "cr63b_monthsofexperienceinthisrole": "Months of experience in this role",
+      "cr63b_projectoraddedrole": "ProjectOrAddedRole",
+      "cr63b_rolename": "Role Name",
+      "cr63b_Vita_MasterID": "Vita_MasterID",
+      "cr63b_vita_masteridprojrole": "Vita_MasterIDProjRole",
+      "cr63b_vita_role_AsyncOperations": "System Jobs",
+      "cr63b_vita_role_BulkDeleteFailures": "Bulk Delete Failures",
+      "cr63b_vita_role_DuplicateBaseRecord": "Duplicate Records (cr63b_vita_role_DuplicateBaseRecord)",
+      "cr63b_vita_role_DuplicateMatchingRecord": "Duplicate Records (cr63b_vita_role_DuplicateMatchingRecord)",
+      "cr63b_vita_role_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "cr63b_vita_role_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "cr63b_vita_role_ProcessSession": "Process Sessions",
+      "cr63b_vita_role_SyncErrors": "Sync Errors",
+      "cr63b_vita_roleid": "Vita_Role",
+      "cr63b_whatdidyoudointhisrole": "What did you do in this role",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "Vita_Roles",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Vita_Roles (Views)",
+    "Name": "_cr63b_vita_role_views",
+    "RelatedEntityName": "Vita_Roles",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "08c0b954-6a80-45d1-affe-4d6ae3bf44f2": "Vita_Role Associated View",
+      "0f50ab92-5c88-428f-b47c-5a5bc4c1bfd4": "Inactive Vita_Roles",
+      "3bf8c49c-10d9-4d8f-b875-e3c273b33c32": "Vita_Role Advanced Find View",
+      "b81c8c96-355c-4120-9217-56057735069a": "Vita_Role Lookup View",
+      "ea8f6132-a9e7-4874-a358-82e12c78877a": "Active Vita_Roles"
+    }
+  },
+  {
+    "DisplayName": "Status (Vita_Roles)",
+    "Name": "cr63b_vita_role_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Vita_Roles"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Vita_Roles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Vita_Roles)",
+    "Name": "cr63b_vita_role_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Vita_Roles"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Vita_Roles",
+    "Type": "OptionSetInfo"
+  }
+]

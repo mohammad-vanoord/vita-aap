@@ -37,14 +37,14 @@ EditScreenQualifications As screen:
                 If(
                     !IsBlank(QualName),
                     Patch(
-                        'PA_summary of qualifications (test)',
-                        Defaults('PA_summary of qualifications (test)'),
+                        Vita_Summary_Qualifications,
+                        Defaults(Vita_Summary_Qualifications),
                         {
-                            Title: QualName,
+                            QualName: QualName,
                             QualAbout: QualAbout,
                             HighlightedQualSum:HighlightedQualSum,
                             IncludeInCV:Text(1),
-                            SP_QualMasterID: ResumeGalleryViewCV.Selected.cr63b_id
+                            Vita_MasterID: LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.ID)
                         }
                     )
                 )
@@ -263,13 +263,13 @@ EditScreenQualifications As screen:
         ZIndex: =21
 
     "GalleryEditAddQualificationsSummary As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
-        Height: =526
-        Items: =Filter('PA_summary of qualifications (test)',SP_QualMasterID = ResumeGalleryViewCV.Selected.cr63b_id)
+        Height: =187
+        Items: =Filter(Vita_Summary_Qualifications,Vita_MasterID.ID = ResumeGalleryViewCV.Selected.ID)
         Layout: =Layout.Vertical
         OnSelect: =
         TemplatePadding: =0
-        TemplateSize: =185
-        Width: =511
+        TemplateSize: =187
+        Width: =527
         X: =757
         Y: =164
         ZIndex: =22
@@ -285,7 +285,7 @@ EditScreenQualifications As screen:
             FontWeight: =FontWeight.Bold
             Height: =45
             OnSelect: =Select(Parent)
-            Text: =ThisItem.Title
+            Text: =ThisItem.QualName
             Width: =376
             ZIndex: =5
 

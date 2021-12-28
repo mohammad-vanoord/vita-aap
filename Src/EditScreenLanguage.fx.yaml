@@ -73,7 +73,7 @@ EditScreenLanguage As screen:
             Default: =ThisItem.LangName
             DisplayMode: =If(ThisItem.ShowSaveButtonsAddLang, DisplayMode.Edit,DisplayMode.View)
             Height: =32
-            Items: =PA_LanguageNamess
+            Items: =Vita_LanguageLists
             OnChange: =Set(NeedssavedAddLang,true)
             OnSelect: =Select(Parent)
             SelectionFill: =RGBA(37, 58, 121, 1)
@@ -90,7 +90,7 @@ EditScreenLanguage As screen:
             Default: =ThisItem.LangProf
             DisplayMode: =If(ThisItem.ShowSaveButtonsAddLang, DisplayMode.Edit,DisplayMode.View)
             Height: =32
-            Items: =PA_LangProfs
+            Items: =Vita_LanguageLevels
             OnChange: =Set(NeedssavedAddLang,true)
             SelectionFill: =RGBA(37, 58, 121, 1)
             Size: =10
@@ -102,12 +102,12 @@ EditScreenLanguage As screen:
 
     "GalleryViewLanguages_1 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
         Height: =379
-        Items: =Filter(PA_Languages,cr63b_masterid_language = ResumeGalleryViewCV.Selected.ID)
+        Items: =Filter(Vita_languages, Vita_MasterID.ID = ResumeGalleryViewCV.Selected.ID)
         Layout: =Layout.Vertical
         TemplatePadding: =0
         TemplateSize: =26
         Width: =430
-        X: =656
+        X: =743
         Y: =197
         ZIndex: =3
 
@@ -133,7 +133,7 @@ EditScreenLanguage As screen:
             PaddingRight: =0
             PaddingTop: =0
             Size: =12
-            Text: =ThisItem.cr63b_proficiencylevel
+            Text: =ThisItem.Level
             VerticalAlign: =VerticalAlign.Top
             Width: =122
             X: =259
@@ -146,20 +146,20 @@ EditScreenLanguage As screen:
         Size: =20
         Text: ="Your selected languages"
         Width: =324
-        X: =610
-        Y: =122
+        X: =732
+        Y: =140
         ZIndex: =4
 
     lblTitlePageViewMyCV_2 As label:
         FontWeight: =FontWeight.Semibold
-        Height: =45
+        Height: =47
         PaddingBottom: =0
         Size: =20
         Text: =ResumeGalleryViewCV.Selected.Title
         VerticalAlign: =VerticalAlign.Bottom
-        Width: =715
-        X: =323
-        Y: =44
+        Width: =797
+        X: =293
+        Y: =33
         ZIndex: =5
 
     lblSaveWarningLangEdit As label:
@@ -170,7 +170,7 @@ EditScreenLanguage As screen:
         Visible: =NeedssavedAddLang
         Width: =156
         X: =613
-        Y: =650
+        Y: =646
         ZIndex: =6
 
     lblTitle_40 As label:
@@ -222,23 +222,28 @@ EditScreenLanguage As screen:
                         LangName,
                         "Select language"
                     ),
-                    Patch(PA_Languages, Defaults( PA_Languages ),
-                    { 
-                        
-                        cr63b_languagename: LangName,
-                        cr63b_title: LangName,
-                        cr63b_proficiencylevel: LangProf,
-                         cr63b_includeincv:Text(1),
-                         cr63b_masterid_language: ResumeGalleryViewCV.Selected.ID
-                    }
-                    
+                    Patch(
+                        Vita_languages,
+                        Defaults(Vita_languages),
+                        {
+                            'Language Name': LangName,
+                            Level: LangProf,
+                            IncludeInCV: Text(1),
+                            Vita_MasterID:  LookUp(Vita_MasterCVS, ID = ResumeGalleryViewCV.Selected.ID)
+                        }
                     )
                 )
             );
             Set(
                 ShowSaveAddLangSuccess,
                 true
-            )
+            );ClearCollect(
+                LanguageCollection,
+                {
+                    LangName: "Select language",
+                    LangProf: "-",
+                    ShowSaveAddLangSuccess: false
+                });
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =0
